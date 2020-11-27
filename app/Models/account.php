@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class account extends Model
 {
+    protected $table = "account";
+
     public function house () {
         return $this->hasMany('App\house','idOwner','id');
     }
@@ -15,12 +17,8 @@ class account extends Model
         return $this->hasMany('App\post','idOwner','id');
     }
 
-    public function choosedHouse () {
+    public function choosedhouse () {
         return $this->hasOne('App\choosedhouse','idRenter','id');
-    }
-
-    public function post () {
-        return $this->hasMany('App\post','idOwner','id');
     }
 
     public function review () {

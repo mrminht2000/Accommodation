@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class post extends Model
 {
+    protected $table = "post";
+
     public function house () {
         return $this->belongsTo('App\house','idHouse','idHouse');
     }
 
-    public function owner () {
+    public function account () {
         return $this->belongsTo('App\account','id','idOwner');
     }
 }

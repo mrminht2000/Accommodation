@@ -9,7 +9,7 @@ class house extends Model
 {
     protected $table = "house";
 
-    public function owner () {
+    public function account () {
         return $this->belongsTo('App\account','id','idOwner');
     }
 
@@ -21,7 +21,7 @@ class house extends Model
         return $this->hasMany('App\post','idHouse','idHouse');
     }
 
-    public function choosedHouse() {
+    public function choosedhouse() {
         return $this->belongsTo('App\choosedhouse','idHouse','idHouse');
     }
 }

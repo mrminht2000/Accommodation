@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class choosedhouse extends Model
 {
+    protected $table = "choosedhouse";
+
     public function house () {
         return $this->hasMany('App\house','idHouse','idHouse');
     }
 
-    public function renter () {
+    public function account () {
         return $this->hasOne('App\account','id','idRenter');
     }
 }

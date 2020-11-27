@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class review extends Model
 {
+    protected $table = "review";
+
     public function house () {
         return $this->belongsTo('App\house','idHouse','idHouse');
     }
 
-    public function user () {
+    public function account () {
         return $this->belongsTo('App\account','id','idUser');
     }
 }
