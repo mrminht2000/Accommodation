@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('dang-ki', [
+    'as'=>'signup',
+    'uses'=>'PageController@getsignup'
+]);
+
+Route::get('dang-nhap', [
+    'as'=>'signin',
+    'uses'=>'PageController@getsignin'
+]);  
+
+Route::post('dang-ki', [
+    'as'=>'signup',
+    'uses'=>'PageController@postsignup'
+]); 
+
+Route::post('dang-nhap', [
+    'as'=>'signin',
+    'uses'=>'PageController@postsignin'
+]); 

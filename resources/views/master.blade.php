@@ -1,55 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Laravel </title>
-	<link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/vendors/colorbox/example3/colorbox.css')}}">
-	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/rs-plugin/css/settings.css')}}">
-	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/rs-plugin/css/responsive.css')}}">
-	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/style.css')}}">
-	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/css/animate.css')}}">
-	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/huong-style.css')}}">
+	<title>Project Phòng Trọ</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<base href="{{asset('')}}">
+	<link rel="stylesheet" href="source/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="source/assets/style.css">
+	<link rel="stylesheet" href="source/assets/awesome/css/fontawesome-all.css">
+	<link rel="stylesheet" href="source/assets/toast/toastr.min.css">
+	<script src="source/assets/jquery.min.js"></script>
+	<script src="source/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="source/assets/myjs.js"></script>
+	<link rel="stylesheet" href="source/assets/selectize.default.css" data-theme="default">
+	<script src="source/assets/js/fileinput/fileinput.js" type="text/javascript"></script>
+	<script src="source/assets/js/fileinput/vi.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="source/assets/fileinput.css">
+	<script src="source/assets/pgwslider/pgwslider.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="source/assets/pgwslider/pgwslider.min.css">
+	
+<!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
+    This must be loaded before fileinput.min.js -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.8/js/plugins/sortable.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.8/js/plugins/purify.min.js" type="text/javascript"></script> -->
+<link rel="stylesheet" href="source/assets/bootstrap/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="source/assets/bootstrap/bootstrap-select.min.js"></script>
 </head>
 <body>
-
-	@include('header')
-	<div class="rev-slider">
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+				<a class="navbar-brand" href=""><img src="images/logo.png"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					
+					
+					<li><a href="#">cbs</a></li>
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<!--<li><a class="btn-dangtin" href="user/dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>-->
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Thông tin chi tiết</a></li>
+							<li><a href="#">Đăng tin</a></li>
+							<li><a href="#">Thoát</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+				
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="btn-dangtin" href="#"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
+					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
+					<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
+				</ul>
+				
+			</div>
+		</div>
+	</nav>
+	
 		@yield('content')
-	</div> <!-- .container -->
+	<div class="gap"></div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="logo-footer">
+						<a href="/" title="Cổng thông tin số 1 về Dự án Bất động sản - Homedy.com">
+							<img src="images/logo.png">                        
+						</a>
+						<div style="padding-top: 10px;">
+							<p>Dự án phát triển Website Đăng tin và Tìm kiếm Phòng trọ Hà Nội.</p>
+							<p>Sinh viên thực hiện: Phạm Văn Hoàng-Nguyễn Ngọc Minh - Lớp K63N.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	@include('footer')
-
-
-	<!-- include js files -->
-	<script src="{{ URL::to('source/assets/dest/js/jquery.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/vendors/jqueryui/jquery-ui-1.10.4.custom.min.js')}}"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script src="{{ URL::to('source/assets/dest/vendors/bxslider/jquery.bxslider.min.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/vendors/colorbox/jquery.colorbox-min.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/vendors/animo/Animo.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/vendors/dug/dug.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/js/scripts.min.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/js/waypoints.min.js')}}"></script>
-	<script src="{{ URL::to('source/assets/dest/js/wow.min.js')}}"></script>
-	<!--customjs-->
-	<script src="{{ URL::to('source/assets/dest/js/custom2.js')}}"></script>
-	<script>
-	$(document).ready(function($) {    
-		$(window).scroll(function(){
-			if($(this).scrollTop()>150){
-			$(".header-bottom").addClass('fixNav')
-			}else{
-				$(".header-bottom").removeClass('fixNav')
-			}}
-		)
-	})
-	</script>
+	</footer>
+	
+<script type="text/javascript" src="source/assets/toast/toastr.min.js"></script>
 </body>
 </html>
