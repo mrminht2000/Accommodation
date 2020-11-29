@@ -17,20 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+//Đăng ký thành viên
 Route::get('dang-ki', [
     'as'=>'signup',
     'uses'=>'PageController@getsignup'
 ]);
 
+Route::post('dang-ki', [
+    'as'=>'signup',
+    'uses'=>'PageController@postsignup'
+]); 
+
+
+//Đăng nhập và xử lý đăng nhập
 Route::get('dang-nhap', [
     'as'=>'signin',
     'uses'=>'PageController@getsignin'
 ]);  
 
-Route::post('dang-ki', [
-    'as'=>'signup',
-    'uses'=>'PageController@postsignup'
-]); 
 
 Route::post('dang-nhap', [
     'as'=>'signin',
