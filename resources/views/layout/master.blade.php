@@ -48,23 +48,23 @@
 				<ul class="nav navbar-nav navbar-right">
 					<!--<li><a class="btn-dangtin" href="user/dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>-->
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! <span class="caret"></span></a>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()->name}}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Thông tin chi tiết</a></li>
-							<li><a href="#">Đăng tin</a></li>
-							<li><a href="#">Thoát</a></li>
+							<li><a href="account/dangtin">Đăng tin</a></li>
+							<li><a href="{{route('signout')}}">Thoát</a></li>
 						</ul>
 					</li>
 					
 				</ul>
 				
-				
+				@else
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="btn-dangtin" href="#"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
 					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 					<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
 				</ul>
-				
+				@endif
 			</div>
 		</div>
 	</nav>
