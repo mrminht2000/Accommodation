@@ -30,8 +30,8 @@
 
 						
 						<div class="form-block">
-							<label for="email">Email address*</label>
-							<input type="email" name="email" required>
+							<label for="email">Username*</label>
+							<input type="username" name="username" required>
 						</div>
 						<div class="form-block">
 							<label for="password">Password*</label>

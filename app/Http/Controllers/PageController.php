@@ -49,18 +49,17 @@ class PageController extends Controller
 
     public function postsignin(Request $req) {
         $req->validate( [
-            'email'=>'required|email',
-            'password'=>'required|min:6|max:20'
+            'username'=>'required',
+            'password'=>'required|min:0|max:20'
         ],
         [
-            'email.required'=>'Vui lòng nhập email',
-            'email.email'=>'email không đúng định dạng',
+            'username.required'=>'Vui lòng nhập tên đăng nhập',
             'password.required'=>'Vui lòng nhập password',
-            'password.min'=>'password trên 6 kí tự',
+            'password.min'=>'password trên 0 kí tự',
             'password.max'=>'password dưới 20 kí tự',
         ]);
 
-        $credentials = array('email'=>$req->email, 'password'=>$req->password);
+        $credentials = array('username'=>$req->username, 'password'=>$req->password);
         if(Auth::attempt($credentials)) {
             return redirect()->back()->with(['flag'=>'success', 'message'=>'Đăng nhập thành công']); 
         } else {
