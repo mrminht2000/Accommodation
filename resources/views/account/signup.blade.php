@@ -72,6 +72,18 @@
 								<input type="text" class="form-control" name="indentityCard" placeholder="">
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="pwd">Loại tài khoản:</label>
+							<div class="col-sm-9"> 
+								<label class="radio-container">
+                				<input type="radio" id="owner" name="accounttype" checked="checked" value='true'/>Chủ trọ
+            					</label>
+
+            					<label class="radio-container">
+                				<input type="radio" id="renter" name="accounttype" value='false'/>Người thuê
+            					</label>
+							</div>
+						</div>
 						<div class="form-group"> 
 							<div class="col-sm-offset-6 col-sm-9">
 								<button type="submit" class="btn btn-primary">Đăng kí</button>
