@@ -84,7 +84,7 @@ class PageController extends Controller
         
         $credentials = array('username'=>$req->username, 'password'=>$req->password);
         if(Auth::attempt($credentials)) {
-            if(DB::table('account')->select('isApproval')->where('username',$req->username)) 
+            if(DB::table('account')->where('username',$req->username)->value('isApproval') == 0) 
                 return redirect()->back()->with(['flag'=>'danger', 'message'=>'Tài khoản chưa được phê duyệt, vui lòng liên hệ Admin.']);
             else 
                 return redirect()->back()->with(['flag'=>'success', 'message'=>'Đăng nhập thành công']); 
