@@ -36,3 +36,18 @@ Route::post('dang-nhap', [
     'as'=>'signin',
     'uses'=>'PageController@postsignin'
 ]); 
+
+Route::get('dang-tin', [
+    'as'=>'post',
+    'uses'=>'PageController@getpost'
+]); 
+
+Route::post('dang-tin', [
+    'as'=>'post',
+    'uses'=>'PageController@postpost'
+]); 
+
+Route::get('danh-muc/{type}', [
+    'as'=>'danhmuc',
+    'uses'=>'PageController@getDanhmuc'
+]);

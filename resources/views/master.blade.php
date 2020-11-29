@@ -42,11 +42,9 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav">
 					
-					
-					<li><a href="#">cbs</a></li>
 				</ul>
-				
 				<ul class="nav navbar-nav navbar-right">
 					<!--<li><a class="btn-dangtin" href="user/dangtin"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>-->
 					<li class="dropdown">
