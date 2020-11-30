@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use Hash;
 use Auth;
+<<<<<<< HEAD
 use DB;
+=======
+>>>>>>> 7ac342c26f00d22772249cdf65579cd827e542f9
 use App\Models\User;
 use App\Models\account;
 
@@ -19,12 +22,13 @@ class PageController extends Controller
         return view('account.signin');
     }
 
-    // public function getDanhmuc($type) {
-    //     $danhmuc = housetype::where('id', $type)->first();
-    //     return view('');
-    // }
+     public function getDanhmuc($type) {
+         $danhmuc = housetype::where('id', $type)->first();
+         return view('');
+     }
 
     public function postsignup(Request $req) {
+        //Kiểm tra thông tin đăng ký
         $req->validate(
             [
                 'username'=>'required|unique:account,username',
@@ -53,6 +57,7 @@ class PageController extends Controller
                 'address.required'=>'Vui lòng nhập địa chỉ'
 
             ]);
+        //Lưu thông tin đăng ký
         $user = new Account();
         $user->username = $req->username;
         $user->fullname = $req->fullname;
@@ -62,20 +67,26 @@ class PageController extends Controller
         $user->phoneNumber = $req->phoneNumber;
         $user->indentityCard = $req->indentityCard;
         $isOwner = $req->accounttype;
+
         if ($isOwner == 'true') {
             $user->isOwner = 1;
             $user->isApproval = 0;
         }
         else $user->isOwner = 0;
+
         $user->save(); 
 
+        //Nếu tài khoản Owner thì cần phê duyệt
         if ($isOwner == 'true') {
             return redirect()->back()->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
         }
         else return redirect()->back()->with('success', 'Đăng kí thành công');
     }
 
+
+    //Xử lý đăng nhập  
     public function postsignin(Request $req) {
+        //Kiểm tra thông tin đăng nhập
         $req->validate( [
             'username'=>'required',
             'password'=>'required|min:0|max:20'
@@ -87,6 +98,7 @@ class PageController extends Controller
             'password.max'=>'password dưới 20 kí tự',
         ]);
         
+        //Kiểm tra đăng nhập đúng hay chưa
         $credentials = array('username'=>$req->username, 'password'=>$req->password);
         if(Auth::attempt($credentials)) {
             if(DB::table('account')->where('username',$req->username)->value('isApproval') == 0) 
@@ -158,12 +170,12 @@ class PageController extends Controller
          $house->size = $request->size;
          $house->count_view = 0;
          $house->address = $request->address;
-         //$house->latlng = $json_latlng;
-         //$house->utilities = $json_tienich;
+         $house->latlng = $json_latlng;
+         $house->utilities = $json_tienich;
          $house->image = $json_img;
          $house->idOwner = Auth::account()->id;
-         //$house->category_id = $request->idcategory;
-         //$house->district_id = $request->iddistrict;
+         $house->category_id = $request->idcategory;
+         $house->district_id = $request->iddistrict;
          $house->phoneNumber = $request->phoneNumber;
          $house->save();
          return redirect()->with('success','Đăng tin thành công. Vui lòng đợi Admin kiểm duyệt');
