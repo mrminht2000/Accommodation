@@ -10,7 +10,11 @@
 	<link rel="stylesheet" href="source/assets/style.css">
 	<link rel="stylesheet" href="source/assets/awesome/css/fontawesome-all.css">
 	<link rel="stylesheet" href="source/assets/toast/toastr.min.css">
-	
+	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/style.css')}}">
+	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/css/animate.css')}}">
+	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/huong-style.css')}}">
+
+
 	<script src="source/assets/jquery.min.js"></script>
 	<script src="source/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="source/assets/myjs.js"></script>
@@ -39,40 +43,35 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>                        
 				</button>
-				<a class="navbar-brand" href=""><img src="images/logo.png"></a>
+				<!--<a class="navbar-brand" href=""><img src="images/logo.png"></a>-->
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-				<ul class="nav navbar-nav">
-					<li><a href="#">Trang chủ</a></li>
-					<li><a href="#">Loại Sản phẩm</a>
-						<ul class="sub-menu">
-						@foreach($Categories as $category)
-							<li><a href="danh-muc/{{$category->id}}">{{ $category->name }}</a></li>
-						@endforeach
-						</ul>
-					</li>
-					<li><a href="#">Giới thiệu</a></li>
-					<li><a href="#">Liên hệ</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào!<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Thông tin chi tiết</a></li>
-							<li><a href="#">Đăng tin</a></li>
-							<li><a href="#">Thoát</a></li>
-						</ul>
-					</li>
+			<nav class="main-menu">
+					<ul class="l-inline ov">
+						<li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
+						<li><a href="#">Sản phẩm</a>
+							<ul class="sub-menu">
+							@foreach($danh_muc as $damu)
+								<li><a href="#">{{$damu->name}}</a></li>
+							@endforeach	
+							</ul>
+						</li>
+						<li><a href="about.html">Giới thiệu</a></li>
+						
+						<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
+						<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
+						<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào!<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Thông tin chi tiết</a></li>
+								<li><a href="#">Đăng tin</a></li>
+								<li><a href="#">Thoát</a></li>
+							</ul>
+						</li>
+					</ul>
 					
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin</a></li>
-					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
-					<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
-				</ul>
-			</div>
+					<div class="clearfix"></div>
+				</nav>
 		</div>
 	</nav>
 	

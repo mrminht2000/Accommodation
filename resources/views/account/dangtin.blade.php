@@ -48,7 +48,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="usr">Diện tích( m<sup>2</sup> ):</label>
+                  <label for="usr">Diện tích(m2):</label>
                   <input type="number" name="size" class="form-control" placeholder="16">
                 </div>
               </div>

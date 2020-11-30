@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+Route::get('index',[
+    'as'=>'trang-chu',
+    'uses'=>'PageController@getIndex'
+]);
+
 
 //Đăng ký thành viên
 Route::get('dang-ki', [

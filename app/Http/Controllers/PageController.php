@@ -12,6 +12,11 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+
+    public function getIndex() {
+        return view('home.index');
+    }
+
     public function getsignup() {
         return view('account.signup');
     }
