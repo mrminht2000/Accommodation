@@ -44,10 +44,19 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 				<ul class="nav navbar-nav">
-					
+					<li><a href="#">Trang chủ</a></li>
+					<li><a href="#">Loại Sản phẩm</a>
+						<ul class="sub-menu">
+						@foreach($Categories as $category)
+							<li><a href="danh-muc/{{$category->id}}">{{ $category->name }}</a></li>
+						@endforeach
+						</ul>
+					</li>
+					<li><a href="#">Giới thiệu</a></li>
+					<li><a href="#">Liên hệ</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-				
+
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào!<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -59,11 +68,10 @@
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="btn-dangtin" href="#"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
+					<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin</a></li>
 					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 					<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
 				</ul>
-			
 			</div>
 		</div>
 	</nav>

@@ -44,15 +44,19 @@ Route::post('dang-nhap', [
 
 Route::get('dang-tin', [
     'as'=>'post',
-    'uses'=>'PageController@getpost'
+    'uses'=>'PageController@get_dangtin'
 ]); 
 
 Route::post('dang-tin', [
     'as'=>'post',
-    'uses'=>'PageController@postpost'
+    'uses'=>'PageController@post_dangtin'
 ]); 
+
+
 
 Route::get('danh-muc/{type}', [
     'as'=>'danhmuc',
-    'uses'=>'PageController@getDanhmuc'
+    'uses'=>'PageController@gethousetype'
 ]);
+
+Route::get('danh-muc/{id}','PageController@getMotelByCategoryId');

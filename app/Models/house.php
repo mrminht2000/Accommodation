@@ -24,4 +24,8 @@ class house extends Model
     public function choosedhouse() {
         return $this->belongsTo('App\choosedhouse','idHouse','idHouse');
     }
+
+    public function housetype() {
+        return $this->belongsTo('App\housetype','type','id');
+    }
 }

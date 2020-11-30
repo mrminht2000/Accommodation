@@ -1,5 +1,4 @@
-
-@extends('master')
+@extends('layout.master')
 @section('content')
 <div class="gap"></div>
 <div class="container">

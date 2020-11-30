@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use App\Models\User;
 use App\Models\account;
+use App\Models\housetype;
 
 use Illuminate\Http\Request;
 
@@ -19,10 +20,10 @@ class PageController extends Controller
         return view('account.signin');
     }
 
-     public function getDanhmuc($type) {
-         $danhmuc = housetype::where('id', $type)->first();
-         return view('');
-     }
+    //  public function getDanhmuc($type) {
+    //      $danhmuc = housetype::where('id', $type)->first();
+    //      return view('');
+    //  }
 
     public function postsignup(Request $req) {
         //Kiểm tra thông tin đăng ký
@@ -107,7 +108,7 @@ class PageController extends Controller
         }
     }
 
-    public function getpost() {
+    public function get_dangtin() {
         return view('account.dangtin');
     }
 
@@ -177,4 +178,16 @@ class PageController extends Controller
          $house->save();
          return redirect()->with('success','Đăng tin thành công. Vui lòng đợi Admin kiểm duyệt');
     }
+
+
+    public function gethousetype($type) {
+        $house_type = housetype::all();
+        return view('page.danhmuc', ['danh_muc'=> $house_type]);
+    }
+
+    public function getMotelByCategoryId($id){
+		
+		$Categories = housetype::all();
+		return view('page.danhmuc',['categories'=>$Categories]);
+	}
 }
