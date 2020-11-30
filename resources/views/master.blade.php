@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="source/assets/style.css">
 	<link rel="stylesheet" href="source/assets/awesome/css/fontawesome-all.css">
 	<link rel="stylesheet" href="source/assets/toast/toastr.min.css">
+	
 	<script src="source/assets/jquery.min.js"></script>
 	<script src="source/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="source/assets/myjs.js"></script>
@@ -57,8 +58,6 @@
 					</li>
 					
 				</ul>
-				
-				
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="btn-dangtin" href="#"><i class="fas fa-edit"></i> Đăng tin ngay</a></li>
 					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>

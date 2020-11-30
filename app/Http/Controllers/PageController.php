@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 use Hash;
 use Auth;
-<<<<<<< HEAD
-
-=======
 use DB;
->>>>>>> cc31374bd7052bee9bea50f870e6e77b3164de3a
 use App\Models\User;
 use App\Models\account;
 
