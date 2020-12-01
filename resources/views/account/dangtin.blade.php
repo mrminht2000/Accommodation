@@ -98,9 +98,9 @@
                   <label>Phòng tắm: </label>
                   <br/>
                   <input type="radio" id="bathroom" name="bathroom" value="bathroom">
-                    <label for="bathroom">Có</label><br>
+                    <label for="bathroom" value='Có'>Có</label><br>
                   <input type="radio" id="bathroom" name="bathroom" value="bathroom">
-                    <label for="bathroom">Không</label><br>
+                    <label for="bathroom" value='Không'>Không</label><br>
                 </div>
               </div>
               <div class="col-md-4">
@@ -108,11 +108,11 @@
                   <label>Phòng bếp: </label>
                   <br/>
                   <input type="radio" id="kitchen" name="kitchen" value="kitchen">
-                    <label for="kitchen">Bếp riêng</label><br>
+                    <label for="kitchen" value='Bếp riêng'>Bếp riêng</label><br>
                   <input type="radio" id="kitchen" name="kitchen" value="kitchen">
-                    <label for="kitchen">Bếp chung</label><br>
+                    <label for="kitchen" value='Bếp chung'>Bếp chung</label><br>
                   <input type="radio" id="kitchen" name="kitchen" value="kitchen">
-                    <label for="kitchen">Không nấu ăn</label><br>
+                    <label for="kitchen" value='Không nấu ăn'>Không nấu ăn</label><br>
                 </div>
               </div>
             </div>
@@ -124,9 +124,9 @@
                   <label>Điều hòa:</label>
                   <br/>
                   <input type="radio" id="air_conditioning" name="air_conditioning" value="air_conditioning">
-                    <label for="air_conditioning">Có</label><br>
+                    <label for="air_conditioning" value=1>Có</label><br>
                   <input type="radio" id="air_conditioning" name="air_conditioning" value="air_conditioning">
-                    <label for="air_conditioning">Không</label><br>
+                    <label for="air_conditioning" value=0>Không</label><br>
                 </div>
               </div>
               <div class="col-md-4">
@@ -134,9 +134,9 @@
                   <label>Ban công: </label>
                   <br/>
                   <input type="radio" id="balcony" name="balcony" value="balcony">
-                    <label for="balcony">Có</label><br>
+                    <label for="balcony" value=1>Có</label><br>
                   <input type="radio" id="balcony" name="balcony" value="balcony">
-                    <label for="balcony">Không</label><br>
+                    <label for="balcony" value=0>Không</label><br>
                 </div>
               </div>
               <div class="col-md-4">

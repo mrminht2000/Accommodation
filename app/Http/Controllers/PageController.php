@@ -5,11 +5,14 @@ use Hash;
 use Auth;
 use DB;
 use App\Models\User;
+use App\Models\house;
 use App\Models\account;
 use App\Models\housetype;
 use App\Models\districts;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class PageController extends Controller
 {
@@ -57,7 +60,7 @@ class PageController extends Controller
             $arr_images = array();
             $inputfile =  $request->file('hinhanh');
             foreach ($inputfile as $filehinh) {
-               $namefile = "phongtro-".str_random(5)."-".$filehinh->getClientOriginalName();
+               $namefile = "phongtro-".Str::random(5)."-".$filehinh->getClientOriginalName();
                while (file_exists('uploads/images'.$namefile)) {
                  $namefile = "phongtro-".$random."-".$filehinh->getClientOriginalName();
                }
@@ -69,7 +72,7 @@ class PageController extends Controller
          else {
             $arr_images[] = "no_img_room.png";
             $json_img = json_encode($arr_images,JSON_FORCE_OBJECT);
-         }*/
+         }
          /* tiện ích*/
          //$json_tienich = json_encode($request->tienich,JSON_FORCE_OBJECT);
          /* ----*/ 
@@ -77,22 +80,28 @@ class PageController extends Controller
          /* New Phòng trọ */
          $house = new house;
          $house->title = $request->title;
-         $house->describe = $request->description;
+         $house->description = $request->description;
          $house->price = $request->price;
+         $house->pricePer = 'month';
          $house->size = $request->size;
          $house->count_view = 0;
-         $house->address = $request->address;
+         $house->address = 'Hà Nội';
+         $house->bathroom = $request->bathroom;
+         $house->kitchen = $request->kitchen;
+         $house->airConditioner = (int)$request->air_conditioning;
+         $house->balcony = (int)$request->balcony;
          //$house->latlng = $json_latlng;
-         //$house->utilities = $json_tienich;
+         $house->otherUltilities = 'Add more...';
          $house->image = $json_img;
          //$house->idOwner = Auth::account()->id;
+         $house->idOwner = 0;
          $house->id_type = $request->id_type;
          $house->id_districts = $request->id_districts;
          $house->phoneNumber = $request->phoneNumber;
          $house->electricPrice = $request->electricPrice;
          $house->waterPrice = $request->waterPrice;
          $house->save();
-         return redirect()->with('success','Đăng tin thành công. Vui lòng đợi Admin kiểm duyệt');
+         return redirect()->back()->with('success','Đăng tin thành công. Vui lòng đợi Admin kiểm duyệt');
     }
 
 
