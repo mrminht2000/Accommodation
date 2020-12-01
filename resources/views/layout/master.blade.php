@@ -56,18 +56,20 @@
 							</ul>
 						</li>
 						<li><a href="about.html">Giới thiệu</a></li>
-						
-						<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
+						@if(!Auth::user())
 						<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 						<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
+						@else
+						<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào!<span class="caret"></span></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()}}<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Thông tin chi tiết</a></li>
-								<li><a href="#">Đăng tin</a></li>
-								<li><a href="#">Thoát</a></li>
+								<li><a href="{{route('post')}}">Đăng tin</a></li>
+								<li><a href="{{route('signout')}}">Thoát</a></li>
 							</ul>
 						</li>
+						@endif
 					</ul>
 					
 					<div class="clearfix"></div>

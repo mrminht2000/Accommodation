@@ -26,27 +26,39 @@ Route::get('index',[
 //Đăng ký thành viên
 Route::get('dang-ki', [
     'as'=>'signup',
-    'uses'=>'PageController@getsignup'
+    'uses'=>'UserController@getsignup'
 ]);
 
 Route::post('dang-ki', [
     'as'=>'signup',
-    'uses'=>'PageController@postsignup'
+    'uses'=>'UserController@postsignup'
 ]); 
 
 
 //Đăng nhập và xử lý đăng nhập
 Route::get('dang-nhap', [
     'as'=>'signin',
-    'uses'=>'PageController@getsignin'
+    'uses'=>'UserController@getsignin'
 ]);  
 
 
 Route::post('dang-nhap', [
     'as'=>'signin',
-    'uses'=>'PageController@postsignin'
+    'uses'=>'UserController@postsignin'
 ]); 
 
+//Đăng xuất
+Route::get('dang-xuat',[
+    'as'=>'signout',
+    'uses'=>'UserController@getsignout'
+]);
+
+// Route::post('dang-xuat',[
+//     'as'=>'signout',
+//     'uses'=>'UserController@postsignout'
+// ]);
+
+//Đăng tin
 Route::get('dang-tin', [
     'as'=>'post',
     'uses'=>'PageController@get_dangtin'
@@ -57,8 +69,7 @@ Route::post('dang-tin', [
     'uses'=>'PageController@post_dangtin'
 ]); 
 
-
-
+//Lấy danh mục loại phòng
 Route::get('danh-muc/{type}', [
     'as'=>'danhmuc',
     'uses'=>'PageController@gethousetype'

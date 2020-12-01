@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'account',
+        'passwords' => 'account',
     ],
 
     /*
@@ -46,6 +46,18 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        //Tạo guard để xác thực
+        'account' => [
+            'driver' => 'session',
+            'provider' => 'account',
+        ],
+
+        'account-api' => [
+            'driver' =>'token',
+            'provider' => 'account',
+            'hash' => true,
+    ],
     ],
 
     /*
@@ -71,6 +83,11 @@ return [
             'model' => App\Models\User::class,
         ],
 
+    //
+        'account' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Authaccount::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -95,6 +112,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'account' => [
+            'provider' => 'account',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
