@@ -10,7 +10,7 @@
 				<div class="panel-heading">Thông tin bắt buộc*</div>
 				<div class="panel-body">
 					<div class="gap"></div>
-				<!--	@if ($errors->any())
+					@if ($errors->any())
 					<div class="alert alert-danger">
 						<ul>
 							@foreach ($errors->all() as $error)
@@ -18,7 +18,7 @@
 							@endforeach
 						</ul>
 					</div>
-					@endif-->
+					@endif
 					@if(session('warn'))
           <div class="alert bg-danger">
             <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
@@ -57,23 +57,27 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">Quận/ Huyện:</label>
-                  <select class="selectpicker pull-right" data-live-search="true" name="iddistrict">
-                  
+                  <select class="selectpicker pull-right" data-live-search="true" name="id_districts">
+                      @foreach($quan_huyen as $quan)
+                        <option data-tokens="{{$quan->slug}}" value="{{ $quan->id }}">{{ $quan->name }}</option>
+                       @endforeach
                   </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">Danh mục:</label>
-                  <select class="selectpicker pull-right" data-live-search="true" class="form-control" name="idcategory"> 
-                   
+                  <select class="selectpicker pull-right" data-live-search="true" class="form-control" name="id_type"> 
+                      @foreach($danh_muc  as $danh)
+                    <option data-tokens="{{$danh->slug}}" value="{{ $danh->id }}">{{ $danh->name }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">SĐT Liên hệ:</label>
-                  <input type="text" name="txtphone" class="form-control" placeholder="0915111234">
+                  <input type="text" name="phoneNumber" class="form-control" placeholder="0915111234">
                 </div>
               </div>
             </div> 
@@ -139,17 +143,17 @@
                 <div class="form-group">
                   <label>Điện(giá thuê 1 số điện) :</label>
                   <br/>
-                  <input type="text" name="electric">
+                  <input type="number" name="electricPrice" id="electricPrice">
                   <br/>
                   <label>Nước(giá thuê 1 m3 nước) :</label>
                   <br/>
-                  <input type="text" name="water">
+                  <input type="number" id="waterPrice" name="waterPrice">
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label for="comment">Mô tả ngắn:</label>
-              <textarea class="form-control" rows="5" name="txtdescription" style=" resize: none;"></textarea>
+              <textarea class="form-control" rows="5" id="description" name="description" style=" resize: none;"></textarea>
             </div>
             <div class="form-group">
               <label for="comment">Thêm hình ảnh:</label>
@@ -179,187 +183,14 @@
 </div>
 </div>
 </div>
-<script type="text/javascript">
-  $('#file-5').fileinput({
+
+<script>
+     $('#file-5').fileinput({
     theme: 'fa',
     language: 'vi',
     showUpload: false,
     allowedFileExtensions: ['jpg', 'png', 'gif']
   });
 </script>
-<script>
-  var map;
-  var marker;
-  function initialize() {
-    var mapOptions = {
-      center: {lat: 16.070372, lng: 108.214388},
-      zoom: 12
-    };
-    map = new google.maps.Map(document.getElementById('map-canvas'),
-      mapOptions);
 
-  // Get GEOLOCATION
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = new google.maps.LatLng(position.coords.latitude,
-        position.coords.longitude);
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({
-        'latLng': pos
-      }, function (results, status) {
-        if (status ==
-          google.maps.GeocoderStatus.OK) {
-          if (results[0]) {
-            console.log(results[0].formatted_address);
-          } else {
-            console.log('No results found');
-          }
-        } else {
-          console.log('Geocoder failed due to: ' + status);
-        }
-      });
-      map.setCenter(pos);
-      marker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        draggable: true
-      });
-    }, function() {
-      handleNoGeolocation(true);
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
-  }
-
-  function handleNoGeolocation(errorFlag) {
-    if (errorFlag) {
-      var content = 'Error: The Geolocation service failed.';
-    } else {
-      var content = 'Error: Your browser doesn\'t support geolocation.';
-    }
-
-    var options = {
-      map: map,
-      zoom: 19,
-      position: new google.maps.LatLng(16.070372,108.214388),
-      content: content
-    };
-
-    map.setCenter(options.position);
-    marker = new google.maps.Marker({
-      position: options.position,
-      map: map,
-      zoom: 19,
-      icon: "images/gps.png",
-      draggable: true
-    });
-    /* Dragend Marker */ 
-    google.maps.event.addListener(marker, 'dragend', function() {
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (results[0]) {
-            $('#location-text-box').val(results[0].formatted_address);
-            $('#txtaddress').val(results[0].formatted_address);
-            $('#txtlat').val(marker.getPosition().lat());
-            $('#txtlng').val(marker.getPosition().lng());
-            infowindow.setContent(results[0].formatted_address);
-            infowindow.open(map, marker);
-          }
-        }
-      });
-    });
-    /* End Dragend */
-
-  }
-
-  // get places auto-complete when user type in location-text-box
-  var input = /** @type {HTMLInputElement} */
-  (
-    document.getElementById('location-text-box'));
-
-
-  var autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
-
-  var infowindow = new google.maps.InfoWindow();
-  marker = new google.maps.Marker({
-    map: map,
-    icon: "images/gps.png",
-    anchorPoint: new google.maps.Point(0, -29),
-    draggable: true
-  });
-
-  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-    infowindow.close();
-    marker.setVisible(false);
-    var place = autocomplete.getPlace();
-    if (!place.geometry) {
-      return;
-    }
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'latLng': place.geometry.location}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        if (results[0]) {
-          $('#txtaddress').val(results[0].formatted_address);
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(map, marker);
-        }
-      }
-    });
-    // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17); // Why 17? Because it looks good.
-    }
-    marker.setIcon( /** @type {google.maps.Icon} */ ({
-      url: "images/gps.png"
-    }));
-    document.getElementById('txtlat').value = place.geometry.location.lat();
-    document.getElementById('txtlng').value = place.geometry.location.lng();
-    console.log(place.geometry.location.lat());
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
-
-    var address = '';
-    if (place.address_components) {
-      address = [
-      (place.address_components[0] && place.address_components[0].short_name || ''), (place.address_components[1] && place.address_components[1].short_name || ''), (place.address_components[2] && place.address_components[2].short_name || '')
-      ].join(' ');
-    }
-    /* Dragend Marker */ 
-    google.maps.event.addListener(marker, 'dragend', function() {
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (results[0]) {
-            $('#location-text-box').val(results[0].formatted_address);
-            $('#txtlat').val(marker.getPosition().lat());
-            $('#txtlng').val(marker.getPosition().lng());
-            infowindow.setContent(results[0].formatted_address);
-            infowindow.open(map, marker);
-          }
-        }
-      });
-    });
-    /* End Dragend */
-  });
-
-}
-
-
-// google.maps.event.addDomListener(window, 'load', initialize);
-</script>
-<script type="text/javascript" src="assets/js/selectize.js"></script>
-<script>
-  $(function() {
-    $('select').selectize(options);
-  });
-  $('#select-state').selectize({
-    maxItems: null
-  });
-</script>
 @endsection

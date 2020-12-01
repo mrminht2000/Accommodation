@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 Route::get('index',[
     'as'=>'trang-chu',
     'uses'=>'PageController@getIndex'

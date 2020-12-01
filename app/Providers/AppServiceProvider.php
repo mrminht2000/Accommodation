@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\housetype;
+use App\Models\districts;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
             $danh_muc = housetype::all();
             $view->with('danh_muc', $danh_muc);
         });
+
+        
     }
 }
