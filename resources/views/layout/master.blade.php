@@ -14,7 +14,8 @@
 	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/css/animate.css')}}">
 	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/huong-style.css')}}">
 
-
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">
+	
 	<script src="source/assets/jquery.min.js"></script>
 	<script src="source/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="source/assets/myjs.js"></script>
@@ -24,6 +25,7 @@
 	<link rel="stylesheet" href="source/assets/fileinput.css">
 	<script src="source/assets/pgwslider/pgwslider.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="source/assets/pgwslider/pgwslider.min.css">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
 	
 <!-- sortable.min.js is only needed if you wish to sort / rearrange files in initial preview. 
     This must be loaded before fileinput.min.js -->
@@ -56,7 +58,6 @@
 							</ul>
 						</li>
 						<li><a href="about.html">Giới thiệu</a></li>
-						
 						<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
 						<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 						<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
