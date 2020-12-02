@@ -15,11 +15,15 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function getsignup() {
-        return view('account.signup');
+        if (Auth::guard('account')->user()) return redirect('index');
+        else
+            return view('account.signup');
     }
 
     public function getsignin() {
-        return view('account.signin');
+        if (Auth::guard('account')->user()) return redirect('index');
+        else
+            return view('account.signin');
     }
 
     //Xử lý đăng ký
@@ -102,7 +106,7 @@ class UserController extends Controller
             if(DB::table('account')->where('username',$req->username)->value('isApproval') == 0) 
                 return redirect()->back()->with(['flag'=>'danger', 'message'=>'Tài khoản chưa được phê duyệt, vui lòng liên hệ Admin.']);
             else 
-                return redirect()->back()->with(['flag'=>'success', 'message'=>'Đăng nhập thành công']); 
+                return redirect('index'); 
         } else {
             return redirect()->back()->with(['flag'=>'danger', 'message'=>'Đăng nhập không thành công']);
         }
@@ -114,9 +118,5 @@ class UserController extends Controller
         Session::flush();
         return view('home.index');
     }
-
-    // public function postsignout() {
-        
-    // }
 
 }

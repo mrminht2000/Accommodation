@@ -58,16 +58,18 @@
 							</ul>
 						</li>
 						<li><a href="about.html">Giới thiệu</a></li>
-						@if(!Auth::user())
+						@if(!Auth::guard('account')->user())
 						<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 						<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
 						@else
+						@if(Auth::user()->isOwner == 1)
 						<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
+						@endif
 						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()}}<span class="caret"></span></a>
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()->fullname}}<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Thông tin chi tiết</a></li>
-								<li><a href="{{route('post')}}">Đăng tin</a></li>
+								<li><a href="{{route('cart')}}">Nhà trọ theo dõi</a></li>
 								<li><a href="{{route('signout')}}">Thoát</a></li>
 							</ul>
 						</li>
@@ -86,8 +88,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="logo-footer">
-						<a href="/" title="Cổng thông tin số 1 về Dự án Bất động sản - Homedy.com">
-							<img src="images/logo.png">                        
+						<a href="/" title="Project của Ngọc Minh đẹp trai và Phạm Hoàng fanboi MU 20 năm">
+							<img src="./uploads/images/logo.png">                        
 						</a>
 						<div style="padding-top: 10px;">
 							<p>Dự án phát triển Website Đăng tin và Tìm kiếm Phòng trọ Hà Nội.</p>

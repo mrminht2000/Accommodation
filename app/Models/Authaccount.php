@@ -17,13 +17,17 @@ class Authaccount extends Authenticatable
      * @var array
      */
     protected $table = 'account';
+    protected $guard = 'account';
     protected $fillable = [
+        'id', 
         'fullname',
         'email',
         'username',
         'password',
         'phoneNumber',
         'indentityCard',
+        'isOwner',
+        'isAdmin'
     ];
 
     /**

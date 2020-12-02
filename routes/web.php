@@ -57,11 +57,6 @@ Route::get('dang-xuat',[
     'uses'=>'UserController@getsignout'
 ]);
 
-// Route::post('dang-xuat',[
-//     'as'=>'signout',
-//     'uses'=>'UserController@postsignout'
-// ]);
-
 //Đăng tin
 Route::get('dang-tin', [
     'as'=>'post',
@@ -79,4 +74,18 @@ Route::get('danh-muc/{type}', [
     'uses'=>'PageController@gethousetype'
 ]);
 
-Route::get('danh-muc/{id}','PageController@getMotelByCategoryId');
+//Danh sách nhà trọ theo dõi
+Route::get('follow', [
+    'as'=>'follow',
+    'uses'=>'PageController@getFollow'
+]);
+
+Route::post('follow', [
+    'as'=>'follow',
+    'uses'=>'PageController@postFollow'
+]);
+
+Route::get('cart', [
+    'as'=>'cart',
+    'uses'=>'PageController@getCart'
+]);

@@ -9,62 +9,67 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="beta-products-list">
-							<h4>New Products</h4>
+							<h4>Nhà trọ mới đăng</h4>
 							<div class="beta-products-details">
-								<p class="pull-left">438 styles found</p>
 								<div class="clearfix"></div>
 							</div>
-
+							
 							<div class="row">
+							@foreach($newHouse as $house)
 								<div class="col-sm-3">
+									<?php 
+										$img_thumb = json_decode($house->Image,true);
+						 			?>
 									<div class="single-item">
-										<div class="single-item-header">
-											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
+										<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center; background-size: cover;">
 										</div>
 										<div class="single-item-body">
-											<p class="single-item-title">Sample Woman Top</p>
+											<p class="single-item-title">{{$house->title}}</p>
 											<p class="single-item-price">
-												<span>$34.55</span>
+												<span>{{$house->price}} đồng/{{$house->pricePer}}</span>
 											</p>
 										</div>
 										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+											<a class="add-to-cart pull-left"  href="{{route('follow')}}" name="follow" id="follow" value="{{$house->id}}"><i class="fa fa-shopping-cart"></i></a>
+											<a class="beta-btn primary" href="product.html">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
 									</div>
 								</div>
-								
+							@endforeach
 							</div>
 						</div> <!-- .beta-products-list -->
 
 						<div class="space50">&nbsp;</div>
 
 						<div class="beta-products-list">
-							<h4>Top Products</h4>
+							<h4>Nhà trọ được xem nhiều nhất</h4>
 							<div class="beta-products-details">
-								<p class="pull-left">438 styles found</p>
 								<div class="clearfix"></div>
 							</div>
 							<div class="row">
+							@foreach($topHouse as $house)
 								<div class="col-sm-3">
+									<?php 
+										$img_thumb = json_decode($house->Image,true);
+						 			?>
 									<div class="single-item">
-										<div class="single-item-header">
-											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
+										<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center; background-size: cover;">
 										</div>
 										<div class="single-item-body">
-											<p class="single-item-title">Sample Woman Top</p>
+											<p class="single-item-title">{{$house->title}}</p>
 											<p class="single-item-price">
-												<span>$34.55</span>
+												<span>{{$house->price}} đồng/{{$house->pricePer}}</span>
 											</p>
 										</div>
 										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+											<a class="add-to-cart pull-left" name="follow" id="follow" href="{{route('follow')}}" value="{{$house->id}}"><i class="fa fa-shopping-cart"></i></a>
+											<a class="beta-btn primary" href="product.html">Chi tiết <i class="fa fa-chevron-right"></i></a>
 											<div class="clearfix"></div>
 										</div>
 									</div>
 								</div>
+							@endforeach
 								
 							</div>
 							<div class="space40">&nbsp;</div>
