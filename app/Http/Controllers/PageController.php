@@ -119,11 +119,15 @@ class PageController extends Controller
    
    //Xử lý trang danh sách theo dõi
    public function getFollow(Request $req) {
-      $choosedHouse = new choosedhouse;
-      $choosedHouse->idRenter = Auth::guard()->user()->id;
-      $choosedHouse->idHouse = (int)$req->follow;
-      $choosedHouse->save();
-      return redirect()->back()->with('success','Đã theo dõi');
+      if (!choosedhouse::select('idRenter','idHouse')
+                       ->where('idRenter',Auth::guard()->user()->id)
+                       ->where('idHouse',(int)$req->id)->first()) {
+         $choosedHouse = new choosedhouse;
+         $choosedHouse->idRenter = Auth::guard()->user()->id;
+         $choosedHouse->idHouse = (int)$req->id;
+         $choosedHouse->save();
+         return redirect()->back()->with('success','Đã theo dõi');
+      }
    }
 
    public function getCart() {

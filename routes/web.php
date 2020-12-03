@@ -76,7 +76,7 @@ Route::get('danh-muc/{type}', [
 ]);
 
 //Danh sách nhà trọ theo dõi
-Route::get('follow', [
+Route::get('follow/{id}', [
     'as'=>'follow',
     'uses'=>'PageController@getFollow'
 ]);
