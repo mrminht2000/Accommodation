@@ -19,7 +19,8 @@ class PageController extends Controller
 {
 
    public function getIndex() {
-      return view('home.index');
+      $newHouse = house::all();
+      return view('home.index', compact('newHouse'));
    }
 
    public function get_dangtin() {
@@ -130,5 +131,10 @@ class PageController extends Controller
 
    public function getCart() {
       return view('page.theodoi');
+   }
+
+   public function getchitietPhongtro(Request $req) {
+      $house = house::where('id', $req->id)->first();
+        return view('home.chitietphong', compact('house'));
    }
 }

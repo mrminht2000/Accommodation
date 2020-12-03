@@ -65,6 +65,7 @@
 						@if(Auth::user()->isOwner == 1)
 						<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
 						@endif
+						
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()->fullname}}<span class="caret"></span></a>
 							<ul class="dropdown-menu">
