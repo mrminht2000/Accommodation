@@ -87,7 +87,7 @@ Route::get('cart', [
 ]);
 
 // chi tiết phòng trọ
-Route::get('chi-tiet-san-pham/{id}', [
+Route::get('chi-tiet-phong-tro/{id}', [
     'as'=>'chitietphong',
     'uses'=>'PageController@getchitietPhongtro'
 ]);

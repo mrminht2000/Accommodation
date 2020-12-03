@@ -19,7 +19,7 @@ class PageController extends Controller
 {
 
    public function getIndex() {
-      $newHouse = house::all();
+      $newHouse = house::all();  
       return view('home.index', compact('newHouse'));
    }
 
@@ -113,12 +113,13 @@ class PageController extends Controller
 
     // public function getMotelByCategoryId($id){
 		
-	// 	$Categories = housetype::all();
+	// 	$Categories = housetype::all();  
 	// 	return view('page.danhmuc',['categories'=>$Categories]);
    // }
    
    //Xử lý trang danh sách theo dõi
    public function getFollow(Request $req) {
+      if (!Auth::guard()->user()) return redirect('dang-nhap');
       if (!choosedhouse::select('idRenter','idHouse')
                        ->where('idRenter',Auth::guard()->user()->id)
                        ->where('idHouse',(int)$req->id)->first()) {
@@ -126,8 +127,8 @@ class PageController extends Controller
          $choosedHouse->idRenter = Auth::guard()->user()->id;
          $choosedHouse->idHouse = (int)$req->id;
          $choosedHouse->save();
-         return redirect()->back()->with('success','Đã theo dõi');
       }
+      return redirect()->back();
    }
 
    public function getCart() {
@@ -136,6 +137,9 @@ class PageController extends Controller
 
    public function getchitietPhongtro(Request $req) {
       $house = house::where('id', $req->id)->first();
+      $current_view = house::where('id',$req->id)->first();
+      house::where('id',$req->id)
+           ->update(['count_view' =>$current_view['count_view'] + 1]);
         return view('home.chitietphong', compact('house'));
    }
 }
