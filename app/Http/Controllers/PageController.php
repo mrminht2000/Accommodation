@@ -118,15 +118,12 @@ class PageController extends Controller
    // }
    
    //Xử lý trang danh sách theo dõi
-   public function getFollow() {
-      return redirect()->back()->with('success','Đã theo dõi');
-   }
-
-   public function postFollow(Request $req) {
+   public function getFollow(Request $req) {
       $choosedHouse = new choosedhouse;
-      $choosedHouse->idRenter = Auth::user()->id;
+      $choosedHouse->idRenter = Auth::guard()->user()->id;
       $choosedHouse->idHouse = (int)$req->follow;
       $choosedHouse->save();
+      return redirect()->back()->with('success','Đã theo dõi');
    }
 
    public function getCart() {

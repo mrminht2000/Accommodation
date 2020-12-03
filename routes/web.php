@@ -21,6 +21,7 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+//Trang chủ
 Route::get('index',[
     'as'=>'trang-chu',
     'uses'=>'PageController@getIndex'
@@ -78,11 +79,6 @@ Route::get('danh-muc/{type}', [
 Route::get('follow', [
     'as'=>'follow',
     'uses'=>'PageController@getFollow'
-]);
-
-Route::post('follow', [
-    'as'=>'follow',
-    'uses'=>'PageController@postFollow'
 ]);
 
 Route::get('cart', [
