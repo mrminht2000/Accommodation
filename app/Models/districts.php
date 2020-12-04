@@ -9,6 +9,6 @@ class districts extends Model
 {
     protected $table = 'districts';
     public function house(){
-    	return $this->hasMany('App\house','district_id','id');
+    	return $this->hasMany('App\Models\house','district_id','id');
     }
 }

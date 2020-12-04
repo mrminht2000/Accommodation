@@ -10,6 +10,6 @@ class housetype extends Model
     protected $table = "housetype";
     
     public function product() {
-        return $this->hasMany('App\house','type','id');
+        return $this->hasMany('App\Models\house','type','id');
     }
 }

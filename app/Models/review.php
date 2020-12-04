@@ -10,10 +10,10 @@ class review extends Model
     protected $table = "review";
 
     public function house () {
-        return $this->belongsTo('App\house','idHouse','idHouse');
+        return $this->belongsTo('App\Models\house','idHouse','idHouse');
     }
 
     public function account () {
-        return $this->belongsTo('App\account','id','idUser');
+        return $this->belongsTo('App\Models\account','id','idUser');
     }
 }

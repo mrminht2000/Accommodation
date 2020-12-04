@@ -71,7 +71,7 @@ function time_elapsed_string($datetime, $full = false) {
 			</center> -->
 			<!-- END Slider Hình Ảnh -->	
 
-			<div id="carouselLoadHouseImage" class="carousel slide" data-ride="carousel">
+			<div id="carouselLoadHouseImage" class="carousel slide" data-ride="carousel" >
   				<div class="carousel-inner">
 				  	@foreach($arrimg as $img)
 					  	@if ($loop->first)
@@ -111,7 +111,7 @@ function time_elapsed_string($datetime, $full = false) {
 				<p><strong>Địa chỉ: {{ $house->address }}</strong><br></p>
 				<p>
 					<strong>Giá phòng: </strong><span class="price_area"><?php echo number_format($house->price); ?>  <span class="price_label">VND</span></span>
-					<strong><i class="fas fa-street-view"></i> Diện tích: </strong><span> {{$house->size}} m <sup>2</sup> </span>
+					<strong><i class="fas fa-street-view"></i> Diện tích: </strong><span> {{$house->size}} m<sup>2</sup> </span>
 				</p>
 				<!-- Tiện ích -->
 				<?php $arrtienich = json_decode($house->utilities,true); ?>

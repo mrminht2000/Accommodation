@@ -89,6 +89,15 @@
 	</nav>
 	
 		@yield('content')
+	
+	@if(Auth::guard('account')->user())
+		<button onclick="cartFunction()" class="cart-button" title="Follow">Theo dõi</button>
+		<div id="box-follow" class="cart-content">
+			<a href>Link1</a>
+			<a href>Link2</a>
+			<a href>Link3</a>
+		</div>
+	@endif
 	<div class="gap"></div>
 	<footer>
 		<div class="container">
@@ -112,3 +121,11 @@
 <script type="text/javascript" src="source/assets/toast/toastr.min.js"></script>
 </body>
 </html>
+
+<script>
+	function cartFunction() {
+		cartStyle = document.getElementById("box-follow").style.display;
+		if (cartStyle == "block") document.getElementById("box-follow").style.display = "none";
+		else document.getElementById("box-follow").style.display = "block";
+	}
+</script>

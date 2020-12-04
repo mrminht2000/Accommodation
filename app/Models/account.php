@@ -10,18 +10,18 @@ class account extends Model
     protected $table = "account";
 
     public function house () {
-        return $this->hasMany('App\house','idOwner','id');
+        return $this->hasMany('App\Models\house','idOwner','id');
     }
 
     public function post () {
-        return $this->hasMany('App\post','idOwner','id');
+        return $this->hasMany('App\Models\post','idOwner','id');
     }
 
     public function choosedhouse () {
-        return $this->hasOne('App\choosedhouse','idRenter','id');
+        return $this->hasOne('App\Models\choosedhouse','idRenter','id');
     }
 
     public function review () {
-        return $this->hasMany('App\review','idUser','id');
+        return $this->hasMany('App\Models\review','idUser','id');
     }
 }

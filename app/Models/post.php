@@ -10,10 +10,10 @@ class post extends Model
     protected $table = "post";
 
     public function house () {
-        return $this->belongsTo('App\house','idHouse','idHouse');
+        return $this->belongsTo('App\Models\house','idHouse','idHouse');
     }
 
     public function account () {
-        return $this->belongsTo('App\account','id','idOwner');
+        return $this->belongsTo('App\Models\account','id','idOwner');
     }
 }

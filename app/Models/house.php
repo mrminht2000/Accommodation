@@ -10,22 +10,22 @@ class house extends Model
     protected $table = "house";
 
     public function account () {
-        return $this->belongsTo('App\account','id','idOwner');
+        return $this->belongsTo('App\Models\account','idOwner','id');
     }
 
     public function review () {
-        return $this->hasMany('App\review','idHouse','idHouse');
+        return $this->hasMany('App\Models\review','idHouse','idHouse');
     }
 
     public function post () {
-        return $this->hasMany('App\post','idHouse','idHouse');
+        return $this->hasMany('App\Models\post','idHouse','idHouse');
     }
 
     public function choosedhouse() {
-        return $this->belongsTo('App\choosedhouse','idHouse','idHouse');
+        return $this->belongsTo('App\Models\choosedhouse','idHouse','idHouse');
     }
 
     public function housetype() {
-        return $this->belongsTo('App\housetype','type','id');
+        return $this->belongsTo('App\Models\housetype','id_type','id');
     }
 }
