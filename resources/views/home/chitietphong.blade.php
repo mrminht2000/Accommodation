@@ -49,7 +49,7 @@ function time_elapsed_string($datetime, $full = false) {
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="breadcrumb">
-				<li><a href="#">Trang Chủ</a></li>
+				<li><a href="index">Trang Chủ</a></li>
 				
 				<li class="active">{{ $house->title }}</li>
 			</ul>
@@ -60,7 +60,40 @@ function time_elapsed_string($datetime, $full = false) {
 	<div class="row">
 		<div class="col-md-8">
 			<h1 class="entry-title entry-prop">{{ $house->title }}</h1>
+			<?php 
+			$arrimg =  json_decode($house->Image,true);
+			?>
+			<!-- <center> -->
+			<!-- Slider Hình Ảnh -->
+			<!-- @foreach($arrimg as $img)
+				<img src="uploads/images/<?php echo $img; ?>" width="50%">
+			@endforeach
+			</center> -->
+			<!-- END Slider Hình Ảnh -->	
 
+			<div id="carouselLoadHouseImage" class="carousel slide" data-ride="carousel">
+  				<div class="carousel-inner">
+				  	@foreach($arrimg as $img)
+					  	@if ($loop->first)
+                      		<div class="carousel-item active">
+                      	@else
+                      		<div class="carousel-item">
+                      	@endif
+      						<img class="image-house" src="uploads/images/<?php echo $img; ?>" height="400" width="800">
+    					</div>
+					@endforeach
+  				</div>
+  				<a class="carousel-control-prev" href="#carouselLoadHouseImage" role="button" data-slide="prev">
+    				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    				<span class="sr-only">Previous</span>
+  				</a>
+  				<a class="carousel-control-next" href="#carouselLoadHouseImage" role="button" data-slide="next">
+    				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+    				<span class="sr-only">Next</span>
+  				</a>
+			</div>
+
+			<div class="gap"></div>
 			<hr>
 			<div class="row">
 				<div class="col-md-6">
@@ -93,18 +126,6 @@ function time_elapsed_string($datetime, $full = false) {
 					<p class="pre">{{ $house->description }}</p>
 				</pre>
 			</div>
-			
-			<?php 
-			$arrimg =  json_decode($house->Image,true);
-			?>
-			<center>
-			<!-- Slider Hình Ảnh -->
-			@foreach($arrimg as $img)
-				<img src="uploads/images/<?php echo $img; ?>" width="50%">
-			@endforeach
-			</center>
-			<!-- END Slider Hình Ảnh -->		
-			<div class="gap"></div>
 		</div>
 		
 	</div>

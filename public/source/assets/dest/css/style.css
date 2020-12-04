@@ -109,7 +109,7 @@ color:#000
 
 img {
 border:none;
-max-width:10%
+max-width:100%
 }
 
 textarea:focus,input:focus,select:focus,a:focus {
@@ -140,6 +140,7 @@ box-sizing:border-box
 small {
 font-size:11px
 }
+
 /* ==========================================================================
     2. TYPOGRAPHY
 ============================================================================= */
@@ -5202,3 +5203,8 @@ border:none;}
 .beta-rotator canvas{width:100%;}
 .beta-rotator {font-family: "Open Sans",sans-serif;}
 .history-slider span {font-family: "Open Sans",sans-serif;}
+
+/* Custom */
+.logo-img {
+    max-width: 10%;
+}
