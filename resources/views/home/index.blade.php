@@ -1,18 +1,21 @@
 @extends('layout.master')
 @section('content')
 
-<div class="fullwidthbanner-container">
-	<div class="space60">&nbsp;</div>
-	<div class="box-search">
-	<form onsubmit="return false">
+<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
+	<div class="container">
+		<div class="box-search">
+			<form onsubmit="return false">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="form-group row">
 							<div class="col-xs-6">
-								<select class="selectpicker" data-live-search="true" id="selectdistrict">
-									@foreach($district as $quan)
-									<option data-tokens="{{$quan->slug}}" value="{{ $quan->id }}">{{ $quan->name }}</option>
+								<select class="selectpicker" data-live-search="true" id="province_id" name="province_id">
+									@foreach($provinces as $city)
+									<option data-tokens="{{$city->slug}}" value="{{ $city->id }}">{{ $city->name }}</option>
 									@endforeach
 								</select>
+							</div>
+							<div class="col-xs-6">
+								
 							</div>
 							<div class="col-xs-6">
 								<select class="selectpicker" data-live-search="true" id="selectcategory">
@@ -38,8 +41,10 @@
 							</div>
 						</div>
 						
-						<form>
+			<form>
+		</div>
 	</div>
+	
 	<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">

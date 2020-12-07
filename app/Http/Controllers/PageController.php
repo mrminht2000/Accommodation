@@ -177,6 +177,6 @@ class PageController extends Controller
    }
 
    public function SearchRoom(Request $req) {
-      $province = provinces::all();
+      
    }
 }
