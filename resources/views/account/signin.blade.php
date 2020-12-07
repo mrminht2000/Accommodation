@@ -1,49 +1,56 @@
 @extends('layout.master')
 @section('content')
-<div class="inner-header">
-		<div class="container">
-			<div class="pull-left">
-				<h6 class="inner-title">Đăng nhập</h6>
-			</div>
-			<div class="pull-right">
-				<div class="beta-breadcrumb">
-					<a href="index.html">Home</a> / <span>Đăng nhập</span>
+<div class="container" style="padding-left: 0px;padding-right: 0px;">
+	<div class="gap"></div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2" style="margin-bottom: 50px">
+			<div class="gap"></div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">Đăng nhập</div>
+				<div class="panel-body">
+					<div class="gap"></div>
+					@if ($errors->any())
+					    <div class="alert alert-danger">
+					        <ul>
+					            @foreach ($errors->all() as $error)
+					                <li>{{ $error }}</li>
+					            @endforeach
+					        </ul>
+					    </div>
+					@endif
+					@if(session('warn'))
+		                        <div class="alert bg-danger">
+									<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+									<span class="text-semibold">Error!</span>  {{session('warn')}}
+								</div>
+		            @endif
+					<form class="form-horizontal" method="POST" action="{{ route('signin') }}" >
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<div class="form-group">
+							<label class="control-label col-sm-3">Username:</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="username" placeholder="Tài khoản đăng nhập hệ thống">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="pwd">Password:</label>
+							<div class="col-sm-9"> 
+								<input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu">
+							</div>
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-5 col-sm-9">
+								<button type="submit" class="btn btn-primary">Đăng Nhập</button>
+							</div>
+						</div>
+					</form><div class="gap"></div>
 				</div>
+
+			<div class="gap"></div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
 	</div>
-	
-	<div class="container">
-		<div id="content">
-			
-			<form action="{{route('signin')}}" method="post" class="beta-form-checkout">
-			<input type="hidden" name="_token" value="{{csrf_token()}}"/>
-				<div class="row">
-					<div class="col-sm-3"></div>
-					@if(Session::has('flag'))
-						<div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
-					@endif
-					<div class="col-sm-6">
-						<h4>Đăng nhập</h4>
-						<div class="space20">&nbsp;</div>
 
-						
-						<div class="form-block">
-							<label for="email">Username*</label>
-							<input type="username" name="username" required>
-						</div>
-						<div class="form-block">
-							<label for="password">Password*</label>
-							<input type="password" name="password" required>
-						</div>
-						<div class="form-block">
-							<button type="submit" class="btn btn-primary">Login</button>
-						</div>
-					</div>
-					<div class="col-sm-3"></div>
-				</div>
-			</form>
-		</div> <!-- #content -->
-    </div> <!-- .container -->
+</div>
+
 @endsection

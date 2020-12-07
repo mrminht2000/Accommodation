@@ -10,6 +10,7 @@ use App\Models\account;
 use App\Models\housetype;
 use App\Models\districts;
 use App\Models\choosedhouse;
+use App\Models\provinces;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,22 +21,31 @@ class PageController extends Controller
 
    public function getIndex() {
       $newHouse = house::all();  
-      return view('home.index', compact('newHouse'));
+      $districts = districts::all();
+      $provinces = provinces::all();
+      $danh_muc = housetype::all();
+      return view('home.index', compact('newHouse', 'districts','provinces', 'danh_muc'));
    }
 
-   public function get_dangtin() {
-      $quan_huyen = districts::all();
+   
+
+   public function get_dangtin(Request $req) {
+      $provinces = provinces::all();
+     
       $danh_muc = housetype::all();
-      return view('account.dangtin',[
-         'quan_huyen'=>$quan_huyen,
-         'danh_muc'=>$danh_muc
-      ]);
+      return view('account.dangtin', compact('provinces', 'danh_muc'));
+   }
+
+   public function getloaction(Request $req) {
+      $quan_huyen = districts::where('province_id', $req->id)->first;
+      
+      return view('account.dangtin', compact('quan_huyen'));
    }
 
    public function post_dangtin(Request $request) {
       $request->validate([
          'title' => 'required',
-         //'address' => 'required',
+         // 'address' => 'required',
          'price' => 'required',
          'size' => 'required',
          'phoneNumber' => 'required',
@@ -46,7 +56,7 @@ class PageController extends Controller
       ],
       [  
          'title.required' => 'Nhập tiêu đề bài đăng',
-        // 'address.required' => 'Nhập địa chỉ phòng trọ',
+         // 'address.required' => 'Nhập địa chỉ phòng trọ',
          'price.required' => 'Nhập giá thuê phòng trọ',
          'size.required' => 'Nhập diện tích phòng trọ',
          'phoneNumber.required' => 'Nhập SĐT chủ phòng trọ (cần liên hệ)',
@@ -135,11 +145,38 @@ class PageController extends Controller
       return view('page.theodoi');
    }
 
+
    public function getchitietPhongtro(Request $req) {
       $house = house::where('id', $req->id)->first();
+
       $current_view = house::where('id',$req->id)->first();
       house::where('id',$req->id)
            ->update(['count_view' =>$current_view['count_view'] + 1]);
-        return view('home.chitietphong', compact('house'));
+           $housetype = housetype::where('id', $req->id)->first();
+      $user = account::where('id', $req->id)->first();
+        return view('home.chitietphong', compact('house', 'housetype', 'current_view', 'user'));
+
+
+      // $housetype = housetype::where('id', $req->id)->first();
+      // $user = account::where('id', $req->id)->first();
+      // return view('home.chitietphong', compact('house', 'housetype', 'user'));
+
+      // $current_view = house::where('id',$req->id)->first();
+      // house::where('id',$req->id)
+      //      ->update(['count_view' =>$current_view['count_view'] + 1]);
+      //   return view('home.chitietphong', compact('house'));
+
+   }
+
+   public function getloaiSP($type) {
+        $phong_theodanhmuc= house::where('id_type', $type)->paginate(3);
+        $phong_khacdanhmuc = house::where('id_type', '<>', $type)->paginate(3);
+        $danh_muc = housetype::all();
+        $danh_muc_phong = housetype::where('id', $type)->first();
+        return view('page.danhmuc', compact('phong_theodanhmuc', 'phong_khacdanhmuc', 'danh_muc', 'danh_muc_phong'));
+   }
+
+   public function SearchRoom(Request $req) {
+      $province = provinces::all();
    }
 }

@@ -56,11 +56,21 @@
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="usr">Quận/ Huyện:</label>
-                  <select class="selectpicker pull-right" data-live-search="true" name="id_districts">
-                      @foreach($quan_huyen as $quan)
-                        <option data-tokens="{{$quan->slug}}" value="{{ $quan->id }}">{{ $quan->name }}</option>
-                       @endforeach
+                  <label for="usr">Tỉnh/ Thành phố:</label>
+                  <select class="selectpicker pull-right js_location" data-live-search="true" name="province_id" data-type="provinces">
+                      <option>--Chọn Tỉnh / Thành phố--</option>
+                      @foreach($tinh as $city)
+                        <option  value="{{ $city->id }}">{{ $city->name }}</option>
+                      @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="usr">Quận / Huyện:</label>
+                  <select class="selectpicker pull-right js_location" data-live-search="true" name="province_id" data-type="districts">
+                      <option>--Chọn Quận / Huyện--</option>
+                      
                   </select>
                 </div>
               </div>
@@ -191,6 +201,8 @@
     showUpload: false,
     allowedFileExtensions: ['jpg', 'png', 'gif']
   });
+
+  
 </script>
 
 @endsection

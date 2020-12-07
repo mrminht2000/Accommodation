@@ -64,6 +64,11 @@ Route::get('dang-tin', [
     'uses'=>'PageController@get_dangtin'
 ]); 
 
+
+Route::get('dang-tin/{id}', [
+    'as'=>'location',
+    'uses'=>'PageController@getloaction'
+]);
 Route::post('dang-tin', [
     'as'=>'post',
     'uses'=>'PageController@post_dangtin'
@@ -91,3 +96,12 @@ Route::get('chi-tiet-phong-tro/{id}', [
     'as'=>'chitietphong',
     'uses'=>'PageController@getchitietPhongtro'
 ]);
+
+// danh mục
+Route::get('danh-muc-phòng-trọ/{type}', [
+    'as'=>'danhmucphongtro',
+    'uses'=>'PageController@getloaiSP'
+]);
+
+//search
+Route::post('searchroom','MotelController@SearchRoom');

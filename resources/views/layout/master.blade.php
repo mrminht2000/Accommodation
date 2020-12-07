@@ -7,7 +7,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<base href="{{asset('')}}">
 	<link rel="stylesheet" href="source/assets/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="source/assets/style.css">
+	<link rel="stylesheet" href="source/assets/all.css">
 	<link rel="stylesheet" href="source/assets/awesome/css/fontawesome-all.css">
 	<link rel="stylesheet" href="source/assets/toast/toastr.min.css">
 	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/style.css')}}">
@@ -43,14 +43,15 @@
 <script src="source/assets/bootstrap/bootstrap-select.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<div class="header-bottom" style="background-color: #003352;">
+	<!-- <nav class="navbar navbar-inverse"> -->
 		<div class="container">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>                        
-				</button>
+				</button> -->
 				<!--<a class="navbar-brand" href=""><img src="images/logo.png"></a>-->
 			</div>
 			<nav class="main-menu">
@@ -59,7 +60,7 @@
 						<li><a href="#">Sản phẩm</a>
 							<ul class="sub-menu">
 							@foreach($danh_muc as $damu)
-								<li><a href="#">{{$damu->name}}</a></li>
+								<li><a href="{{route('danhmucphongtro', $damu->id)}}">{{$damu->name}}</a></li>
 							@endforeach	
 							</ul>
 						</li>
@@ -86,7 +87,8 @@
 					<div class="clearfix"></div>
 				</nav>
 		</div>
-	</nav>
+	<!-- </nav> -->
+	</div>
 	
 		@yield('content')
 	
@@ -128,4 +130,14 @@
 		if (cartStyle == "block") document.getElementById("box-follow").style.display = "none";
 		else document.getElementById("box-follow").style.display = "block";
 	}
+
+	$(document).ready(function($) {    
+		$(window).scroll(function(){
+			if($(this).scrollTop()>40){
+			$(".header-bottom").addClass('fixNav')
+			}else{
+				$(".header-bottom").removeClass('fixNav')
+			}}
+		)
+	})
 </script>

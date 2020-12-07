@@ -44,13 +44,22 @@ function time_elapsed_string($datetime, $full = false) {
 	return $string ? implode(', ', $string) . ' trước' : 'Vừa xong';
 }
 ?>
+
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	
+
+}
+</style>
 <div class="gap"></div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="breadcrumb">
 				<li><a href="index">Trang Chủ</a></li>
-				
+				<li><a href="#">{{ $house->housetype->name }}</a></li>
 				<li class="active">{{ $house->title }}</li>
 			</ul>
 		</div>
@@ -71,8 +80,8 @@ function time_elapsed_string($datetime, $full = false) {
 			</center> -->
 			<!-- END Slider Hình Ảnh -->	
 
-			<div id="carouselLoadHouseImage" class="carousel slide" data-ride="carousel" >
-  				<div class="carousel-inner">
+			<div id="carouselLoadHouseImage" class="carousel slide" data-ride="carousel">
+  				<div class="carousel-inner" >
 				  	@foreach($arrimg as $img)
 					  	@if ($loop->first)
                       		<div class="carousel-item active">
@@ -113,7 +122,7 @@ function time_elapsed_string($datetime, $full = false) {
 					<strong>Giá phòng: </strong><span class="price_area"><?php echo number_format($house->price); ?>  <span class="price_label">VND</span></span>
 					<strong><i class="fas fa-street-view"></i> Diện tích: </strong><span> {{$house->size}} m<sup>2</sup> </span>
 				</p>
-				<!-- Tiện ích -->
+				
 				<?php $arrtienich = json_decode($house->utilities,true); ?>
 				<div id="km-detail">
 					<div class="fs-dtslt">Tiện ích Phòng Trọ</div>
@@ -125,6 +134,44 @@ function time_elapsed_string($datetime, $full = false) {
 				<pre>
 					<p class="pre">{{ $house->description }}</p>
 				</pre>
+
+				<table style="width:100%">
+				<tbody>
+					<tr>
+						<td>Địa chỉ</td>
+						<td colspan="3">{{$house->address}}</td>
+					</tr>
+					<tr>
+						<td>Danh mục</td>
+						<td colspan="3" href="{{route('chitietphong', $house->id)}}">{{$housetype->name}}</td>
+					</tr>
+					<tr>
+						<td>Đối tượng</td>
+						<td>Tất cả</td>
+						<td>Chủ trọ</td>
+						<td href="{{route('chitietphong', $house->idOwner)}}">{{$user->fullname}}</td>
+					</tr>
+					<tr>
+						<td>Số điện thoại</td>
+						<td href="{{route('chitietphong', $house->idOwner)}}">{{$user->phoneNumber}}</td>
+						<td>Email</td>
+						<td href="{{route('chitietphong', $house->idOwner)}}">{{$user->email}}</td>
+					</tr>
+					<tr>
+						<td>Diện tích</td>
+						<td>{{$house->size}} m2</td>
+						<td>Giá tiền</td>
+						<td>{{number_format($house->price)}} VNĐ / tháng</td>
+					</tr>
+					<tr>
+						<td>Giá điện</td>
+						<td>{{number_format($house->electricPrice)}} VNĐ / 1KWh </td>
+						<td>Giá tiền</td>
+						<td>{{number_format($house->waterPrice)}} VNĐ / m3</td>
+					</tr>
+					<tr></tr>
+				</tbody>				
+			</table>
 			</div>
 		</div>
 		

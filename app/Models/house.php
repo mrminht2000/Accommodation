@@ -28,4 +28,8 @@ class house extends Model
     public function housetype() {
         return $this->belongsTo('App\Models\housetype','id_type','id');
     }
+
+    public function provinces () {
+        return $this->belongsTo('App\Models\provinces','province_id','id');
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\house;
 use App\Models\housetype;
 use App\Models\districts;
+use App\Models\provinces;
 use App\Models\choosedhouse;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,6 +41,11 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layout.master', function($view) {
             $house = house::all();
             $view->with('house', $house);
+        });
+
+        view()->composer('account.dangtin', function($view) {
+            $tinh = provinces::all();
+            $view->with('tinh', $tinh);
         });
 
         view()->composer('home.index', function($view) {

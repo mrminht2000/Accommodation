@@ -2,7 +2,44 @@
 @section('content')
 
 <div class="fullwidthbanner-container">
-					
+	<div class="space60">&nbsp;</div>
+	<div class="box-search">
+	<form onsubmit="return false">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<div class="form-group row">
+							<div class="col-xs-6">
+								<select class="selectpicker" data-live-search="true" id="selectdistrict">
+									@foreach($district as $quan)
+									<option data-tokens="{{$quan->slug}}" value="{{ $quan->id }}">{{ $quan->name }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="col-xs-6">
+								<select class="selectpicker" data-live-search="true" id="selectcategory">
+									@foreach($danh_muc as $damu)
+									<option data-tokens="{{ $damu->slug }}" value="{{ $damu->id }}">{{ $damu->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-xs-6">
+								<select class="selectpicker" id="selectprice" data-live-search="true">
+									<option data-tokens="khoang gia" min="1" max="10000000">Khoảng giá</option>
+									<option data-tokens="Tu 500.000 VNĐ - 700.000 VNĐ" min="500000" max ="700000">Từ 500.000 VNĐ - 700.000 VNĐ</option>
+									<option data-tokens="Tu 700.000 VNĐ - 1.000.000 VNĐ" min="700000" max ="1000000">Từ 700.000 VNĐ - 1.000.000 VNĐ</option>
+									<option data-tokens="Tu 1.000.000 VNĐ - 1.500.000 VNĐ" min="1000000" max ="1500000">Từ 1.000.000 VNĐ - 1.500.000 VNĐ</option>
+									<option data-tokens="Tu 1.500.000 VNĐ - 3.000.000 VNĐ" min="1500000" max ="3000000">Từ 1.500.000 VNĐ - 3.000.000 VNĐ</option>
+									<option data-tokens="Tren 3.000.000 VNĐ" min="3000000" max="10000000">Trên 3.000.000 VNĐ</option>
+								</select>
+							</div>
+							<div class="col-xs-6">
+								<button class="btn btn-success" onclick="searchMotelajax()">Tìm kiếm ngay</button>
+							</div>
+						</div>
+						
+						<form>
+	</div>
 	<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
@@ -102,83 +139,7 @@
 								
 							</div>
 							<div class="space40">&nbsp;</div>
-							<div class="row">
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="single-item-header">
-											<a href="product.html"><img src="assets/dest/images/products/1.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<p class="single-item-title">Sample Woman Top</p>
-											<p class="single-item-price">
-												<span>$34.55</span>
-											</p>
-										</div>
-										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-
-										<div class="single-item-header">
-											<a href="product.html"><img src="assets/dest/images/products/2.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<p class="single-item-title">Sample Woman Top</p>
-											<p class="single-item-price">
-												<span class="flash-del">$34.55</span>
-												<span class="flash-sale">$33.55</span>
-											</p>
-										</div>
-										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="single-item-header">
-											<a href="product.html"><img src="assets/dest/images/products/3.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<p class="single-item-title">Sample Woman Top</p>
-											<p class="single-item-price">
-												<span>$34.55</span>
-											</p>
-										</div>
-										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="single-item">
-										<div class="single-item-header">
-											<a href="product.html"><img src="assets/dest/images/products/3.jpg" alt=""></a>
-										</div>
-										<div class="single-item-body">
-											<p class="single-item-title">Sample Woman Top</p>
-											<p class="single-item-price">
-												<span>$34.55</span>
-											</p>
-										</div>
-										<div class="single-item-caption">
-											<a class="add-to-cart pull-left" href="shopping_cart.html"><i class="fa fa-shopping-cart"></i></a>
-											<a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</div>
-							</div>
+							
 						</div> <!-- .beta-products-list -->
 					</div>
 				</div> <!-- end section with sidebar and main content -->
