@@ -108,3 +108,9 @@ Route::get('search', [
     'as'=>'search',
     'uses'=>'PageController@searchhouse'
 ]);
+
+Route::get('s', [
+    'as'=>'districts',
+    'uses'=>'PageController@getdistricts'
+]);
+

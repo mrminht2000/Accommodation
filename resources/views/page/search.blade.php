@@ -5,7 +5,7 @@
 	
 		<div id="searchbar">
 			<div class="container">
-				<form action="#" method="GET">
+				<form action="{{route('search')}}" method="GET">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -51,7 +51,7 @@
 										<option data-tokens="Tu 1 - 20 m2" min="1" max ="20">Dưới 20 m2</option>
 										<option data-tokens="Tu 20 m2 - 30 m2" min="20" max ="30">Từ 20 m2 - 30 m2</option>
 										<option data-tokens="Tu 30 m2 - 40 m2" min="30" max ="40">Từ 30 m2 - 40 m2</option>
-										<option data-tokens="Tu 40 m2 - 50 m2" min="40" max ="50">Từ 40 m2 -50 m2</option>	
+										<option data-tokens="Tu 40 m2 - 50 m2" min="40" max ="50">Từ 40 m2 - 50 m2</option>	
 										<option data-tokens="Trên 50 m2" min="50" >Trên 50 m2</option>	
 									</select>
 							</div>

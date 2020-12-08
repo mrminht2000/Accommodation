@@ -21,12 +21,18 @@ class PageController extends Controller
 
    public function getIndex() {
       $newHouse = house::all();  
-      $districts = districts::all();
       $provinces = provinces::all();
       $danh_muc = housetype::all();
-      return view('home.index', compact('newHouse', 'districts','provinces', 'danh_muc'));
+      return view('home.index', compact('newHouse', 'provinces', 'danh_muc'));
    }
 
+   public function getdistricts(Request $req) {
+      $provinceid = $req->province_id;
+      if($provinceid) {
+         $districts = districts::where('province_id',$provinceid)->get();
+         return response(['data'=>$districts]);
+      }
+   }
    
 
    public function get_dangtin(Request $req) {

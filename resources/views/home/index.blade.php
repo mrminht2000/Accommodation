@@ -1,13 +1,11 @@
 @extends('layout.master')
-<<<<<<< HEAD
-<<<<<<< HEAD
 @section('content')
 	
 <div class="container-fluid">
 	
 		<div id="searchbar">
 			<div class="container">
-				<form role="search" action="{{route('search')}}" method="POST">
+				<form role="search" action="#" method="#">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -21,7 +19,8 @@
 							</div>
 							<div class="search_field_item search_field_item_tinh_thanh_pho">
 								<lable class="search_field_item_label">Tỉnh/ Thành phố</lable>
-									<select class="form-cotrol" data-live-search="true" id="province_id" name="province_id">
+									<select class="form-cotrol js_location" data-live-search="true" data-type="provinces" id="province" name="province_id">
+										<option>--Chọn tỉnh--</option>
 										@foreach($provinces as $city)
 										<option value="{{ $city->id }}">{{ $city->name }}</option>
 										@endforeach
@@ -29,10 +28,9 @@
 							</div>
 							<div class="search_field_item search_field_item_quan_huyen">
 								<lable class="search_field_item_label">Quận/ Huyện</lable>
-									<select class="form-cotrol" data-live-search="true" id="id_districts" name="id_districts">
-										@foreach($provinces as $city)
-										<option value="{{ $city->id }}">{{ $city->name }}</option>
-										@endforeach
+									
+									<select class="form-cotrol js_location" data-live-search="true" data-type="districts" id="districts" name="id_districts">
+										<option>--Chọn Quận/Huyện--</option>
 									</select>
 							</div>
 							<div class="search_field_item search_field_item_gia_thue">
@@ -68,12 +66,7 @@
 		</div>
 	
 	<div class="space60">&nbsp;</div>
-=======
-@section('content')	
->>>>>>> d659e265103fdd2a1e3bb265c277a8c6ba94418a
-=======
-@section('content')	
->>>>>>> d659e265103fdd2a1e3bb265c277a8c6ba94418a
+
 	<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
@@ -182,4 +175,49 @@
 			</div> <!-- .main-content -->
 		</div> <!-- #content -->
 	</div> <!-- .container -->
+
+	<script>
+		$(document).ready(function(){
+			$.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+            });
+            $('#province').change(function(event){
+               	event.preventDefault();
+				
+				let route = '{{route('districts')}}';
+				let $this = $(this);
+				let type = $this.attr('data-type');
+				let provinceid = $this.val();
+               	$.ajax({
+					method: "GET",
+					url: route,
+					data: {
+						type: type,
+						province_id: provinceid
+					}
+                })
+				.done(function(msg) {
+					if(msg.data) {
+						let html = '';
+						let element = '';
+						if(type == 'provinces')
+						{
+							html = "<option>--Chọn Quận Huyện--</option>";
+							element = '#districts';
+						}
+						$.each(msg.data, function(index, value) {
+						html += "<option value='"+value.id+"'>"+value.name+"</option>"
+						});
+
+						$(element).html('').append(html);
+					}
+
+					
+				});
+            });
+        });
+	</script>
+
 @endsection
