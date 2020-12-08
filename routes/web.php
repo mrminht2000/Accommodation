@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,7 +67,7 @@ Route::get('dang-tin', [
 
 Route::get('dang-tin/{id}', [
     'as'=>'location',
-    'uses'=>'PageController@getloaction'
+    'uses'=>'PageController@getlocation'
 ]);
 Route::post('dang-tin', [
     'as'=>'post',
@@ -104,4 +104,7 @@ Route::get('danh-muc-phòng-trọ/{type}', [
 ]);
 
 //search
-Route::post('searchroom','MotelController@SearchRoom');
+Route::post('search', [
+    'as'=>'search',
+    'uses'=>'PageController@searchhouse'
+]);

@@ -1,12 +1,11 @@
 @extends('layout.master')
-<<<<<<< HEAD
 @section('content')
-	
+
 <div class="container-fluid">
 	
 		<div id="searchbar">
 			<div class="container">
-				<form role="search" action="{{route('search')}}" method="POST">
+				<form action="#" method="POST">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -67,9 +66,6 @@
 		</div>
 	
 	<div class="space60">&nbsp;</div>
-=======
-@section('content')	
->>>>>>> d659e265103fdd2a1e3bb265c277a8c6ba94418a
 	<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
@@ -77,13 +73,14 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="beta-products-list">
-							<h4>Nhà trọ mới đăng</h4>
+							<h4>Kết quả tìm kiếm</h4>
 							<div class="beta-products-details">
+                                <p class="pull-left">Tìm thấy {{count($house)}} sản phẩm</p>
 								<div class="clearfix"></div>
 							</div>
 							
 							<div class="row">
-							@foreach($newHouse as $house)
+							@foreach($house as $ho)
 							<?php 
 								$img_thumb = json_decode($house->Image,true);
 							
@@ -93,26 +90,26 @@
 									<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
 										<img src="" class="lazyload img-responsive">
 										<div class="category">
-											<a href="{{route('chitietphong', $house->id)}}">{{ $house->housetype->name }}</a>
+											<a href="{{route('chitietphong', $house->id)}}">{{ $ho->housetype->name }}</a>
 										</div>
 									</div>
 									<div class="room-detail">
-										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
+										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $ho->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/"> {{ $house->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/"> {{ $ho->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
-											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
+											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $ho->size }} m<sup>2</sup></b></span>
 											<span class="pull-right">
-												<i class="fas fa-eye"></i> Lượt xem: <b>{{ $house->count_view }}</b>
+												<i class="fas fa-eye"></i> Lượt xem: <b>{{ $ho->count_view }}</b>
 											</span>
 											<br/>
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->address }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $ho->address }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
-												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
+												<b>{{$ho->price}} đồng/{{$ho->pricePer}}</b></div>
 											</div>
 										</div>
 
@@ -124,53 +121,7 @@
 
 						<div class="space50">&nbsp;</div>
 
-						<div class="beta-products-list">
-							<h4>Nhà trọ được xem nhiều nhất</h4>
-							<div class="beta-products-details">
-								<div class="clearfix"></div>
-							</div>
-							<div class="row">
-							@foreach($topHouse as $house)
-							<?php 
-								$img_thumb = json_decode($house->Image,true);
-							
-						 	?>
-							<div class="col-md-4 col-sm-6">
-								<div class="room-item">
-									<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
-										<img src="" class="lazyload img-responsive">
-										<div class="category">
-											<a href="{{route('chitietphong', $house->id)}}">{{ $house->housetype->name }}</a>
-										</div>
-									</div>
-									<div class="room-detail">
-										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
-										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/"> {{ $house->account->fullname }}</a></span>
-										</div>
-										<div class="room-info">
-											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
-											<span class="pull-right">
-												<i class="fas fa-eye"></i> Lượt xem: <b>{{ $house->count_view }}</b>
-											</span>
-											<br/>
-											<span>
-												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
-											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->address }}</div>
-											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
-												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							@endforeach
-								
-							</div>
-							<div class="space40">&nbsp;</div>
-							
-						</div> <!-- .beta-products-list -->
+						
 					</div>
 				</div> <!-- end section with sidebar and main content -->
 
@@ -178,4 +129,5 @@
 			</div> <!-- .main-content -->
 		</div> <!-- #content -->
 	</div> <!-- .container -->
+
 @endsection

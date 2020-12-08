@@ -11,7 +11,7 @@ use App\Models\housetype;
 use App\Models\districts;
 use App\Models\choosedhouse;
 use App\Models\provinces;
-
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
@@ -36,7 +36,7 @@ class PageController extends Controller
       return view('account.dangtin', compact('provinces', 'danh_muc'));
    }
 
-   public function getloaction(Request $req) {
+   public function getlocation(Request $req) {
       $quan_huyen = districts::where('province_id', $req->id)->first;
       
       return view('account.dangtin', compact('quan_huyen'));
@@ -98,7 +98,7 @@ class PageController extends Controller
       $house->size = $request->size;
       $house->count_view = 0;
       $house->address = 'Hà Nội';
-      $house->bathroom = $request->bathroom;
+      $house->bathroom = (int)$request->bathroom;
       $house->kitchen = $request->kitchen;
       $house->airConditioner = (int)$request->air_conditioning;
       $house->balcony = (int)$request->balcony;
@@ -111,21 +111,13 @@ class PageController extends Controller
       $house->phoneNumber = $request->phoneNumber;
       $house->electricPrice = $request->electricPrice;
       $house->waterPrice = $request->waterPrice;
+      $house->province_id = (int)$request->province_id;
       $house->save();
       return redirect()->back()->with('success','Đăng tin thành công. Vui lòng đợi Admin kiểm duyệt');
    }
 
 
-    // public function gethousetype($type) {
-    //     $house_type = housetype::all();
-    //     return view('page.danhmuc', ['danh_muc'=> $house_type]);
-    // }
-
-    // public function getMotelByCategoryId($id){
-		
-	// 	$Categories = housetype::all();  
-	// 	return view('page.danhmuc',['categories'=>$Categories]);
-   // }
+    
    
    //Xử lý trang danh sách theo dõi
    public function getFollow(Request $req) {
@@ -176,7 +168,17 @@ class PageController extends Controller
         return view('page.danhmuc', compact('phong_theodanhmuc', 'phong_khacdanhmuc', 'danh_muc', 'danh_muc_phong'));
    }
 
-   public function SearchRoom(Request $req) {
-      
+   public function searchhouse(Request $request) {
+      $house = house::where([
+         ['id_districts',$request->id_ditrict],
+         ['province_id',$request->province_id],
+			['price','>=',$request->min_price],
+         ['price','<=',$request->max_price],
+         ['size','>=',$request->min_size],
+         ['size','<=',$request->max_size],
+			['id_type',$request->id_type],
+      ])->get();
+
+      return view('page.search', compact('house'));
    }
 }
