@@ -67,7 +67,7 @@ Route::get('dang-tin', [
 
 Route::get('dang-tin/{id}', [
     'as'=>'location',
-    'uses'=>'PageController@getloaction'
+    'uses'=>'PageController@getlocation'
 ]);
 Route::post('dang-tin', [
     'as'=>'post',

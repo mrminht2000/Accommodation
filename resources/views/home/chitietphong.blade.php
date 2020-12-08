@@ -1,21 +1,23 @@
 @extends('layout.master')
 @section('content')
-<?php 
-function limit_description($string){
+<?php
+function limit_description($string)
+{
 	$string = strip_tags($string);
 	if (strlen($string) > 150) {
 
-	    // truncate string
+		// truncate string
 		$stringCut = substr($string, 0, 150);
 		$endPoint = strrpos($stringCut, ' ');
 
-	    //if the string doesn't contain any space then it will cut without word basis.
-		$string = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
+		//if the string doesn't contain any space then it will cut without word basis.
+		$string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
 		$string .= '...';
 	}
 	return $string;
 }
-function time_elapsed_string($datetime, $full = false) {
+function time_elapsed_string($datetime, $full = false)
+{
 	$now = new DateTime;
 	$ago = new DateTime($datetime);
 	$diff = $now->diff($ago);
@@ -43,15 +45,23 @@ function time_elapsed_string($datetime, $full = false) {
 	if (!$full) $string = array_slice($string, 0, 1);
 	return $string ? implode(', ', $string) . ' trước' : 'Vừa xong';
 }
+function time_translate($pricePer)
+{
+	if ($pricePer == 'month') return 'Tháng';
+	if ($pricePer == 'quarter') return 'Quý';
+	if ($pricePer == 'year') return 'Năm';
+}
 ?>
 
 <style>
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	
+	table,
+	th,
+	td {
+		border: 1px solid black;
+		border-collapse: collapse;
 
-}
+
+	}
 </style>
 <div class="gap"></div>
 <div class="container">
@@ -68,9 +78,8 @@ table, th, td {
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<h1 class="entry-title entry-prop">{{ $house->title }}</h1>
-			<?php 
-			$arrimg =  json_decode($house->Image,true);
+			<?php
+			$arrimg =  json_decode($house->Image, true);
 			?>
 			<!-- <center> -->
 			<!-- Slider Hình Ảnh -->
@@ -78,113 +87,141 @@ table, th, td {
 				<img src="uploads/images/<?php echo $img; ?>" width="50%">
 			@endforeach
 			</center> -->
-			<!-- END Slider Hình Ảnh -->	
+			<!-- END Slider Hình Ảnh -->
 
 			<div id="carouselLoadHouseImage" class="carousel slide" data-ride="carousel">
-  				<div class="carousel-inner" >
-				  	@foreach($arrimg as $img)
-					  	@if ($loop->first)
-                      		<div class="carousel-item active">
-                      	@else
-                      		<div class="carousel-item">
-                      	@endif
-      						<img class="image-house" src="uploads/images/<?php echo $img; ?>" height="400" width="800">
-    					</div>
-					@endforeach
-  				</div>
-  				<a class="carousel-control-prev" href="#carouselLoadHouseImage" role="button" data-slide="prev">
-    				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    				<span class="sr-only">Previous</span>
-  				</a>
-  				<a class="carousel-control-next" href="#carouselLoadHouseImage" role="button" data-slide="next">
-    				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-    				<span class="sr-only">Next</span>
-  				</a>
-			</div>
+				<div class="carousel-inner">
+					@foreach($arrimg as $img)
+					@if ($loop->first)
+					<div class="carousel-item active">
+						@else
+						<div class="carousel-item">
+							@endif
+							<img class="image-house" src="uploads/images/<?php echo $img; ?>" height="400" width="800">
+						</div>
+						@endforeach
+					</div>
+					<a class="carousel-control-prev" href="#carouselLoadHouseImage" role="button" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next" href="#carouselLoadHouseImage" role="button" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
 
-			<div class="gap"></div>
-			<hr>
-			<div class="row">
-				<div class="col-md-6">
-					<span class="price_area">{{ number_format($house->price) }} <span class="price_label">VND</span></span>
-				</div>
-				<div class="col-md-6">
-					<span class="pull-right">Lượt xem: {{ $house->count_view }} - <span>Ngày đăng: </span> <span style="color: red; font-weight: bold;">
-						<?php echo time_elapsed_string($house->created_at); ?>
-					</span></span>
-				</div>
-			</div>
-			
-			<hr>
-			<div class="detail">
-				<p><strong>Địa chỉ: {{ $house->address }}</strong><br></p>
-				<p>
-					<strong>Giá phòng: </strong><span class="price_area"><?php echo number_format($house->price); ?>  <span class="price_label">VND</span></span>
-					<strong><i class="fas fa-street-view"></i> Diện tích: </strong><span> {{$house->size}} m<sup>2</sup> </span>
-				</p>
-				
-				<?php $arrtienich = json_decode($house->utilities,true); ?>
-				<div id="km-detail">
-					<div class="fs-dtslt">Tiện ích Phòng Trọ</div>
-					<div style="padding: 5px;">
-						
+				<div class="gap"></div>
+				<hr>
+				<div class="row">
+					<div class="col-md-6">
+						<h1 class="entry-title entry-prop">{{ $house->title }}</h1>
+					</div>
+					<div class="col-md-6">
+						<span class="pull-right">Lượt xem: {{ $house->count_view }} - <span>Ngày đăng: </span> <span style="color: red; font-weight: bold;">
+								<?php echo time_elapsed_string($house->created_at); ?>
+							</span></span>
+						<span class="pull right">Người đăng: <a href="#">{{$house->account->fullname}}</a></span>
 					</div>
 				</div>
-				<h4>Mô tả:</h4>
-				<pre>
+
+				<hr>
+				<div class="detail">
+					<p><strong>Địa chỉ: {{ $house->address }}</strong><br></p>
+					<p>
+						<strong>Giá phòng: </strong><span class="price_area" style="font-size: 150%"> {{number_format($house->price)}} <span class="price_label"> VND/{{time_translate($house->pricePer)}}</span></span>
+						<strong style="position:relative; left:100px"><i class="fas fa-street-view"></i> Diện tích: </strong><span style="position:relative; left:100px"> {{$house->size}} m<sup>2</sup> </span>
+					</p>
+
+					<?php $arrtienich = json_decode($house->utilities, true); ?>
+					<div id="km-detail">
+						<div class="fs-dtslt">Tiện ích Phòng Trọ</div>
+						<div style="padding: 5px;">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Chung chủ:</label>
+										@if($house->isWithOwner == 1)
+										<label style="color:blue;">Có</label><br>
+										@else
+										<label style="color:blue;">Không</label><br>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Phòng tắm: </label>
+										@if($house->bathroom == 1)
+										<label style="color:blue;">Khép kín </label>
+										@else
+										<label style="color:blue;">Chung </label>
+										@endif
+										@if($house->waterheater == 1)
+										<label style="color:blue;">có nóng lạnh</label><br>
+										@else
+										<label style="color:blue;">không nóng lạnh</label><br>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Phòng bếp: </label>
+										<label style="color:blue;">{{$house->kitchen}}</label><br>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+
+										<label>Điều hòa:</label>
+										@if($house->airConditioner == 1)
+										<label style="color:blue;">Có</label><br>
+										@else
+										<label style="color:blue;">Không</label><br>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Ban công: </label>
+										@if($house->balcony == 1)
+										<label style="color:blue;">Có</label><br>
+										@else
+										<label style="color:blue;">Không</label><br>
+										@endif
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label>Giá điện :</label>
+										<label style="color:red"> {{number_format($house->electricPrice)}} VND/KWh</label>
+										<br />
+										<label>Giá nước :</label>
+										<label style="color:red"> {{number_format($house->waterPrice)}} VND/khối</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h4>Mô tả:</h4>
+					<pre>
 					<p class="pre">{{ $house->description }}</p>
 				</pre>
-
-				<table style="width:100%">
-				<tbody>
-					<tr>
-						<td>Địa chỉ</td>
-						<td colspan="3">{{$house->address}}</td>
-					</tr>
-					<tr>
-						<td>Danh mục</td>
-						<td colspan="3" href="{{route('chitietphong', $house->id)}}">{{$housetype->name}}</td>
-					</tr>
-					<tr>
-						<td>Đối tượng</td>
-						<td>Tất cả</td>
-						<td>Chủ trọ</td>
-						<td href="{{route('chitietphong', $house->idOwner)}}">{{$user->fullname}}</td>
-					</tr>
-					<tr>
-						<td>Số điện thoại</td>
-						<td href="{{route('chitietphong', $house->idOwner)}}">{{$user->phoneNumber}}</td>
-						<td>Email</td>
-						<td href="{{route('chitietphong', $house->idOwner)}}">{{$user->email}}</td>
-					</tr>
-					<tr>
-						<td>Diện tích</td>
-						<td>{{$house->size}} m2</td>
-						<td>Giá tiền</td>
-						<td>{{number_format($house->price)}} VNĐ / tháng</td>
-					</tr>
-					<tr>
-						<td>Giá điện</td>
-						<td>{{number_format($house->electricPrice)}} VNĐ / 1KWh </td>
-						<td>Giá tiền</td>
-						<td>{{number_format($house->waterPrice)}} VNĐ / m3</td>
-					</tr>
-					<tr></tr>
-				</tbody>				
-			</table>
+				</div>
 			</div>
-		</div>
-		
-	</div>
-</div>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		var slider = $('.pgwSlider').pgwSlider();
-		slider.previousSlide();
-	});
-</script>
-<!-- <script>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var slider = $('.pgwSlider').pgwSlider();
+			slider.previousSlide();
+		});
+	</script>
+	<!-- <script>
 
 	var map;
 	function initMap() {
@@ -245,4 +282,4 @@ table, th, td {
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzlVX517mZWArHv4Dt3_JVG0aPmbSE5mE&callback=initMap"
 async defer></script> -->
-@endsection
+	@endsection

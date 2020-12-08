@@ -60,7 +60,7 @@
                   <select class="selectpicker pull-right js_location" data-live-search="true" name="province_id" data-type="provinces">
                       <option>--Chọn Tỉnh / Thành phố--</option>
                       @foreach($tinh as $city)
-                        <option  value="{{ $city->id }}">{{ $city->name }}</option>
+                        <option  value={{ $city->id }}>{{ $city->name }}</option>
                       @endforeach
                   </select>
                 </div>
@@ -68,7 +68,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">Quận / Huyện:</label>
-                  <select class="selectpicker pull-right js_location" data-live-search="true" name="province_id" data-type="districts">
+                  <select class="selectpicker pull-right js_location" data-live-search="true" name="district_id" data-type="districts">
                       <option>--Chọn Quận / Huyện--</option>
                       
                   </select>
@@ -97,9 +97,9 @@
                 <div class="form-group">
                   <label>Chung chủ:</label>
                   <br/>
-                  <input type="radio" id="iswithowner" name="isWithOwner" value="isWithOwner">
+                  <input type="radio" id="iswithowner" name="isWithOwner" value=1>
                     <label for="isWithOwner">Có</label><br>
-                  <input type="radio" id="iswithowner" name="isWithOwner" value="isWithOwner">
+                  <input type="radio" id="iswithowner" name="isWithOwner" value=0>
                     <label for="isWithOwner">Không</label><br>
                 </div>
               </div>
@@ -107,22 +107,22 @@
                 <div class="form-group">
                   <label>Phòng tắm: </label>
                   <br/>
-                  <input type="radio" id="bathroom" name="bathroom" value="bathroom">
-                    <label for="bathroom" value='Có'>Có</label><br>
-                  <input type="radio" id="bathroom" name="bathroom" value="bathroom">
-                    <label for="bathroom" value='Không'>Không</label><br>
+                  <input type="radio" id="bathroom" name="bathroom" value=1>
+                    <label for="bathroom">Khép kín</label><br>
+                  <input type="radio" id="bathroom" name="bathroom" value=0>
+                    <label for="bathroom">Chung</label><br>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Phòng bếp: </label>
                   <br/>
-                  <input type="radio" id="kitchen" name="kitchen" value="kitchen">
-                    <label for="kitchen" value='Bếp riêng'>Bếp riêng</label><br>
-                  <input type="radio" id="kitchen" name="kitchen" value="kitchen">
-                    <label for="kitchen" value='Bếp chung'>Bếp chung</label><br>
-                  <input type="radio" id="kitchen" name="kitchen" value="kitchen">
-                    <label for="kitchen" value='Không nấu ăn'>Không nấu ăn</label><br>
+                  <input type="radio" id="kitchen" name="kitchen" value="Bếp riêng">
+                    <label for="kitchen">Bếp riêng</label><br>
+                  <input type="radio" id="kitchen" name="kitchen" value="Bếp chung">
+                    <label for="kitchen">Bếp chung</label><br>
+                  <input type="radio" id="kitchen" name="kitchen" value="Không nấu ăn">
+                    <label for="kitchen">Không nấu ăn</label><br>
                 </div>
               </div>
             </div>
@@ -133,20 +133,20 @@
                   
                   <label>Điều hòa:</label>
                   <br/>
-                  <input type="radio" id="air_conditioning" name="air_conditioning" value="air_conditioning">
-                    <label for="air_conditioning" value=1>Có</label><br>
-                  <input type="radio" id="air_conditioning" name="air_conditioning" value="air_conditioning">
-                    <label for="air_conditioning" value=0>Không</label><br>
+                  <input type="radio" id="air_conditioning" name="air_conditioning" value=1>
+                    <label for="air_conditioning">Có</label><br>
+                  <input type="radio" id="air_conditioning" name="air_conditioning" value=0>
+                    <label for="air_conditioning">Không</label><br>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Ban công: </label>
                   <br/>
-                  <input type="radio" id="balcony" name="balcony" value="balcony">
-                    <label for="balcony" value=1>Có</label><br>
-                  <input type="radio" id="balcony" name="balcony" value="balcony">
-                    <label for="balcony" value=0>Không</label><br>
+                  <input type="radio" id="balcony" name="balcony" value=1>
+                    <label for="balcony">Có</label><br>
+                  <input type="radio" id="balcony" name="balcony" value=0>
+                    <label for="balcony">Không</label><br>
                 </div>
               </div>
               <div class="col-md-4">

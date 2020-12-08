@@ -5170,53 +5170,6 @@ border:none;}
     max-width: 10%;
 }
 
-.cart {
-    position: relative;
-}
-.cart-button {
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    right: 20px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: rgb(221, 66, 208);
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 30px;
-}
- 
-.cart-button:hover {
-  background-color: #555;
-}
-
-.cart-content {
-    display: none;
-    position: absolute;
-    
-}
-
-.cart-content a {
-
-    z-index: 1;
-    bottom: 100%;
-    font-size: 18px;
-    border: none;
-    outline-style: outset;
-    outline-color: brown;
-    background-color: rgb(255, 255, 255);
-    color: white;
-    cursor: pointer;
-    padding-top: 40px;
-    padding-bottom:20px ;
-    padding-left: 200px;
-    padding-right: 100px;
-    border-radius: 10px;
-}
-
 .add-to-cart:hover {
     background:  #f90;
 }

@@ -36,7 +36,7 @@ class PageController extends Controller
       return view('account.dangtin', compact('provinces', 'danh_muc'));
    }
 
-   public function getloaction(Request $req) {
+   public function getlocation(Request $req) {
       $quan_huyen = districts::where('province_id', $req->id)->first;
       
       return view('account.dangtin', compact('quan_huyen'));
@@ -98,7 +98,7 @@ class PageController extends Controller
       $house->size = $request->size;
       $house->count_view = 0;
       $house->address = 'Hà Nội';
-      $house->bathroom = $request->bathroom;
+      $house->bathroom = (int)$request->bathroom;
       $house->kitchen = $request->kitchen;
       $house->airConditioner = (int)$request->air_conditioning;
       $house->balcony = (int)$request->balcony;
@@ -111,6 +111,7 @@ class PageController extends Controller
       $house->phoneNumber = $request->phoneNumber;
       $house->electricPrice = $request->electricPrice;
       $house->waterPrice = $request->waterPrice;
+      $house->province_id = (int)$request->province_id;
       $house->save();
       return redirect()->back()->with('success','Đăng tin thành công. Vui lòng đợi Admin kiểm duyệt');
    }

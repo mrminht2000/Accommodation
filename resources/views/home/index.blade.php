@@ -1,50 +1,5 @@
 @extends('layout.master')
-@section('content')
-
-<div class="container-fluid" style="padding-left: 0px;padding-right: 0px;">
-	<div class="container">
-		<div class="box-search">
-			<form onsubmit="return false">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<div class="form-group row">
-							<div class="col-xs-6">
-								<select class="selectpicker" data-live-search="true" id="province_id" name="province_id">
-									@foreach($provinces as $city)
-									<option data-tokens="{{$city->slug}}" value="{{ $city->id }}">{{ $city->name }}</option>
-									@endforeach
-								</select>
-							</div>
-							<div class="col-xs-6">
-								
-							</div>
-							<div class="col-xs-6">
-								<select class="selectpicker" data-live-search="true" id="selectcategory">
-									@foreach($danh_muc as $damu)
-									<option data-tokens="{{ $damu->slug }}" value="{{ $damu->id }}">{{ $damu->name }}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-xs-6">
-								<select class="selectpicker" id="selectprice" data-live-search="true">
-									<option data-tokens="khoang gia" min="1" max="10000000">Khoảng giá</option>
-									<option data-tokens="Tu 500.000 VNĐ - 700.000 VNĐ" min="500000" max ="700000">Từ 500.000 VNĐ - 700.000 VNĐ</option>
-									<option data-tokens="Tu 700.000 VNĐ - 1.000.000 VNĐ" min="700000" max ="1000000">Từ 700.000 VNĐ - 1.000.000 VNĐ</option>
-									<option data-tokens="Tu 1.000.000 VNĐ - 1.500.000 VNĐ" min="1000000" max ="1500000">Từ 1.000.000 VNĐ - 1.500.000 VNĐ</option>
-									<option data-tokens="Tu 1.500.000 VNĐ - 3.000.000 VNĐ" min="1500000" max ="3000000">Từ 1.500.000 VNĐ - 3.000.000 VNĐ</option>
-									<option data-tokens="Tren 3.000.000 VNĐ" min="3000000" max="10000000">Trên 3.000.000 VNĐ</option>
-								</select>
-							</div>
-							<div class="col-xs-6">
-								<button class="btn btn-success" onclick="searchMotelajax()">Tìm kiếm ngay</button>
-							</div>
-						</div>
-						
-			<form>
-		</div>
-	</div>
-	
+@section('content')	
 	<div class="container">
 		<div id="content" class="space-top-none">
 			<div class="main-content">
