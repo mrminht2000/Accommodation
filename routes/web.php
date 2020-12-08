@@ -104,7 +104,7 @@ Route::get('danh-muc-phòng-trọ/{type}', [
 ]);
 
 //search
-Route::post('search', [
+Route::get('search', [
     'as'=>'search',
     'uses'=>'PageController@searchhouse'
 ]);

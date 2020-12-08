@@ -1,5 +1,6 @@
 @extends('layout.master')
 <<<<<<< HEAD
+<<<<<<< HEAD
 @section('content')
 	
 <div class="container-fluid">
@@ -67,6 +68,9 @@
 		</div>
 	
 	<div class="space60">&nbsp;</div>
+=======
+@section('content')	
+>>>>>>> d659e265103fdd2a1e3bb265c277a8c6ba94418a
 =======
 @section('content')	
 >>>>>>> d659e265103fdd2a1e3bb265c277a8c6ba94418a

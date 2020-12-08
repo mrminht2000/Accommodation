@@ -5,7 +5,7 @@
 	
 		<div id="searchbar">
 			<div class="container">
-				<form action="#" method="POST">
+				<form action="#" method="GET">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -75,7 +75,7 @@
 						<div class="beta-products-list">
 							<h4>Kết quả tìm kiếm</h4>
 							<div class="beta-products-details">
-                                <p class="pull-left">Tìm thấy {{count($house)}} sản phẩm</p>
+                                <p class="pull-left">Tìm thấy {{count($house)}} phòng</p>
 								<div class="clearfix"></div>
 							</div>
 							
@@ -119,7 +119,7 @@
 							</div>
 						</div> <!-- .beta-products-list -->
 
-						<div class="space50">&nbsp;</div>
+						
 
 						
 					</div>
@@ -128,6 +128,6 @@
 
 			</div> <!-- .main-content -->
 		</div> <!-- #content -->
-	</div> <!-- .container -->
+</div> <!-- .container -->
 
 @endsection
