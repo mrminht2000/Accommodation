@@ -116,7 +116,7 @@ class UserController extends Controller
     public function getsignout() {
         Auth::logout();
         Session::flush();
-        return view('home.index');
+        return redirect('index');
     }
 
 }

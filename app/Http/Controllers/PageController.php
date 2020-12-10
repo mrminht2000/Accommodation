@@ -50,7 +50,7 @@ class PageController extends Controller
          'price' => 'required',
          'size' => 'required',
          'phoneNumber' => 'required',
-        'description' => 'required',
+         'description' => 'required',
          'electricPrice' => 'required',
          'waterPrice' => 'required'
             

@@ -106,7 +106,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->provinces->name }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->districts->name }} - {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
 											</div>
@@ -153,7 +153,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->provinces->name }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->districts->name }} - {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
 											</div>
@@ -185,7 +185,7 @@
             $('#province').change(function(event){
                	event.preventDefault();
 				
-				let route = '{{route('districts')}}';
+				let route = "{{route('districts')}}";
 				let $this = $(this);
 				let type = $this.attr('data-type');
 				let provinceid = $this.val();
