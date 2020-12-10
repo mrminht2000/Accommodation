@@ -63,7 +63,7 @@
 			<nav class="main-menu">
 				<ul class="l-inline ov">
 					<li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
-					<li><a href="#">Sản phẩm</a>
+					<li><a href="index">Sản phẩm</a>
 						<ul class="sub-menu">
 							@foreach($danh_muc as $damu)
 							<li><a href="{{route('danhmucphongtro', $damu->id)}}">{{$damu->name}}</a></li>
