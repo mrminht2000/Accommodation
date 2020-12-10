@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '3788653866d9aa5642529599de51766ca7cc8c40',
+    'reference' => 'f7cce6d814bd58cee1a346ff692ede922505df31',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -467,7 +467,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '3788653866d9aa5642529599de51766ca7cc8c40',
+      'reference' => 'f7cce6d814bd58cee1a346ff692ede922505df31',
     ),
     'laravel/tinker' => 
     array (
@@ -695,6 +695,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '9fa359ff5ddaa5eb2be2bedb08a6a5787a5807ab',
+    ),
+    'predis/predis' => 
+    array (
+      'pretty_version' => 'v1.1.6',
+      'version' => '1.1.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9930e933c67446962997b05201c69c2319bf26de',
     ),
     'psr/container' => 
     array (

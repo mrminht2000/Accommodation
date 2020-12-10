@@ -57,27 +57,26 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">Tỉnh/ Thành phố:</label>
-                  <select class="selectpicker pull-right js_location" data-live-search="true" name="province_id" data-type="provinces">
-                      <option>--Chọn Tỉnh / Thành phố--</option>
-                      @foreach($tinh as $city)
-                        <option  value={{ $city->id }}>{{ $city->name }}</option>
-                      @endforeach
-                  </select>
+                  <select class="form-cotrol " data-live-search="true" data-type="provinces" id="province" name="province_id">
+										<option>--Chọn tỉnh--</option>
+										@foreach($provinces as $city)
+										<option value="{{ $city->id }}" name="{{ $city->id }}">{{ $city->name }}</option>
+										@endforeach
+									</select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">Quận / Huyện:</label>
-                  <select class="selectpicker pull-right js_location" data-live-search="true" name="district_id" data-type="districts">
-                      <option>--Chọn Quận / Huyện--</option>
-                      
-                  </select>
+                  <select class="form-cotrol " data-live-search="true" data-type="districts" id="districts" name="id_districts">
+										<option>--Chọn Quận/Huyện--</option>
+									</select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="usr">Danh mục:</label>
-                  <select class="selectpicker pull-right" data-live-search="true" class="form-control" name="id_type"> 
+                  <select class="form-cotrol" data-live-search="true" class="form-control" name="id_type"> 
                       @foreach($danh_muc  as $danh)
                     <option data-tokens="{{$danh->slug}}" value="{{ $danh->id }}">{{ $danh->name }}</option>
                     @endforeach
@@ -182,14 +181,14 @@
      <div class="contactpanel">
       <div class="row">
        <div class="col-md-4 text-center">
-        <img src="assets/images/noavt.png" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+        <!-- <img src="assets/images/noavt.png" class="img-circle" alt="Cinque Terre" width="100" height="100">  -->
       </div>
      
     </div>
   </div>
   
   <div class="gap"></div>
-  <img src="images/banner-1.png" width="100%">
+  <!-- <img src="images/banner-1.png" width="100%"> -->
 </div>
 </div>
 </div>
@@ -201,8 +200,49 @@
     showUpload: false,
     allowedFileExtensions: ['jpg', 'png', 'gif']
   });
-
-  
 </script>
+<script>
+		$(document).ready(function(){
+			$.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+            });
+            $('#province').change(function(event){
+               	event.preventDefault();
+				
+				let route = '{{route('districts')}}';
+				let $this = $(this);
+				let type = $this.attr('data-type');
+				let provinceid = $this.val();
+               	$.ajax({
+					method: "GET",
+					url: route,
+					data: {
+						type: type,
+						province_id: provinceid
+					}
+                })
+				.done(function(msg) {
+					if(msg.data) {
+						let html = '';
+						let element = '';
+						if(type == 'provinces')
+						{
+							html = "<option>--Chọn Quận Huyện--</option>";
+							element = '#districts';
+						}
+						$.each(msg.data, function(index, value) {
+						html += "<option value='"+value.id+"' name='"+value.id+"'>"+value.name+"</option>"
+						});
+
+						$(element).html('').append(html);
+					}
+
+					
+				});
+            });
+        });
+	</script>
 
 @endsection

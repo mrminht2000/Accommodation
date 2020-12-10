@@ -109,7 +109,7 @@ Route::get('search', [
     'uses'=>'PageController@searchhouse'
 ]);
 
-Route::get('s', [
+Route::get('districts', [
     'as'=>'districts',
     'uses'=>'PageController@getdistricts'
 ]);

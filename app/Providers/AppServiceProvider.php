@@ -43,10 +43,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('house', $house);
         });
 
-        view()->composer('account.dangtin', function($view) {
-            $tinh = provinces::all();
-            $view->with('tinh', $tinh);
-        });
+        // view()->composer('account.dangtin', function($view) {
+        //     $tinh = provinces::all();
+        //     $view->with('tinh', $tinh);
+        // });
 
         view()->composer('home.index', function($view) {
             $newHouse = house::select('*')->orderBy('id','desc')->limit(3)->get();

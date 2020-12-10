@@ -37,21 +37,16 @@ class PageController extends Controller
 
    public function get_dangtin(Request $req) {
       $provinces = provinces::all();
-     
       $danh_muc = housetype::all();
       return view('account.dangtin', compact('provinces', 'danh_muc'));
    }
 
-   public function getlocation(Request $req) {
-      $quan_huyen = districts::where('province_id', $req->id)->first;
-      
-      return view('account.dangtin', compact('quan_huyen'));
-   }
+  
 
    public function post_dangtin(Request $request) {
       $request->validate([
          'title' => 'required',
-         // 'address' => 'required',
+         
          'price' => 'required',
          'size' => 'required',
          'phoneNumber' => 'required',
@@ -62,7 +57,7 @@ class PageController extends Controller
       ],
       [  
          'title.required' => 'Nhập tiêu đề bài đăng',
-         // 'address.required' => 'Nhập địa chỉ phòng trọ',
+         
          'price.required' => 'Nhập giá thuê phòng trọ',
          'size.required' => 'Nhập diện tích phòng trọ',
          'phoneNumber.required' => 'Nhập SĐT chủ phòng trọ (cần liên hệ)',
@@ -103,17 +98,17 @@ class PageController extends Controller
       $house->pricePer = 'month';
       $house->size = $request->size;
       $house->count_view = 0;
-      $house->address = 'Hà Nội';
+      $house->province_id = (int)$request->province_id;
       $house->bathroom = (int)$request->bathroom;
       $house->kitchen = $request->kitchen;
       $house->airConditioner = (int)$request->air_conditioning;
       $house->balcony = (int)$request->balcony;
-      //$house->latlng = $json_latlng;
+      
       $house->otherUltilities = 'Add more...';
       $house->image = $json_img;
       $house->idOwner = Auth::guard()->user()->id;
       $house->id_type = $request->id_type;
-      $house->id_districts = $request->id_districts;
+      $house->id_districts = (int)$request->id_districts;
       $house->phoneNumber = $request->phoneNumber;
       $house->electricPrice = $request->electricPrice;
       $house->waterPrice = $request->waterPrice;
@@ -146,13 +141,14 @@ class PageController extends Controller
 
    public function getchitietPhongtro(Request $req) {
       $house = house::where('id', $req->id)->first();
-
+      $provinces = provinces::where('id',$req->province_id)->first();
+      $districts = districts::where('id',$req->id_districts)->first();
       $current_view = house::where('id',$req->id)->first();
       house::where('id',$req->id)
            ->update(['count_view' =>$current_view['count_view'] + 1]);
-           $housetype = housetype::where('id', $req->id)->first();
-      $user = account::where('id', $req->id)->first();
-        return view('home.chitietphong', compact('house', 'housetype', 'current_view', 'user'));
+           $housetype = housetype::where('id', $req->id_type)->first();
+      $user = account::where('id', $req->idOwner)->first();
+        return view('home.chitietphong', compact('house', 'housetype','provinces', 'districts', 'current_view', 'user'));
 
 
       // $housetype = housetype::where('id', $req->id)->first();
@@ -176,13 +172,13 @@ class PageController extends Controller
 
    public function searchhouse(Request $request) {
       $house = house::where([
-         ['id_districts',$request->id_ditrict],
-         ['province_id',$request->province_id],
+         ['id_districts',(int)$request->id_districts],
+         ['province_id',(int)$request->province_id],
 			['price','>=',$request->min_price],
          ['price','<=',$request->max_price],
          ['size','>=',$request->min_size],
          ['size','<=',$request->max_size],
-			['id_type',$request->id_type],
+			['id_type',(int)$request->id_type],
       ])->get();
 
       return view('page.search', compact('house'));

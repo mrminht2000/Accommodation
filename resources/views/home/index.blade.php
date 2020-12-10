@@ -5,7 +5,7 @@
 	
 		<div id="searchbar">
 			<div class="container">
-				<form role="search" action="#" method="#">
+				<form role="search" action="{{route('search')}}" method="GET">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -13,23 +13,23 @@
 								<lable class="search_field_item_label">Danh mục</lable>
 									<select class="form-cotrol" data-live-search="true" id="id_type" name="id_type">
 										@foreach($danh_muc as $damu)
-										<option value="{{ $damu->id }}">{{ $damu->name }}</option>
+										<option name="{{ $damu->id }}" value="{{ $damu->id }}">{{ $damu->name }}</option>
 										@endforeach
 									</select>
 							</div>
 							<div class="search_field_item search_field_item_tinh_thanh_pho">
 								<lable class="search_field_item_label">Tỉnh/ Thành phố</lable>
-									<select class="form-cotrol js_location" data-live-search="true" data-type="provinces" id="province" name="province_id">
+									<select class="form-cotrol " data-live-search="true" data-type="provinces" id="province" name="province_id">
 										<option>--Chọn tỉnh--</option>
 										@foreach($provinces as $city)
-										<option value="{{ $city->id }}">{{ $city->name }}</option>
+										<option value="{{ $city->id }}" name="{{ $city->id }}">{{ $city->name }}</option>
 										@endforeach
 									</select>
 							</div>
 							<div class="search_field_item search_field_item_quan_huyen">
 								<lable class="search_field_item_label">Quận/ Huyện</lable>
 									
-									<select class="form-cotrol js_location" data-live-search="true" data-type="districts" id="districts" name="id_districts">
+									<select class="form-cotrol " data-live-search="true" data-type="districts" id="districts" name="id_districts">
 										<option>--Chọn Quận/Huyện--</option>
 									</select>
 							</div>
@@ -107,7 +107,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->address }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
 											</div>
@@ -154,7 +154,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->address }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
 											</div>
@@ -208,10 +208,12 @@
 							element = '#districts';
 						}
 						$.each(msg.data, function(index, value) {
-						html += "<option value='"+value.id+"'>"+value.name+"</option>"
+						html += "<option value='"+value.id+"' name='"+value.id+"'>"+value.name+"</option>"
+							
 						});
 
 						$(element).html('').append(html);
+						
 					}
 
 					
