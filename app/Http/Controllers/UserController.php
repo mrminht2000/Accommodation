@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Authaccount;
 use App\Models\account;
 use App\Models\housetype;
+use App\Models\house;
 
 use Illuminate\Http\Request;
 
@@ -78,9 +79,9 @@ class UserController extends Controller
 
         //Nếu tài khoản Owner thì cần phê duyệt
         if ($isOwner == 'true') {
-            return redirect()->back()->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
+            return redirect('account.signin')->back()->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
         }
-        else return redirect()->back()->with('success', 'Đăng kí thành công');
+        else return redirect('account.signin')->back()->with('success', 'Đăng kí thành công');
     }
 
 
@@ -116,7 +117,62 @@ class UserController extends Controller
     public function getsignout() {
         Auth::logout();
         Session::flush();
-        return view('home.index');
+        return redirect('index');
     }
 
+    public function getprofile() {
+        $mypost = house::where('idOwner',Auth::guard()->user()->id)->get();
+         $housetype = housetype::all();
+         return view('account.profile', compact('mypost', 'housetype'));
+    }
+
+    public function getEditprofile(){
+        $user = account::find(Auth::guard()->user()->id);
+        $housetype = housetype::all();
+        return view('account.edit-profile', compact('user', 'housetype'));
+     }
+     public function postEditprofile(Request $request){
+        $housetype = housetype::all();
+        $user = account::find(Auth::guard()->user()->id);
+        if ($request->hasFile('avtuser')){
+           $file = $request->file('avtuser');
+           var_dump($file);
+           $exten = $file->getClientOriginalExtension();
+           if($exten != 'jpg' && $exten != 'png' && $exten !='jpeg' && $exten != 'JPG' && $exten != 'PNG' && $exten !='JPEG' )
+               return redirect('account.edit-profile')->with('thongbao','Bạn chỉ được upload hình ảnh có định dạng JPG,JPEG hoặc PNG');
+           $Hinh = 'avatar-'.$user->username.'-'.time().'.'.$exten;
+           while (file_exists('uploads/avatars/'.$Hinh)) {
+                $Hinh = 'avatar-'.$user->username.'-'.time().'.'.$exten;
+           }
+           if(file_exists($Hinh))
+              unlink($Hinh);
+
+           $file->move('uploads/avatars',$Hinh);
+           $user->avatar = $Hinh;
+        }
+        $this->validate($request,[
+              'fullname' => 'min:3|max:20'
+           ],[
+              'fullname.min' => 'Tên phải lớn hơn 3 và nhỏ hơn 20 kí tự',
+              'fullname.max' => 'Tên phải lớn hơn 3 và nhỏ hơn 20 kí tự'
+        ]);
+        if(($request->password != '' ) || ($request->password != '')){
+           $this->validate($request,[
+              'password' => 'min:3|max:32',
+              'password' => 'same:password',
+           ],[
+              'password.min' => 'password phải lớn hơn 3 và nhỏ hơn 32 kí tự',
+              'password.max' => 'password phải lớn hơn 3 và nhỏ hơn 32 kí tự',
+              'password.same' => 'Nhập lại mật khẩu không đúng',
+              'password.required' => 'Vui lòng nhập lại mật khẩu',
+           ]);
+           $user->password = Hash::make($request->password);
+        }
+        
+        $user->fullname = $request->fullname;
+        $user->save();
+        return redirect('account.edit-profile')->with('thongbao','Cập nhật thông tin thành công');
+        
+        
+     }
 }

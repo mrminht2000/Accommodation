@@ -5,7 +5,7 @@
 	
 		<div id="searchbar">
 			<div class="container">
-				<form action="{{route('search')}}" method="GET">
+				<form action="{{route('search')}}" method="POST">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">

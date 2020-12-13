@@ -69,7 +69,7 @@ function time_translate($pricePer)
 		<div class="col-md-12">
 			<ul class="breadcrumb">
 				<li><a href="index">Trang Chủ</a></li>
-				<li><a href="{{route('danhmucphongtro', $house->id_type)}}">{{ $house->housetype->name }}</a></li>
+				<li><a href="{{route('danhmucphongtro', $house->id_type)}}">{{ $house->districts->name }} - {{ $house->housetype->name }}</a></li>
 				<li class="active">{{ $house->title }}</li>
 			</ul>
 		</div>
@@ -128,14 +128,9 @@ function time_translate($pricePer)
 
 				<hr>
 				<div class="detail">
-<<<<<<< HEAD
-					<p><strong>Địa chỉ: {{ $house->provinces->name }}</strong><br></p>
-=======
 					<p>
-						<strong>Địa chỉ: {{ $house->address }}</strong>
-						<strong style="position:relative; left:255px">Số điện thoại: {{$house->phoneNumber}}</strong><br>
+						<strong>Địa chỉ: {{ $house->districts->name }} - {{ $house->provinces->name }}</strong>
 					</p>
->>>>>>> 39102bba4da8a44d0e8987cd20ff5cb817ddd0da
 					<p>
 						<strong>Giá phòng: </strong><span class="price_area" style="font-size: 150%"> {{number_format($house->price)}} <span class="price_label"> VND/{{time_translate($house->pricePer)}}</span></span>
 						<strong style="position:relative; left:100px"><i class="fas fa-street-view"></i> Diện tích: </strong><span style="position:relative; left:100px"> {{$house->size}} m<sup>2</sup> </span>

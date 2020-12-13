@@ -5,7 +5,7 @@
 	
 		<div id="searchbar">
 			<div class="container">
-				<form role="search" action="{{route('search')}}" method="GET">
+				<form role="search" action="{{route('search')}}" method="POST">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -106,7 +106,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->provinces->name }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ:{{ $house->districts->name }} - {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
 											</div>
@@ -153,7 +153,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->provinces->name }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->districts->name }} - {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
 											</div>

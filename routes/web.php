@@ -104,7 +104,7 @@ Route::get('danh-muc-phòng-trọ/{type}', [
 ]);
 
 //search
-Route::get('search', [
+Route::post('search', [
     'as'=>'search',
     'uses'=>'PageController@searchhouse'
 ]);
@@ -112,5 +112,20 @@ Route::get('search', [
 Route::get('districts', [
     'as'=>'districts',
     'uses'=>'PageController@getdistricts'
+]);
+
+Route::get('profile', [
+    'as'=> 'profile',
+    'uses'=> 'UserController@getprofile'
+]);
+
+Route::get('edit-profile', [
+    'as'=> 'edit',
+    'uses'=> 'UserController@getEditprofile'
+]);
+
+Route::post('edit-profile', [
+    'as'=> 'edit',
+    'uses'=> 'UserController@postEditprofile'
 ]);
 

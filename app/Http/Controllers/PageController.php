@@ -174,13 +174,19 @@ class PageController extends Controller
       $house = house::where([
          ['id_districts',(int)$request->id_districts],
          ['province_id',(int)$request->province_id],
-			['price','>=',$request->min_price],
-         ['price','<=',$request->max_price],
-         ['size','>=',$request->min_size],
-         ['size','<=',$request->max_size],
+			['price','>=',(int)$request->min_price],
+         ['price','<=',(int)$request->max_price],
+         ['size','>=',(int)$request->min_size],
+         ['size','<=',(int)$request->max_size],
 			['id_type',(int)$request->id_type],
       ])->get();
-
-      return view('page.search', compact('house'));
+      $arr_result_search = array();
+      foreach ($house as $room) {
+			$arrImg = json_decode($room->Iamge,true);
+			$arr_result_search[] = ["id" =>$room->id,"title"=>$room->title,"provinces"=> $room->provinces, "districts"=> $room->districts, "Image"=>$arrImg[0],"phoneNumber"=>$room->phoneNumber];
+      }
+     // return json_encode($arr_result_search);
+      //  return view('page.search', compact('house'));
+      return redirect('page.search')->back()->with(json_encode($arr_result_search));
    }
 }

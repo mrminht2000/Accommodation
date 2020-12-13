@@ -32,4 +32,8 @@ class house extends Model
     public function provinces () {
         return $this->belongsTo('App\Models\provinces','province_id','id');
     }
+
+    public function districts () {
+        return $this->belongsTo('App\Models\districts','id_districts','id');
+    }
 }
