@@ -171,7 +171,7 @@ class UserController extends Controller
         
         $user->fullname = $request->fullname;
         $user->save();
-        return redirect('account.edit-profile')->with('thongbao','Cập nhật thông tin thành công');
+        return redirect()->back()->with('thongbao','Cập nhật thông tin thành công');
         
         
      }

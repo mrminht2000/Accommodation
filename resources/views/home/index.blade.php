@@ -5,7 +5,7 @@
 	
 		<div id="searchbar">
 			<div class="container">
-				<form role="search" action="{{route('search')}}" method="POST">
+				<form role="search" action="{{route('search')}}" method="GET">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="search_field">
 						<div class="clearfix">
@@ -36,28 +36,28 @@
 							<div class="search_field_item search_field_item_gia_thue">
 								<lable class="search_field_item_label">Giá thuê</lable>
 									<select class="form-cotrol" data-live-search="true" id="price" name="price">
-									<option data-tokens="khoang gia" min="1" max="10000000">Khoảng giá</option>
-										<option data-tokens="Tu 500.000 VNĐ - 700.000 VNĐ" min="500000" max ="700000">Từ 500.000 VNĐ - 700.000 VNĐ</option>
-										<option data-tokens="Tu 700.000 VNĐ - 1.000.000 VNĐ" min="700000" max ="1000000">Từ 700.000 VNĐ - 1.000.000 VNĐ</option>
-										<option data-tokens="Tu 1.000.000 VNĐ - 1.500.000 VNĐ" min="1000000" max ="1500000">Từ 1.000.000 VNĐ - 1.500.000 VNĐ</option>
-										<option data-tokens="Tu 1.500.000 VNĐ - 3.000.000 VNĐ" min="1500000" max ="3000000">Từ 1.500.000 VNĐ - 3.000.000 VNĐ</option>
-										<option data-tokens="Tren 3.000.000 VNĐ" min="3000000" max="10000000">Trên 3.000.000 VNĐ</option>
+									<option data-tokens="khoang gia" min_price="1" max_price="10000000">Khoảng giá</option>
+										<option data-tokens="Tu 500.000 VNĐ - 700.000 VNĐ" min_price="500000" max_price ="700000">Từ 500.000 VNĐ - 700.000 VNĐ</option>
+										<option data-tokens="Tu 700.000 VNĐ - 1.000.000 VNĐ" min_price="700000" max_price ="1000000">Từ 700.000 VNĐ - 1.000.000 VNĐ</option>
+										<option data-tokens="Tu 1.000.000 VNĐ - 1.500.000 VNĐ" min_price="1000000" max_price ="1500000">Từ 1.000.000 VNĐ - 1.500.000 VNĐ</option>
+										<option data-tokens="Tu 1.500.000 VNĐ - 3.000.000 VNĐ" min_price="1500000" max_price ="3000000">Từ 1.500.000 VNĐ - 3.000.000 VNĐ</option>
+										<option data-tokens="Tren 3.000.000 VNĐ" min_price="3000000" max_price="10000000">Trên 3.000.000 VNĐ</option>
 									</select>
 							</div>
 							<div class="search_field_item search_field_item_dien_tich">
 								<lable class="search_field_item_label">Diện tích</lable>
 									<select class="form-cotrol" data-live-search="true" id="size" name="size">
-									<option data-tokens="dien tich" min="1" max="200">Diện tích</option>
-										<option data-tokens="Tu 1 - 20 m2" min="1" max ="20">Dưới 20 m2</option>
-										<option data-tokens="Tu 20 m2 - 30 m2" min="20" max ="30">Từ 20 m2 - 30 m2</option>
-										<option data-tokens="Tu 30 m2 - 40 m2" min="30" max ="40">Từ 30 m2 - 40 m2</option>
-										<option data-tokens="Tu 40 m2 - 50 m2" min="40" max ="50">Từ 40 m2 -50 m2</option>	
-										<option data-tokens="Trên 50 m2" min="50" >Trên 50 m2</option>	
+									<option data-tokens="dien tich" min_size="1" max_price="200">Diện tích</option>
+										<option data-tokens="Tu 1 - 20 m2" min_size="1" max_price ="20">Dưới 20 m2</option>
+										<option data-tokens="Tu 20 m2 - 30 m2" min_size="20" max_price ="30">Từ 20 m2 - 30 m2</option>
+										<option data-tokens="Tu 30 m2 - 40 m2" min_size="30" max_price ="40">Từ 30 m2 - 40 m2</option>
+										<option data-tokens="Tu 40 m2 - 50 m2" min_size="40" max_price ="50">Từ 40 m2 -50 m2</option>	
+										<option data-tokens="Trên 50 m2" min_size="50" >Trên 50 m2</option>	
 									</select>
 							</div>
 							<div class="search_field_item search_field_item_submit">
 								<lable class="search_field_item_label">&nbsp;</lable>
-								<button type="submit" class="btn btn-default btn_search_box">Tìm kiếm</button>
+								<button type="submit"  class="btn btn-default btn_search_box">Tìm kiếm</button>
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/"> {{ $house->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="{{route('profile')}}"> {{ $house->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>

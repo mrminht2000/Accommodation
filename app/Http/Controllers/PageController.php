@@ -162,7 +162,7 @@ class PageController extends Controller
 
    }
 
-   public function getloaiSP($type) {
+   public function getloaiphong($type) {
         $phong_theodanhmuc= house::where('id_type', $type)->paginate(3);
         $phong_khacdanhmuc = house::where('id_type', '<>', $type)->paginate(3);
         $danh_muc = housetype::all();
@@ -170,23 +170,31 @@ class PageController extends Controller
         return view('page.danhmuc', compact('phong_theodanhmuc', 'phong_khacdanhmuc', 'danh_muc', 'danh_muc_phong'));
    }
 
-   public function searchhouse(Request $request) {
+    public function getsearchhouse(Request $request) {
+      $provinces = provinces::all();
+      $danh_muc = housetype::all();
       $house = house::where([
          ['id_districts',(int)$request->id_districts],
          ['province_id',(int)$request->province_id],
-			['price','>=',(int)$request->min_price],
-         ['price','<=',(int)$request->max_price],
-         ['size','>=',(int)$request->min_size],
-         ['size','<=',(int)$request->max_size],
-			['id_type',(int)$request->id_type],
+			// ['price','>=',(int)$request->min_price],
+         // ['price','<=',(int)$request->max_price],
+         // ['size','>=',(int)$request->min_size],
+         // ['size','<=',(int)$request->max_size],
+			['id_type',(int)$request->id_type]
       ])->get();
-      $arr_result_search = array();
-      foreach ($house as $room) {
-			$arrImg = json_decode($room->Iamge,true);
-			$arr_result_search[] = ["id" =>$room->id,"title"=>$room->title,"provinces"=> $room->provinces, "districts"=> $room->districts, "Image"=>$arrImg[0],"phoneNumber"=>$room->phoneNumber];
-      }
-     // return json_encode($arr_result_search);
-      //  return view('page.search', compact('house'));
-      return redirect('page.search')->back()->with(json_encode($arr_result_search));
-   }
+      return view('page.search', compact('provinces', 'danh_muc', 'house'));
+    }
+
+   // public function searchhouse(Request $request) {
+   //    $house = house::where([
+   //       ['id_districts',(int)$request->id_districts],
+   //       ['province_id',(int)$request->province_id],
+	// 		['price','>=',(int)$request->min_price],
+   //       ['price','<=',(int)$request->max_price],
+   //       ['size','>=',(int)$request->min_size],
+   //       ['size','<=',(int)$request->max_size],
+	// 		['id_type',(int)$request->id_type],
+   //    ])->get();
+   //    return redirect('page.search')->back()->with(compact('house'));
+   // }
 }

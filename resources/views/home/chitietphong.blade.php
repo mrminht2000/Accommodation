@@ -218,12 +218,14 @@ function time_translate($pricePer)
 			<div class="col-md-4">
 					<div class="contactpanel">
 						<div class="row">
-							<div class="col-md-4 text-center">
-								<img src="source/images/no-avatar.jpg" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
-							</div>
+						@if($house->account->avatar == 'no-avatar.jpg')
+							<img src="images/no-avatar.jpg" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+						@else
+							<img src="uploads/avatars/<?php echo $house->account->avatar; ?>" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+						@endif
 						<div class="col-md-8">
 							<h4>Thông tin người đăng</h4>
-							<strong>{{ $house->account->fullname }}</strong><br>
+							<strong><a href="{{route('profile')}}">{{ $house->account->fullname }}</a></strong><br>
 							<i class="far fa-clock"></i> Ngày tham gia: 17-02-2018	
 						</div>
 					</div>

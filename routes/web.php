@@ -100,10 +100,15 @@ Route::get('chi-tiet-phong-tro/{id}', [
 // danh mục
 Route::get('danh-muc-phòng-trọ/{type}', [
     'as'=>'danhmucphongtro',
-    'uses'=>'PageController@getloaiSP'
+    'uses'=>'PageController@getloaiphong'
 ]);
 
 //search
+Route::get('search', [
+    'as'=>'search',
+    'uses'=>'PageController@getsearchhouse'
+]);
+
 Route::post('search', [
     'as'=>'search',
     'uses'=>'PageController@searchhouse'
@@ -123,6 +128,7 @@ Route::get('edit-profile', [
     'as'=> 'edit',
     'uses'=> 'UserController@getEditprofile'
 ]);
+
 
 Route::post('edit-profile', [
     'as'=> 'edit',
