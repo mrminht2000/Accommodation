@@ -98,7 +98,7 @@ Route::get('chi-tiet-phong-tro/{id}', [
 ]);
 
 // danh mục
-Route::get('danh-muc-phòng-trọ/{type}', [
+Route::get('danh-muc-phong-tro/{type}', [
     'as'=>'danhmucphongtro',
     'uses'=>'PageController@getloaiphong'
 ]);
@@ -133,5 +133,24 @@ Route::get('edit-profile', [
 Route::post('edit-profile', [
     'as'=> 'edit',
     'uses'=> 'UserController@postEditprofile'
+]);
+
+
+/* admin  */
+
+Route::get('login', [
+    'as'=> 'login',
+    'uses'=> 'AdminController@getadminlogin'
+]);
+
+
+Route::post('login', [
+    'as'=> 'login',
+    'uses'=> 'AdminController@postadminlogin'
+]);
+
+Route::get('admin',[
+    'as'=>'admin',
+    'uses'=>'AdminController@getIndex'
 ]);
 

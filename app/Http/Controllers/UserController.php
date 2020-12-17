@@ -79,9 +79,9 @@ class UserController extends Controller
 
         //Nếu tài khoản Owner thì cần phê duyệt
         if ($isOwner == 'true') {
-            return redirect('account.signin')->back()->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
+            return redirect('account.signin')->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
         }
-        else return redirect('account.signin')->back()->with('success', 'Đăng kí thành công');
+        else return redirect()->with('success', 'Đăng kí thành công');
     }
 
 

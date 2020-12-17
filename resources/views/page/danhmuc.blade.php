@@ -51,7 +51,7 @@
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $ptdm->id)}}">{{ $ptdm->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/"> {{ $ptdm->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="{{route('profile')}}"> {{ $ptdm->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $ptdm->size }} m<sup>2</sup></b></span>
@@ -62,7 +62,7 @@
 											<span>
 												<a class="single-item add-to-cart pull-right" href="{{route('follow', $ptdm->id)}}"><i class="fa fa-shopping-cart"></i></a>
 											</span>
-											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $ptdm->address }}</div>
+											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $ptdm->districts->name }} - {{ $ptdm->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
 												<b>{{$ptdm->price}} đồng/{{$ptdm->pricePer}}</b></div>
 											</div>

@@ -7,32 +7,31 @@
 	<title>Admin Login</title>
 	<base href="{{asset('')}}">
 	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="adminassets/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="adminassets/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-	<link href="adminassets/assets/css/core.css" rel="stylesheet" type="text/css">
-	<link href="adminassets/assets/css/components.css" rel="stylesheet" type="text/css">
-	<link href="adminassets/assets/css/colors.css" rel="stylesheet" type="text/css">
+	<link href="{{ URL::to('source/adminassets/assets/css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{ URL::to('source/adminassets/assets/css/bootstrap.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{ URL::to('source/adminassets/assets/css/core.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{ URL::to('source/adminassets/assets/css/components.css')}}" rel="stylesheet" type="text/css">
+	<link href="{{ URL::to('source/adminassets/assets/css/colors.css')}}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script type="text/javascript" src="adminassets/assets/js/plugins/loaders/pace.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/core/libraries/jquery.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/core/libraries/bootstrap.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/loaders/blockui.min.js"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/loaders/pace.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/core/libraries/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/core/libraries/bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/loaders/blockui.min.js')}}"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script type="text/javascript" src="adminassets/assets/js/plugins/visualization/d3/d3.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/forms/styling/switchery.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/forms/styling/uniform.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/ui/moment/moment.min.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/visualization/d3/d3.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/visualization/d3/d3_tooltip.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/forms/styling/switchery.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/forms/styling/uniform.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/forms/selects/bootstrap_multiselect.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/ui/moment/moment.min.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/plugins/pickers/daterangepicker.js')}}"></script>
 
-	<script type="text/javascript" src="adminassets/assets/js/core/app.js"></script>
-	<script type="text/javascript" src="adminassets/assets/js/pages/login.js"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/core/app.js')}}"></script>
+	<script type="text/javascript" src="{{ URL::to('source/adminassets/assets/js/pages/login.js')}}"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -52,7 +51,7 @@
 				<div class="content">
 					<!-- Advanced login -->
 
-					<form action="{{ route('admin.login') }}" method="POST">
+					<form action="{{ route('login') }}" method="POST">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="panel panel-body login-form">
 							<div class="text-center">

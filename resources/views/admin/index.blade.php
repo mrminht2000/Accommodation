@@ -23,7 +23,7 @@
 			<div class="col-12">
 				<div class="panel panel-flat">
 					<div class="panel-body">
-						Chào mừng bạn đến với Trang quản trị Phòng trọ đà nẵng
+						Chào mừng bạn đến với Trang quản trị Phòng trọ 
 					</div>
 				</div>
 			</div>
@@ -35,9 +35,9 @@
 				<!-- Members online -->
 				<div class="panel bg-teal-400">
 					<div class="panel-body">
-						<h3 class="no-margin">{{ $total_users_active }}</h3>
+						<h3 class="no-margin">{{ $total_account }}</h3>
 						Thành viên hoạt động
-						<div class="text-muted text-size-small"> {{ $total_users_deactive }} bị khóa</div>
+						<div class="text-muted text-size-small"></div>
 					</div>
 					<div class="container-fluid">
 						<div id="members-online"></div>
@@ -52,9 +52,9 @@
 				<!-- Motelroom -->
 				<div class="panel bg-pink-400">
 					<div class="panel-body">
-						<h3 class="no-margin">{{ $total_rooms_approve }}</h3>
+						<h3 class="no-margin">{{ $total_house_approve }}</h3>
 						Phòng trọ đã duyệt
-						<div class="text-muted text-size-small">trên tổng số {{ $total_rooms_approve + $total_rooms_unapprove }} phòng trọ đã đăng</div>
+						<div class="text-muted text-size-small">trên tổng số {{ $total_house_approve + $total_house_unapprove }} phòng trọ đã đăng</div>
 					</div>
 
 					<div id="server-load"></div>
@@ -67,14 +67,7 @@
 
 				<!-- Today's report -->
 				<a href="admin/thongke">
-					<div class="panel bg-blue-400">
-						<div class="panel-body">
-							<h3 class="no-margin">{{ $total_report }}</h3>
-							Báo cáo
-							<div class="text-muted text-size-small">từ người dùng</div>
-						</div>
-						<div id="today-revenue"></div>
-					</div>
+					
 				</a>
 				<!-- /today's revenue -->
 
@@ -83,7 +76,7 @@
 		<!-- /quick stats boxes -->
 		<!-- Footer -->
 		<div class="footer text-muted">
-			&copy; 2019. <a href="#">Project Phòng trọ Đà nẵng</a> by <a href="" target="_blank">Thành Trung</a>
+			&copy; 2019. <a href="#">Project Phòng trọ </a> by <a href="" target="_blank"></a>
 		</div>
 		<!-- /footer -->
 	</div>

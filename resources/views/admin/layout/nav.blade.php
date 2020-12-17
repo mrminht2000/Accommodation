@@ -20,8 +20,8 @@
 				
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="uploads/avatars/{{ Auth::user()->avatar }}" alt="">
-						<span>{{ Auth::user()->name }}</span>
+					
+						<span>{{ Auth::guard()->user()->fullname }}</span>
 						<i class="caret"></i>
 					</a>
 
