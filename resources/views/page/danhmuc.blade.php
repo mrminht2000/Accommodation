@@ -51,7 +51,7 @@
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $ptdm->id)}}">{{ $ptdm->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="{{route('profile')}}"> {{ $ptdm->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="{{route('profile', $ptdm->account->id)}}"> {{ $ptdm->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $ptdm->size }} m<sup>2</sup></b></span>

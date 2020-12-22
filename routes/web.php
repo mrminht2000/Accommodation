@@ -124,14 +124,16 @@ Route::get('profile/{id}', [
     'uses'=> 'UserController@getprofile'
 ]);
 
-Route::get('edit-profile', [
-    'as'=> 'edit',
+
+
+Route::get('edit-profile/{id}', [
+    'as'=> 'edituser',
     'uses'=> 'UserController@getEditprofile'
 ]);
 
 
-Route::post('edit-profile', [
-    'as'=> 'edit',
+Route::post('edit-profile/{id}', [
+    'as'=> 'edituser',
     'uses'=> 'UserController@postEditprofile'
 ]);
 
@@ -166,6 +168,9 @@ Route::group(['prefix'=>'account'],function(){
     Route::get('listAccount','AdminController@getListAccount');
     // Route::get('edit/{id}','AdminController@getUpdateAccount');
     // Route::post('edit/{id}','AdminController@postUpdateAccount');
+    Route::get('listaccountwaiting', 'AdminController@getListAccountWaiting');
+    Route::get('approve/{id}','AdminController@ApproveAccount');
+    
     Route::get('del/{id}','AdminController@DeleteUser');
 });
 

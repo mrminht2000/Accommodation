@@ -49,6 +49,7 @@
 							</thead>
 							<tbody>
 								@foreach($user as $tk)
+								@if($tk->isApproval == 0)
 								<tr>
 									<td>{{$tk->id}}</td>
 									
@@ -56,22 +57,13 @@
 									<td>{{$tk->email}}</td>
 									
 									<td>
-										@if($tk->isAdmin == 1)
-											Quản trị viên
-										@else
 											@if($tk->isOwner == 1)
 												Chủ nhà trọ
-											@else
-												Người thuê trọ 
 											@endif
-										@endif
 									</td>
 									<td>
-										@if($tk->tinhtrang == 0)
-											<span class="label label-success">Hoạt động</span>
-										
-										@else
-											<span class="label label-danger">Tạm Khóa</span>
+										@if($tk->isApproval == 0)
+											<span class="label label-danger">Chờ phê duyệt</span>
 										@endif
 									</td>
 									<td class="text-center">
@@ -82,13 +74,18 @@
 												</a>
 
 												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="edit/{{$tk->id}}"><i class="icon-file-pdf"></i> Chỉnh sửa</a></li>
-													<li><a href="admin/user/del/{{$tk->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
+													
+													@if($tk->isApproval == 0)
+														<li><a href="account/approve/{{$tk->id}}"><i class="icon-file-pdf"></i> Kiểm duyệt</a></li>
+													@endif
+													
+													
 												</ul>
 											</li>
 										</ul>
 									</td>
 								</tr>
+								@endif
 								@endforeach
 							</tbody>
 						</table>

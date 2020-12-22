@@ -24,11 +24,11 @@
 									<span class="text-semibold">Done</span>  {{session('thongbao')}}
 								</div>
 		            @endif
-					<form class="form-horizontal" method="POST" action="{{ route('edit') }}" enctype="multipart/form-data">
+					<form class="form-horizontal" method="POST" action="{{ route('edituser', Auth::guard('account')->user()->id) }}" enctype="multipart/form-data">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<div class="content-upload">
 							<center>
-								@if(Auth::user()->avatar == 'no-avatar.jpg')
+								@if($user->avatar == 'no-avatar.jpg')
 									<img class="user_avatar" id="output" src="source/images/no-avatar.jpg">
 								@else
 									<img class="user_avatar" id="output" src="uploads/avatars/{{ $user->avatar }}">

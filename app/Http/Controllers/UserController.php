@@ -79,7 +79,7 @@ class UserController extends Controller
 
         //Nếu tài khoản Owner thì cần phê duyệt
         if ($isOwner == 'true') {
-            return redirect('signin')->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
+            return redirect()->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
         }
         else return redirect()->with('success', 'Đăng kí thành công');
     }
@@ -135,15 +135,18 @@ class UserController extends Controller
         $user = account::where('id',$id)->first();
         return view('account.profile', compact('mypost', 'housetype','user'));
     }
+   
 
-    public function getEditprofile(){
-        $user = account::find(Auth::guard()->user()->id);
+    public function getEditprofile($id){
+        // $user = account::find(Auth::guard()->user()->id);
+        $user = account::where('id', $id)->first();
         $housetype = housetype::all();
         return view('account.edit-profile', compact('user', 'housetype'));
      }
-     public function postEditprofile(Request $request){
+     public function postEditprofile(Request $request, $id){
         $housetype = housetype::all();
-        $user = account::find(Auth::guard()->user()->id);
+        // $user = account::find(Auth::guard()->user()->id);
+        $user = account::where('id', $id)->first();
         if ($request->hasFile('avtuser')){
            $file = $request->file('avtuser');
            var_dump($file);

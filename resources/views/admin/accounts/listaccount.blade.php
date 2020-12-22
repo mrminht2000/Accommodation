@@ -35,6 +35,7 @@
 							<span class="text-semibold">Well done!</span>  {{session('thongbao')}}
 						</div>
                         @endif
+						
 						<table class="table datatable-show-all">
 							<thead>
 								<tr class="bg-blue">
@@ -49,6 +50,7 @@
 							</thead>
 							<tbody>
 								@foreach($user as $tk)
+								@if($tk->isApproval == 1)
 								<tr>
 									<td>{{$tk->id}}</td>
 									
@@ -89,9 +91,11 @@
 										</ul>
 									</td>
 								</tr>
+								@endif
 								@endforeach
 							</tbody>
 						</table>
+						
 					</div>
 			</div>
 		</div>

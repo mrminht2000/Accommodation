@@ -225,7 +225,7 @@ function time_translate($pricePer)
 						@endif
 						<div class="col-md-8">
 							<h4>Thông tin người đăng</h4>
-							<strong><a href="{{route('profile')}}">{{ $house->account->fullname }}</a></strong><br>
+							<strong><a href="{{route('profile', $house->account->id)}}">{{ $house->account->fullname }}</a></strong><br>
 							<i class="far fa-clock"></i> Ngày tham gia: 17-02-2018	
 						</div>
 					</div>

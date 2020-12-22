@@ -94,4 +94,16 @@ class AdminController extends Controller
             $user->save();
             return redirect('edit/'.$id)->with('thongbao','Chỉnh sửa thành công tài khoản '.$req->username.' .');
     }
+
+    public function getListAccountWaiting() {
+        $user = account::all();
+        return view('admin.accounts.listwaiting', compact('user'));
+    }
+
+    public function ApproveAccount($id) {
+        $user = account::find($id);
+        $user->isApproval = 1;
+        $user->save();
+        return redirect('account/listAccount')->with('thongbao','Đã kiểm duyệt bài đăng: '.$user->title);
+    }
 }

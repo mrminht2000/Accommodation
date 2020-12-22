@@ -105,7 +105,7 @@ function time_translate($pricePer)
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
 										<div class="room-meta">
-											<span><a href="{{route('profile', $house->account->id)}}"><i class="fas fa-user-circle"></i> Người đăng:  {{ $house->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng:  <a href="{{route('profile', $house->account->id)}}"> {{ $house->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
@@ -156,7 +156,7 @@ function time_translate($pricePer)
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng:  {{ $house->account->fullname }}</span>
+											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="{{route('profile', $house->account->id)}}"> {{ $house->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
