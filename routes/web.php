@@ -119,7 +119,7 @@ Route::get('districts', [
     'uses'=>'PageController@getdistricts'
 ]);
 
-Route::get('profile', [
+Route::get('profile/{id}', [
     'as'=> 'profile',
     'uses'=> 'UserController@getprofile'
 ]);
@@ -178,4 +178,9 @@ Route::get('edit/{id}', [
 Route::post('edit/{id}',[
     'as'=>'edit',
     'uses'=>'AdminController@postUpdateAccount'
+]);
+// Message
+Route::get('messages',[
+    'as'=>'messages',
+    'uses'=>'PageController@getMessage'
 ]);

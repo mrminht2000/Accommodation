@@ -1,6 +1,14 @@
 @extends('layout.master')
 @section('content')
 	
+<?php 
+function time_translate($pricePer)
+{
+	if ($pricePer == 'month') return 'tháng';
+	if ($pricePer == 'quarter') return 'quý';
+	if ($pricePer == 'year') return 'năm';
+}
+?>
 <div class="container-fluid">
 	
 		<div id="searchbar">
@@ -97,7 +105,7 @@
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng:  {{ $house->account->fullname }}</span>
+											<span><a href="{{route('profile', $house->account->id)}}"><i class="fas fa-user-circle"></i> Người đăng:  {{ $house->account->fullname }}</a></span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
@@ -106,11 +114,13 @@
 											</span>
 											<br/>
 											<span>
-												<a class="single-item add-to-cart pull-right" href="{{route('follow', $house->id)}}"><i class="fa fa-shopping-cart"></i></a>
+												<form method="post">
+													<a class="single-item add-to-cart pull-right" name="followHouse" value="{{$house->id}}"><i class="fa fa-shopping-cart"></i></a>
+												</form>
 											</span>
 											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->districts->name }} - {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
-												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
+												<b>{{$house->price}} đồng/<?php echo time_translate($house->pricePer) ?></b></div>
 											</div>
 										</div>
 
@@ -159,7 +169,7 @@
 											</span>
 											<div><i class="fas fa-map-marker"></i> Địa chỉ: {{ $house->districts->name }} - {{ $house->provinces->name }}</div>
 											<div style="color: #e74c3c"><i class="far fa-money-bill-alt"></i> Giá thuê: 
-												<b>{{$house->price}} đồng/{{$house->pricePer}}</b></div>
+												<b>{{$house->price}} đồng/<?php echo time_translate($house->pricePer) ?></b></div>
 											</div>
 										</div>
 

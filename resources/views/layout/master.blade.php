@@ -82,7 +82,7 @@
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()->fullname}}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="{{route('profile')}}">Thông tin chi tiết</a></li>
+							<li><a href="{{route('profile',Auth::guard('account')->user()->id)}}">Thông tin chi tiết</a></li>
 							<li><a href="{{route('cart')}}">Nhà trọ theo dõi</a></li>
 							<li><a href="{{route('signout')}}">Thoát</a></li>
 						</ul>

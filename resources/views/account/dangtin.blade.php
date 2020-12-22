@@ -211,7 +211,7 @@
             $('#province').change(function(event){
                	event.preventDefault();
 				
-				let route = '{{route('districts')}}';
+				let route = "{{route('districts')}}";
 				let $this = $(this);
 				let type = $this.attr('data-type');
 				let provinceid = $this.val();

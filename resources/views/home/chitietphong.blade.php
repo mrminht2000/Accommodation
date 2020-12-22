@@ -47,9 +47,9 @@ function time_elapsed_string($datetime, $full = false)
 }
 function time_translate($pricePer)
 {
-	if ($pricePer == 'month') return 'Tháng';
-	if ($pricePer == 'quarter') return 'Quý';
-	if ($pricePer == 'year') return 'Năm';
+	if ($pricePer == 'month') return 'tháng';
+	if ($pricePer == 'quarter') return 'quý';
+	if ($pricePer == 'year') return 'năm';
 }
 ?>
 

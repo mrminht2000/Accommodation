@@ -129,10 +129,11 @@ class UserController extends Controller
         return redirect('index');
     }
 
-    public function getprofile() {
-        $mypost = house::where('idOwner',Auth::guard()->user()->id)->get();
-         $housetype = housetype::all();
-         return view('account.profile', compact('mypost', 'housetype'));
+    public function getprofile($id) {
+        $mypost = house::where('idOwner',$id)->get();
+        $housetype = housetype::all();
+        $user = account::where('id',$id)->first();
+        return view('account.profile', compact('mypost', 'housetype','user'));
     }
 
     public function getEditprofile(){
