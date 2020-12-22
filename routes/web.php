@@ -176,12 +176,12 @@ Route::group(['prefix'=>'account'],function(){
 
 
 Route::get('edit/{id}', [
-    'as'=> 'edit',
+    'as'=> 'editadmin',
     'uses'=> 'AdminController@getUpdateAccount'
 ]);
 
 Route::post('edit/{id}',[
-    'as'=>'edit',
+    'as'=>'editadmin',
     'uses'=>'AdminController@postUpdateAccount'
 ]);
 // Message

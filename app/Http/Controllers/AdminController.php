@@ -76,7 +76,7 @@ class AdminController extends Controller
             $user = account::find($id);
             $user->fullname = $req->fullname;
             $user->tinhtrang = (int)$req->tinhtrang;
-    
+            
             if($req->password != ''){
             $this->validate($req,[
                 'password' => 'min:3|max:32',
