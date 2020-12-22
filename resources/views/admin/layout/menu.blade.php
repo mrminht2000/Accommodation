@@ -6,7 +6,14 @@
 						<div class="category-content">
 							<div class="media">
 								<div class="media-body pt-5">
-									<span class="media-heading text-semibold">{{ Auth::user()->fullname }}</span>
+								@if(Auth::guard('account')->user())
+									<li class="dropdown">
+										<span>{{Auth::user()->fullname}}</span>
+										<i class="caret"></i>
+									</li>
+								@else
+									{{route('signin')}};
+								@endif
 									<div class="text-size-mini text-muted">
 										<i class="icon-pin text-size-small"></i> Hà Nội
 									</div>
@@ -24,8 +31,9 @@
 
 								<!-- Main -->
 								<li class="navigation-header"><span>QUẢN TRỊ</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li><a href="admin/motelrooms/list"><i class="icon-home4"></i> <span>Danh sách Phòng trọ</span></a></li>
-								<li><a href="admin/users/list"><i class="icon-user-check"></i><span> Danh sách người dùng</span></a></li>
+								<li><a href="house/list"><i class="icon-home4"></i> <span>Danh sách Phòng trọ</span></a></li>
+								<li><a href="account/listAccount"><i class="icon-user-check"></i><span> Danh sách người dùng</span></a></li>
+								<li><a href="admin/users/list"><i class="icon-user-check"></i><span> Danh sách tài khoản cần phê duyệt</span></a></li>
 								<li><a href="admin/thongke"><i class="icon-pie-chart8"></i><span> Thống kê</span></a></li>
 								<li><a href=""><i class="icon-home2"></i><span> Xem Trang chủ</span></a></li>
 								

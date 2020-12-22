@@ -20,9 +20,15 @@
 				
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
-					
-						<span>{{ Auth::guard()->user()->fullname }}</span>
+					@if(Auth::guard('account')->user())
+					<li class="dropdown">
+						<span>{{Auth::user()->fullname}}</span>
 						<i class="caret"></i>
+					</li>
+					@else
+						{{route('signin')}};
+					@endif
+						
 					</a>
 
 					<ul class="dropdown-menu dropdown-menu-right">

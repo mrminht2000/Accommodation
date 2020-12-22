@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('home.index', function($view) {
-            $topHouse = house::select('*')->orderBy('count_view','desc')->limit(3)->get();
+            $topHouse = house::where('isApproval', 1)->orderBy('count_view','desc')->limit(3)->get();
             $view->with('topHouse', $topHouse);
         });
         

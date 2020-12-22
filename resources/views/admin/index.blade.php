@@ -36,8 +36,8 @@
 				<div class="panel bg-teal-400">
 					<div class="panel-body">
 						<h3 class="no-margin">{{ $total_account }}</h3>
-						Thành viên hoạt động
-						<div class="text-muted text-size-small"></div>
+						Thành viên được phê duyệt
+						<div class="text-muted text-size-small">{{ $total_users_deactive }} chưa phê duyệt</div>
 					</div>
 					<div class="container-fluid">
 						<div id="members-online"></div>

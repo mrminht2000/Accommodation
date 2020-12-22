@@ -6,7 +6,7 @@
 				<div class="page-header page-header-default">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Danh sách các phòng trọ</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Danh sách thành viên</h4>
 						</div>
 					</div>
 
@@ -23,7 +23,7 @@
 			<div class="col-12">
 				<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Danh sách các phòng trọ <span class="badge badge-primary">{{$motelrooms->count()}}</span></h5>
+							<h5 class="panel-title">Danh sách tài khoản <span class="badge badge-primary">{{$user->count()}}</span></h5>
 						</div>
 
 						<div class="panel-body">
@@ -40,27 +40,38 @@
 								<tr class="bg-blue">
 									<th>ID</th>
 									
-									<th>Tiêu đề</th>
-									<th>Danh mục</th>
-									<th>Giá phòng</th>
+									<th>Họ Tên</th>
+									<th>Email</th>
+									<th>Quyền</th>
 									<th>Trạng thái</th>
 									<th class="text-center">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($motelrooms as $room)
+								@foreach($user as $tk)
 								<tr>
-									<td>{{$room->id}}</td>
+									<td>{{$tk->id}}</td>
 									
-									<td><a href="phongtro/{{$room->slug}}" target="_blank">{{$room->title}}</a></td>
-									<td>{{$room->category->name}}</td>
+									<td>{{$tk->fullname}}</td>
+									<td>{{$tk->email}}</td>
 									
-									<td>{{$room->price}}</td>
 									<td>
-										@if($room->approve == 1)
-											<span class="label label-success">Đã kiểm duyệt</span>
-										@elseif($room->tinhtrang == 0)
-											<span class="label label-danger">Chờ Phê Duyệt</span>
+										@if($tk->isAdmin == 1)
+											Quản trị viên
+										@else
+											@if($tk->isOwner == 1)
+												Chủ nhà trọ
+											@else
+												Người thuê trọ 
+											@endif
+										@endif
+									</td>
+									<td>
+										@if($tk->tinhtrang == 0)
+											<span class="label label-success">Hoạt động</span>
+										
+										@else
+											<span class="label label-danger">Tạm Khóa</span>
 										@endif
 									</td>
 									<td class="text-center">
@@ -71,13 +82,8 @@
 												</a>
 
 												<ul class="dropdown-menu dropdown-menu-right">
-													@if($room->approve == 1)
-														<li><a href="admin/motelrooms/unapprove/{{$room->id}}"><i class="icon-file-pdf"></i> Bỏ kiểm duyệt</a></li>
-													@elseif($room->tinhtrang == 0)
-														<li><a href="admin/motelrooms/approve/{{$room->id}}"><i class="icon-file-pdf"></i> Kiểm duyệt</a></li>
-													@endif
-													
-													<li><a href="admin/motelrooms/del/{{$room->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
+													<li><a href="edit/{{$tk->id}}"><i class="icon-file-pdf"></i> Chỉnh sửa</a></li>
+													<li><a href="admin/user/del/{{$tk->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
 												</ul>
 											</li>
 										</ul>

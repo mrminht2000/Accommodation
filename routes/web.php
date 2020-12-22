@@ -154,3 +154,28 @@ Route::get('admin',[
     'uses'=>'AdminController@getIndex'
 ]);
 
+Route::group(['prefix'=>'house'],function(){
+    Route::get('list','AdminController@getListHouse');
+    Route::get('approve/{id}','AdminController@ApproveHouse');
+    Route::get('unapprove/{id}','AdminController@UnApproveHouse');
+    Route::get('delete/{id}','AdminController@DelHouse');
+    
+});
+
+Route::group(['prefix'=>'account'],function(){
+    Route::get('listAccount','AdminController@getListAccount');
+    // Route::get('edit/{id}','AdminController@getUpdateAccount');
+    // Route::post('edit/{id}','AdminController@postUpdateAccount');
+    Route::get('del/{id}','AdminController@DeleteUser');
+});
+
+
+Route::get('edit/{id}', [
+    'as'=> 'edit',
+    'uses'=> 'AdminController@getUpdateAccount'
+]);
+
+Route::post('edit/{id}',[
+    'as'=>'edit',
+    'uses'=>'AdminController@postUpdateAccount'
+]);

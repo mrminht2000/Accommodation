@@ -23,7 +23,7 @@
 			<div class="col-12">
 				<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Danh sách tài khoản <span class="badge badge-primary">{{$users->count()}}</span></h5>
+							<h5 class="panel-title">Danh sách tài khoản <span class="badge badge-primary">{{$user->count()}}</span></h5>
 						</div>
 
 						<div class="panel-body">
@@ -48,25 +48,28 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($users as $tk)
+								@foreach($user as $tk)
 								<tr>
 									<td>{{$tk->id}}</td>
 									
-									<td>{{$tk->name}}</td>
+									<td>{{$tk->fullname}}</td>
 									<td>{{$tk->email}}</td>
 									
 									<td>
-										@if($tk->right == 1)
+										@if($tk->isAdmin == 1)
 											Quản trị viên
 										@else
-											Người dùng
+											@if($tk->isOwner == 1)
+												Chủ nhà trọ
+											@else
+												Người thuê trọ 
+											@endif
 										@endif
 									</td>
 									<td>
-										@if($tk->tinhtrang == 1)
+										@if($tk->tinhtrang == 0)
 											<span class="label label-success">Hoạt động</span>
-										@elseif($tk->tinhtrang == 2)
-											<span class="label label-default">Chờ Phê Duyệt</span>
+										
 										@else
 											<span class="label label-danger">Tạm Khóa</span>
 										@endif
@@ -79,8 +82,8 @@
 												</a>
 
 												<ul class="dropdown-menu dropdown-menu-right">
-													<li><a href="admin/users/edit/{{$tk->id}}"><i class="icon-file-pdf"></i> Chỉnh sửa</a></li>
-													<li><a href="admin/users/del/{{$tk->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
+													<li><a href="edit/{{$tk->id}}"><i class="icon-file-pdf"></i> Chỉnh sửa</a></li>
+													<li><a href="admin/user/del/{{$tk->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
 												</ul>
 											</li>
 										</ul>

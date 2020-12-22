@@ -29,7 +29,7 @@
 					<!-- Basic datatable -->
 					<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title"><span class="badge badge-primary">{{$user->name}}</span> Chỉnh sửa Tài Khoản  </h5>
+							<h5 class="panel-title"><span class="badge badge-primary">{{$user->fullname}}</span> Chỉnh sửa Tài Khoản  </h5>
 							
 						</div>
 
@@ -50,7 +50,7 @@
 								<span class="text-semibold">Well done!</span>  {{session('thongbao')}}
 							</div>
 							@endif			
-							<form action="{{ route('admin.user.edit', ['id'=> $user->id])}}" method="POST">
+							<form action="{{ route('edit', $user->id)}}" method="POST">
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="row">
 									<div class="form-group">
@@ -76,7 +76,7 @@
 										<div class="col-lg-10">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="icon-git-pull-request"></i></span>
-												<input type="text" value="{{$user->name}}" name="HoTen" class="form-control" placeholder="Nhập đầy đủ họ tên">
+												<input type="text" value="{{$user->fullname}}" name="fullname" class="form-control" placeholder="Nhập đầy đủ họ tên">
 											</div>
 										</div>
 									</div>
@@ -102,34 +102,39 @@
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Chọn quyền:</label>
 										<div class="col-lg-10">
-											<select class="form-control" name="Quyen">
+											<select class="form-control" name="quyen">
 												<option 
-												@if($user->right == 1)
+												@if($user->isAdmin == 1)
 												selected=""
 												@endif
 												value="1">Quản trị viên</option>
 												<option
-												@if($user->right == 0)
+												@if($user->isOwner == 1)
 												selected=""
 												@endif
-												value="0">Người dùng</option>
+												value="2">Chủ nhà trọ</option>
+												<option
+												@if($user->isOwner != 1 && $user->isOwner != 1)
+												selected=""
+												@endif
+												value="3">Người thuê trọ</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Trạng thái:</label>
 										<div class="col-lg-10">
-											<select class="form-control" name="TinhTrang">
+											<select class="form-control" name="tinhtrang">
 												<option 
-												@if($user->tinhtrang == 1)
-												selected=""
-												@endif
-												value="1">Kích hoạt</option>
-												<option
 												@if($user->tinhtrang == 0)
 												selected=""
 												@endif
-												value="0">Tạm khóa</option>
+												value="0">Kích hoạt</option>
+												<option
+												@if($user->tinhtrang == 1)
+												selected=""
+												@endif
+												value="1">Tạm khóa</option>
 											</select>
 										</div>
 									</div>
@@ -173,7 +178,7 @@
 		</div>
 		<!-- Footer -->
 		<div class="footer text-muted">
-			&copy; 2019. <a href="#">Project Phòng trọ Đà nẵng</a> by <a href="" target="_blank">Thành Trung</a>
+			&copy; 2019. <a href="#">Project Phòng trọ</a> by <a href="" target="_blank"></a>
 		</div>
 		<!-- /footer -->
 	</div>

@@ -84,7 +84,9 @@
 								$img_thumb = json_decode($house->Image,true);
 							
 						 	?>
-							<div class="col-md-4 col-sm-6">
+							
+								@if($house->isApproval == 1)
+								<div class="col-md-4 col-sm-6">
 								<div class="room-item">
 									<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
 										<img src="" class="lazyload img-responsive">
@@ -95,7 +97,7 @@
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="{{route('profile')}}"> {{ $house->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng:  {{ $house->account->fullname }}</span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
@@ -114,6 +116,7 @@
 
 									</div>
 								</div>
+								@endif
 							@endforeach
 							</div>
 						</div> <!-- .beta-products-list -->
@@ -131,7 +134,8 @@
 								$img_thumb = json_decode($house->Image,true);
 							
 						 	?>
-							<div class="col-md-4 col-sm-6">
+							@if($house->isApproval == 1)
+								<div class="col-md-4 col-sm-6">
 								<div class="room-item">
 									<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
 										<img src="" class="lazyload img-responsive">
@@ -142,7 +146,7 @@
 									<div class="room-detail">
 										<h3><a href="{{route('chitietphong', $house->id)}}">{{ $house->title }}</a></h3>
 										<div class="room-meta">
-											<span><i class="fas fa-user-circle"></i> Người đăng: <a href="/"> {{ $house->account->fullname }}</a></span>
+											<span><i class="fas fa-user-circle"></i> Người đăng:  {{ $house->account->fullname }}</span>
 										</div>
 										<div class="room-info">
 											<span><i class="far fa-stop-circle"></i> Diện tích: <b>{{ $house->size }} m<sup>2</sup></b></span>
@@ -161,6 +165,7 @@
 
 									</div>
 								</div>
+								@endif
 							@endforeach
 								
 							</div>
