@@ -143,7 +143,13 @@ class PageController extends Controller
 
    public function getCart()
    {
-      return view('page.theodoi');
+      $housefollow = choosedhouse::where('idRenter', Auth::guard('account')->user()->id)->get();
+      return view('page.theodoi', compact('housefollow'));
+   }
+
+   public function deleteFollow(Request $req) {
+      choosedhouse::where('id',$req->id)->first()->delete();
+      return redirect()->back();
    }
 
 

@@ -79,9 +79,9 @@ class UserController extends Controller
 
         //Nếu tài khoản Owner thì cần phê duyệt
         if ($isOwner == 'true') {
-            return redirect()->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
+            return redirect('dang-nhap')->with('success', 'Đăng kí thành công, vui lòng xác nhận tài khoản trực tiếp với Admin để được sử dụng');
         }
-        else return redirect()->with('success', 'Đăng kí thành công');
+        else return redirect('dang-nhap')->with('success', 'Đăng kí thành công');
     }
 
 
@@ -105,20 +105,24 @@ class UserController extends Controller
 
         if(Auth::guard('account')->attempt($credentials)) {
             if(DB::table('account')->where('username',$req->username)->value('tinhtrang') == 1){
-                return redirect()->back()->with(['flag'=>'danger', 'message'=>'Tài khoản đang bị khóa.']);
+                Auth::logout();
+                return redirect()->back()->with('warn', 'Tài khoản đang bị khóa.');
             } 
             else {
                 if(DB::table('account')->where('username',$req->username)->value('isAdmin') == 0){
-                    if(DB::table('account')->where('username',$req->username)->value('isApproval') == 0) 
-                        return redirect()->back()->with(['flag'=>'danger', 'message'=>'Tài khoản chưa được phê duyệt, vui lòng liên hệ Admin.']);
-                    else 
-                        return redirect('index'); 
-                } else {
+                    if(DB::table('account')->where('username',$req->username)->value('isApproval') == 0) {
+                        Auth::logout();
+                        return redirect()->back()->with('warn', 'Tài khoản chưa được phê duyệt, vui lòng liên hệ Admin.');
+                    }
+                    else return redirect('index'); 
+                } 
+                else {
                     return redirect('admin');
                 }
             }
-        } else {
-            return redirect()->back()->with(['flag'=>'danger', 'message'=>'Đăng nhập không thành công']);
+        } 
+        else {
+            return redirect()->back()->with('warn', 'Đăng nhập không thành công');
         }
     }
 

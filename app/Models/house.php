@@ -14,15 +14,15 @@ class house extends Model
     }
 
     public function review () {
-        return $this->hasMany('App\Models\review','idHouse','idHouse');
+        return $this->hasMany('App\Models\review','idHouse','id');
     }
 
     public function post () {
-        return $this->hasMany('App\Models\post','idHouse','idHouse');
+        return $this->hasMany('App\Models\post','idHouse','id');
     }
 
     public function choosedhouse() {
-        return $this->belongsTo('App\Models\choosedhouse','idHouse','idHouse');
+        return $this->belongsTo('App\Models\choosedhouse','idHouse','id');
     }
 
     public function housetype() {

@@ -10,7 +10,7 @@ class choosedhouse extends Model
     protected $table = "choosedhouse";
 
     public function house () {
-        return $this->hasMany('App\Models\house','idHouse','idHouse');
+        return $this->hasOne('App\Models\house','id','idHouse');
     }
 
     public function account () {
