@@ -159,10 +159,7 @@ Route::get('thongbao/{id}', [
     'uses'=>'PageController@getthongbao'
 ]);
 
-Route::get('xoathongbao/{id}', [
-    'as'=>'xoathongbao',
-    'uses'=>'PageController@getthongbao'
-]);
+
 
 /* admin  */
 

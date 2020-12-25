@@ -236,7 +236,7 @@ class PageController extends Controller
          $review->idHouse = (int)$req->postReview;
          $review->rating = (int)$req->rating;
          $review->describe = $req->description;
-         $review->isApproval = 0;
+         
          
          $review->save();
          return back()->with('success', 'Đánh giá thành công. Vui lòng đợi Admin kiểm duyệt');
@@ -257,18 +257,37 @@ class PageController extends Controller
          ['isApproval', '1'],
          ['hienthi', '0'],
      ])->get();
+
+     $houseunapproval = house::where([
+      ['idOwner', $id],
+      ['isApproval', '0'],
+      ['hienthi', '0'],
+      ])->get();
+  
+      $reviewunapproval = review::where([
+      ['idUser', $id],
+      ['isApproval', '0'],
+      ['hienthi', '0'],
+       ])->get();
+
+       $housewaiting = house::where([
+         ['idOwner', $id],
+         ['isApproval', '2'],
+         ['hienthi', '0'],
+         ])->get();
+      
+         $reviewwaiting = review::where([
+            ['idUser', $id],
+            ['isApproval', '2'],
+            ['hienthi', '0'],
+             ])->get();
       
       // $house = house::where('idOwner', $id)->get();
       // $review = review::where('idUser', $id)->get();
-      return view('home.thongbao', compact('house', 'review'));
+      return view('home.thongbao', compact('house', 'review', 'housewaiting', 'houseunapproval', 'reviewunapproval', 'reviewwaiting'));
    }
 
-   public function getxoathongbao($id) {
-         $house = house::find($id);
-        $house->hienthi = 1;
-        $house->save();
-        return redirect();
-   }
+  
 }
 
 

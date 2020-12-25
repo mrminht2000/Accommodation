@@ -169,4 +169,6 @@ class AdminController extends Controller
         $review->delete();
         return redirect('reviewadmin')->with('thongbao','Đã xóa bình luận');
     }
+
+    
 }

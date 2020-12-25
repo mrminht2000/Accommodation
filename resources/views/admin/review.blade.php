@@ -64,7 +64,7 @@
 									<td>
 										@if($re->isApproval == 1)
 											<span class="label label-success">Đã kiểm duyệt</span>
-										@elseif($re->isApproval == 0)
+										@elseif($re->isApproval == 0 || $re->isApproval == 2)
 											<span class="label label-danger">Chờ Phê Duyệt</span>
 										@endif
 									</td>
@@ -78,7 +78,7 @@
 												<ul class="dropdown-menu dropdown-menu-right">
 													@if($re->isApproval == 1)
 														<li><a href="{{route('unapprovereview', $re->id)}}"><i class="icon-file-pdf"></i> Bỏ kiểm duyệt</a></li>
-													@elseif($re->isApproval == 0)
+													@elseif($re->isApproval == 0 || $re->isApproval == 2)
 														<li><a href="{{route('approvereview', $re->id)}}"><i class="icon-file-pdf"></i> Kiểm duyệt</a></li>
 													@endif
 													

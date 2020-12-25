@@ -59,7 +59,7 @@
 									<td>
 										@if($room->isApproval == 1)
 											<span class="label label-success">Đã kiểm duyệt</span>
-										@elseif($room->isApproval == 0)
+										@elseif($room->isApproval == 0 || $room->isApproval==2)
 											<span class="label label-danger">Chờ Phê Duyệt</span>
 										@endif
 									</td>
@@ -73,7 +73,7 @@
 												<ul class="dropdown-menu dropdown-menu-right">
 													@if($room->isApproval == 1)
 														<li><a href="house/unapprove/{{$room->id}}"><i class="icon-file-pdf"></i> Bỏ kiểm duyệt</a></li>
-													@elseif($room->isApproval == 0)
+													@elseif($room->isApproval == 0 || $room->isApproval==2)
 														<li><a href="house/approve/{{$room->id}}"><i class="icon-file-pdf"></i> Kiểm duyệt</a></li>
 													@endif
 													
