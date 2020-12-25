@@ -86,6 +86,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="{{route('profile',Auth::guard('account')->user()->id)}}">Thông tin chi tiết</a></li>
 							<li><a href="{{route('cart')}}">Nhà trọ theo dõi</a></li>
+							<li><a href="{{ route('thongbao', Auth::guard('account')->user()->id) }}">Thông báo</a></li>
 							<li><a href="{{route('signout')}}">Thoát</a></li>
 						</ul>
 					</li>

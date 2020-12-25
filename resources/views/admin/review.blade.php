@@ -23,7 +23,7 @@
 			<div class="col-12">
 				<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Danh sách các phòng trọ <span class="badge badge-primary">{{$house->count()}}</span></h5>
+							<h5 class="panel-title">Số lượt bình luận <span class="badge badge-primary">{{$review->count()}}</span></h5>
 						</div>
 
 						<div class="panel-body">
@@ -38,28 +38,33 @@
 						<table class="table datatable-show-all">
 							<thead>
 								<tr class="bg-blue">
-									<th>ID</th>
-									
-									<th>Tiêu đề</th>
-									<th>Danh mục</th>
-									<th>Giá phòng</th>
+									<th>Người bình luận</th>
+									<th>Bài đăng</th>
+                                    <th>Bình luận</th>
+                                    <th>Đánh giá</th>
 									<th>Trạng thái</th>
 									<th class="text-center">Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($house as $room)
+								@foreach($review as $re)
 								<tr>
-									<td>{{$room->id}}</td>
+									<td><a href="#" target="_blank">{{$re->account->fullname}}</a></td>
+									<td>{{$re->house->title}}</td>
 									
-									<td><a href="#" target="_blank">{{$room->title}}</a></td>
-									<td>{{$room->housetype->name}}</td>
-									
-									<td>{{$room->price}}</td>
+                                    <td>{{$re->describe}}</td>
+                                    <td>
+                                        <?php
+									for ($i = 5; $i > $re->rating; $i--)
+										echo ('<span class="float-right"><i class="fa fa-star"></i></span>');
+									for ($i = 0; $i < $re->rating; $i++)
+										echo ('<span class="float-right"><i class="text-warning fa fa-star"></i></span>');
+                                    ?> 
+                                    </td>
 									<td>
-										@if($room->isApproval == 1)
+										@if($re->isApproval == 1)
 											<span class="label label-success">Đã kiểm duyệt</span>
-										@elseif($room->isApproval == 0)
+										@elseif($re->isApproval == 0)
 											<span class="label label-danger">Chờ Phê Duyệt</span>
 										@endif
 									</td>
@@ -71,13 +76,13 @@
 												</a>
 
 												<ul class="dropdown-menu dropdown-menu-right">
-													@if($room->isApproval == 1)
-														<li><a href="house/unapprove/{{$room->id}}"><i class="icon-file-pdf"></i> Bỏ kiểm duyệt</a></li>
-													@elseif($room->isApproval == 0)
-														<li><a href="house/approve/{{$room->id}}"><i class="icon-file-pdf"></i> Kiểm duyệt</a></li>
+													@if($re->isApproval == 1)
+														<li><a href="{{route('unapprovereview', $re->id)}}"><i class="icon-file-pdf"></i> Bỏ kiểm duyệt</a></li>
+													@elseif($re->isApproval == 0)
+														<li><a href="{{route('approvereview', $re->id)}}"><i class="icon-file-pdf"></i> Kiểm duyệt</a></li>
 													@endif
 													
-													<li><a href="house/delete/{{$room->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
+													<li><a href="{{route('deletereview', $re->id)}}"><i class="icon-file-excel"></i> Xóa</a></li>
 												</ul>
 											</li>
 										</ul>
@@ -89,7 +94,6 @@
 					</div>
 			</div>
 		</div>
-		<!-- Footer -->
 		
 	</div>
 </div>

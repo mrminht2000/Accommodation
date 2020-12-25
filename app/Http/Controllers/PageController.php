@@ -231,7 +231,7 @@ class PageController extends Controller
 
       if(review::where('idUser',Auth::guard('account')->user()->id)
                ->where('idHouse',(int)$req->postReview)->get()->count() == 0 ) {
-         $review = new review;
+         $review = new review();
          $review->idUser = Auth::guard('account')->user()->id;
          $review->idHouse = (int)$req->postReview;
          $review->rating = (int)$req->rating;
@@ -243,6 +243,31 @@ class PageController extends Controller
       }
 
       return back()->with('warn', 'Bạn đã đánh giá cho nhà trọ này');
+   }
+
+   public function getthongbao($id) {
+      $house = house::where([
+         ['idOwner', $id],
+         ['isApproval', '1'],
+         ['hienthi', '0'],
+     ])->get();
+     
+      $review = review::where([
+         ['idUser', $id],
+         ['isApproval', '1'],
+         ['hienthi', '0'],
+     ])->get();
+      
+      // $house = house::where('idOwner', $id)->get();
+      // $review = review::where('idUser', $id)->get();
+      return view('home.thongbao', compact('house', 'review'));
+   }
+
+   public function getxoathongbao($id) {
+         $house = house::find($id);
+        $house->hienthi = 1;
+        $house->save();
+        return redirect();
    }
 }
 

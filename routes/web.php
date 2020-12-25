@@ -154,6 +154,16 @@ Route::get('reportuser/{id}', [
     'uses'=> 'UserController@getreportuser'
 ]);
 
+Route::get('thongbao/{id}', [
+    'as'=>'thongbao',
+    'uses'=>'PageController@getthongbao'
+]);
+
+Route::get('xoathongbao/{id}', [
+    'as'=>'xoathongbao',
+    'uses'=>'PageController@getthongbao'
+]);
+
 /* admin  */
 
 
@@ -216,3 +226,28 @@ Route::post('review',[
     'as'=>'review',
     'uses'=>'PageController@postReview'
 ]);
+
+/* review admin */
+
+Route::get('reviewadmin', [
+    'as'=>'reviewadmin',
+    'uses'=>'AdminController@getreviewadmin'
+]);
+
+Route::get('approvereview/{id}', [
+    'as'=>'approvereview',
+    'uses'=>'AdminController@getapprovereview'
+]);
+
+Route::get('unapprovereview/{id}', [
+    'as'=>'unapprovereview',
+    'uses'=>'AdminController@getunapprovereview'
+]);
+
+Route::get('deletereview/{id}', [
+    'as'=>'deletereview',
+    'uses'=>'AdminController@getdeletereview'
+]);
+
+
+    

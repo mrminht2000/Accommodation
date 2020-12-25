@@ -66,7 +66,7 @@
 			<div class="col-lg-4">
 
 				<!-- Today's report -->
-				<a href="admin/report">
+				<a href="{{ route('reportadmin') }}">
 					<div class="panel bg-blue-400">
 						<div class="panel-body">
 							<h3 class="no-margin">{{ $total_report }}</h3>

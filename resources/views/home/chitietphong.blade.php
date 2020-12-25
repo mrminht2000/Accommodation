@@ -321,7 +321,7 @@ function time_translate($pricePer)
 						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
 					</div>
 					<div class="form-group">
-						<label for="comment">Mô tả ngắn:</label>
+						<label for="comment">Bình luận:</label>
 						<textarea class="form-control" rows="5" id="description" name="description" style=" resize: none;"></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary" name="postReview" value="{{$house->id}}">Đánh giá</button>
@@ -333,6 +333,7 @@ function time_translate($pricePer)
 
 				<div class="card">
 					<div class="card-body">
+					@if($review->isApproval == 1)
 						<div class="row">
 							<div class="col-md-2">
 								@if($house->account->avatar == 'no-avatar.jpg')
@@ -344,6 +345,7 @@ function time_translate($pricePer)
 							</div>
 							<div class="col-md-10">
 								<p>
+									
 									<a class="float-left" href="{{route('profile', $review->idUser)}}"><strong>{{$review->account->fullname}}</strong></a>
 									<?php
 									for ($i = 5; $i > $review->rating; $i--)
@@ -360,6 +362,7 @@ function time_translate($pricePer)
 								</p>
 							</div>
 						</div>
+						@endif
 					</div>
 				</div>
 			</div>

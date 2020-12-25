@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use App\Models\report;
-
+use App\Models\review;
 class AdminController extends Controller
 {
     public function getIndex(){
@@ -142,5 +142,31 @@ class AdminController extends Controller
         $report = report::all();
         $house  = house::all();
         return view('admin.report', compact('report', 'house'));
+    }
+
+    public function getreviewadmin() {
+        $review = review::all();
+        $house = house::all();
+        return view('admin.review', compact('review', 'house'));
+    }
+
+    public function getapprovereview($id) {
+        $review = review::find($id);
+        $review->isApproval = 1;
+        $review->save();
+        return redirect('reviewadmin')->with('thongbao','Đã kiểm duyệt bình luận.');
+    }
+
+    public function getunapprovereview($id) {
+        $review = review::find($id);
+        $review->isApproval = 0;
+        $review->save();
+        return redirect('reviewadmin')->with('thongbao','Đã kiểm hủy duyệt bình luận.');
+    }
+
+    public function getdeletereview($id) {
+        $review = review::find($id);
+        $review->delete();
+        return redirect('reviewadmin')->with('thongbao','Đã xóa bình luận');
     }
 }
