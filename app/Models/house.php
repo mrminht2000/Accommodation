@@ -17,6 +17,10 @@ class house extends Model
         return $this->hasMany('App\Models\review','idHouse','id');
     }
 
+    public function report () {
+        return $this->hasMany('App\Models\report','idHouse','id');
+    }
+
     public function post () {
         return $this->hasMany('App\Models\post','idHouse','id');
     }

@@ -53,7 +53,7 @@ function time_elapsed_string($datetime, $full = false) {
 			<div class="col-12">
 				<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Danh sách báo cáo từ người dùng <span class="badge badge-primary">{{ $reports->count() }}</span></h5>
+							<h5 class="panel-title">Danh sách báo cáo từ người dùng <span class="badge badge-primary">{{ $report->count() }}</span></h5>
 						</div>
 
 						<div class="panel-body">
@@ -68,28 +68,24 @@ function time_elapsed_string($datetime, $full = false) {
 						<table class="table datatable-show-all">
 							<thead>
 								<tr class="bg-blue">
-									<th>IP Address</th>
+									<th>Người báo cáo</th>
 									<th>Bài đăng</th>
-									<th>Trạng thái</th>
+									<th>Mô tả</th>
 									<th class="text-center">Thời gian</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($house as $room)
+								@foreach($report as $report)
 									
 									<tr>
-										<td>{{$reports->ip_address}}</td>
-										<td><a href="{{route('chitietphong', $room->id)}}" target="_blank">{{$room->title}}</a></td>
+										<td><a href="{{route('profile', $report->idUser)}}">{{$report->account->fullname}}</a></td>
+										<td><a href="{{route('chitietphong', $report->id)}}" target="_blank">{{$report->house->title}}</a></td>
 										
 										<td>
-											@if($reports->status == 1)
-												<span class="label label-success">Đã cho thuê</span>
-											@elseif($reports->status == 2)
-												<span class="label label-danger">Sai nội dung</span>
-											@endif
+											{{$report->describe}}
 										</td>
 										<td class="text-center">
-											{{ time_elapsed_string($reports->created_at) }} <span class="badge badge-primary">{{ $reports->created_at }}</span>
+											{{ time_elapsed_string($report->created_at) }} <span class="badge badge-primary">{{ $report->created_at }}</span>
 										</td>
 									</tr>
 								

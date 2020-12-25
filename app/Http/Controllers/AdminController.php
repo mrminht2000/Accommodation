@@ -18,7 +18,7 @@ use App\Models\provinces;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use App\Models\reports;
+use App\Models\report;
 
 class AdminController extends Controller
 {
@@ -27,7 +27,7 @@ class AdminController extends Controller
         $total_users_deactive = account::where('isApproval',0)->get()->count();
         $total_house_approve = house::where('isApproval',1)->get()->count();
         $total_house_unapprove = house::where('isApproval',0)->get()->count();
-        $total_report = reports::all()->count();
+        $total_report = report::all()->count();
         return view('admin.index', compact('total_account', 'total_house_approve', 'total_report' ,'total_users_deactive', 'total_house_unapprove'));
     }
 
@@ -133,14 +133,14 @@ class AdminController extends Controller
         $total_users_deactive = account::where('isApproval',0)->get()->count();
         $total_house_approve = house::where('isApproval',1)->get()->count();
         $total_house_unapprove = house::where('isApproval',0)->get()->count();
-        $total_report = reports::all()->count();
+        $total_report = report::all()->count();
 
         return view('admin.thongke', compact('total_users_active', 'total_report', 'total_house_approve','total_users_deactive', 'total_house_unapprove'));
     }
 
     public function getreportadmin() {
-        $reports = reports::all();
+        $report = report::all();
         $house  = house::all();
-        return view('admin.report', compact('reports', 'house'));
+        return view('admin.report', compact('report', 'house'));
     }
 }

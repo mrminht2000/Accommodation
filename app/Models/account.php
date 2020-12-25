@@ -24,4 +24,8 @@ class account extends Model
     public function review () {
         return $this->hasMany('App\Models\review','idUser','id');
     }
+
+    public function report () {
+        return $this->hasMany('App\Models\report','idUser','id');
+    }
 }

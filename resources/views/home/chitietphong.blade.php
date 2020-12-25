@@ -62,6 +62,42 @@ function time_translate($pricePer)
 
 
 	}
+
+	@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+	/* Styling h1 and links
+––––––––––––––––––––––––––––––––– */
+	.starrating>input {
+		display: none;
+	}
+
+	/* Remove radio buttons */
+
+	.starrating>label:before {
+		content: "\f005";
+		/* Star */
+		margin: 2px;
+		font-size: 8em;
+		font-family: FontAwesome;
+		display: inline-block;
+	}
+
+	.starrating>label {
+		color: #222222;
+		/* Start color when not clicked */
+	}
+
+	.starrating>input:checked~label {
+		color: #ffca08;
+	}
+
+	/* Set yellow color when star checked */
+
+	.starrating>input:hover~label {
+		color: #ffca08;
+	}
+
+	/* Set yellow color when star hover */
 </style>
 <div class="gap"></div>
 <div class="container">
@@ -113,7 +149,7 @@ function time_translate($pricePer)
 
 				<div class="gap"></div>
 				<hr>
-				
+
 				<div class="row">
 					<div class="col-md-6">
 						<h1 class="entry-title entry-prop">{{ $house->title }}</h1>
@@ -134,7 +170,7 @@ function time_translate($pricePer)
 					<p>
 						<strong>Giá phòng: </strong><span class="price_area" style="font-size: 150%"> {{number_format($house->price)}} <span class="price_label"> VND/{{time_translate($house->pricePer)}}</span></span>
 						<strong style="position:relative; left:100px"><i class="fas fa-street-view"></i> Diện tích: </strong><span style="position:relative; left:100px"> {{$house->size}} m<sup>2</sup> </span>
-						
+
 					</p>
 
 					<?php $arrtienich = json_decode($house->utilities, true); ?>
@@ -216,54 +252,120 @@ function time_translate($pricePer)
 				</div>
 			</div>
 			<div class="col-md-4">
-					<div class="contactpanel">
-						<div class="row">
+				<div class="contactpanel">
+					<div class="row">
 						@if($house->account->avatar == 'no-avatar.jpg')
-							<img src="source/images/no-avatar.jpg" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+						<img src="source/images/no-avatar.jpg" class="img-circle" alt="Cinque Terre" width="100" height="100">
 						@else
-							<img src="uploads/avatars/<?php echo $house->account->avatar; ?>" class="img-circle" alt="Cinque Terre" width="100" height="100"> 
+						<img src="uploads/avatars/<?php echo $house->account->avatar; ?>" class="img-circle" alt="Cinque Terre" width="100" height="100">
 						@endif
 						<div class="col-md-8">
 							<h4>Thông tin người đăng</h4>
 							<strong><a href="{{route('profile', $house->account->id)}}">{{ $house->account->fullname }}</a></strong><br>
-							<i class="far fa-clock"></i> Ngày tham gia: 17-02-2018	
+							<i class="far fa-clock"></i> Ngày tham gia: 17-02-2018
 						</div>
 					</div>
 					<div class="phone_btn">
 						<a id="show_phone_bnt" href="callto:{{ $house->phoneNumber }}" class="btn btn-primary btn-block" style="font-weight: bold !important;
 						font-size: 14px;">
-						<i class="fas fa-phone-square" style="font-size: 20px"></i>
-						<span>SĐT: {{ $house->phoneNumber }}</span></a>
+							<i class="fas fa-phone-square" style="font-size: 20px"></i>
+							<span>SĐT: {{ $house->phoneNumber }}</span></a>
 					</div>
 
 					<div class="gap"></div>
-			
-			
-			@if(session('thongbao'))
-			<div class="alert bg-success">
-				<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-				<span class="text-semibold">Well done!</span>  {{session('thongbao')}}
-			</div>
-			@else	
-			<div class="report">
-				<h4>BÁO CÁO</h4>
-				<form action="{{ route('reportuser', $house->id) }}" >
-					<label class="radio" style="margin-right:15px"> Đã cho thuê
-						<input type="radio" checked="checked" name="baocao" value="1">
-						<span class="checkround"></span>
-					</label>
-					<label class="radio"> Sai thông tin
-						<input type="radio" name="baocao" value="2">
-						<span class="checkround"></span>
-					</label>
-					<button class="btn btn-danger">Gửi báo cáo</button>
-				</form>
-			</div>
-			@endif
-			
+
+
+					@if(session('thongbao'))
+					<div class="alert bg-success">
+						<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+						<span class="text-semibold">Well done!</span> {{session('thongbao')}}
+					</div>
+					@else
+					<div class="report">
+						<h4>BÁO CÁO</h4>
+						<form action="{{ route('reportuser', $house->id) }}">
+							<label for="comment">Mô tả báo cáo:</label>
+							<textarea class="form-control" rows="5" id="description" name="description" style=" resize: none;"></textarea>
+							<button class="btn btn-danger">Gửi báo cáo</button>
+						</form>
+					</div>
+					@endif
+
+					<i class="fas fa-phone-square" style="font-size: 20px"></i>
+					<span>SĐT: {{ $house->phoneNumber }}</span></a>
+				</div>
 			</div>
 		</div>
-		
+		<div class="col-md-8">
+			<h1 class="fs-dtslt" style="background-color:#80dfff; color:black">Review</h1>
+			@if(session('warn'))
+			<div class="alert bg-danger">
+				<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+				<span class="text-semibold">Error!</span> {{session('warn')}}
+			</div>
+			@endif
+			@if(session('success'))
+			<div class="alert bg-success">
+				<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+				<span class="text-semibold">Done!</span> {{session('success')}}
+			</div>
+			@endif
+			<div class="container">
+				<form method="POST" action="{{ route('review') }}">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 star">5</label>
+						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 star">4</label>
+						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 star">3</label>
+						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 star">2</label>
+						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">1</label>
+					</div>
+					<div class="form-group">
+						<label for="comment">Mô tả ngắn:</label>
+						<textarea class="form-control" rows="5" id="description" name="description" style=" resize: none;"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary" name="postReview" value="{{$house->id}}">Đánh giá</button>
+				</form>
+			</div>
+			@foreach($review as $review)
+			<div class="container">
+				<h2 class="text-center">Đánh giá</h2>
+
+				<div class="card">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-2">
+								@if($house->account->avatar == 'no-avatar.jpg')
+								<img src="source/images/no-avatar.jpg" class="img img-rounded img-fluid" />
+								@else
+								<img src="uploads/avatars/<?php echo $review->account->avatar; ?>" class="img img-rounded img-fluid" />
+								@endif
+								<p class="text-secondary text-center"><?php echo time_elapsed_string($review->created_at); ?></p>
+							</div>
+							<div class="col-md-10">
+								<p>
+									<a class="float-left" href="{{route('profile', $review->idUser)}}"><strong>{{$review->account->fullname}}</strong></a>
+									<?php
+									for ($i = 5; $i > $review->rating; $i--)
+										echo ('<span class="float-right"><i class="fa fa-star"></i></span>');
+									for ($i = 0; $i < $review->rating; $i++)
+										echo ('<span class="float-right"><i class="text-warning fa fa-star"></i></span>');
+									?>
+
+								</p>
+								<div class="clearfix"></div>
+								<p>{{$review->describe}}</p>
+								<p>
+									<a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			@endforeach
+		</div>
+
 	</div>
 
 	<script type="text/javascript">
@@ -272,5 +374,5 @@ function time_translate($pricePer)
 			slider.previousSlide();
 		});
 	</script>
-	
+
 	@endsection

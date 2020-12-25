@@ -15,7 +15,7 @@ use App\Models\choosedhouse;
 use App\Models\provinces;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use App\Models\reports;
+use App\Models\report;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -289,27 +289,12 @@ class UserController extends Controller
     }
 
     public function getreportuser(Request $request, $id) {
-        $ipaddress = '';
-	    if (getenv('HTTP_CLIENT_IP'))
-	        $ipaddress = getenv('HTTP_CLIENT_IP');
-	    else if(getenv('HTTP_X_FORWARDED_FOR'))
-	        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-	    else if(getenv('HTTP_X_FORWARDED'))
-	        $ipaddress = getenv('HTTP_X_FORWARDED');
-	    else if(getenv('HTTP_FORWARDED_FOR'))
-	        $ipaddress = getenv('HTTP_FORWARDED_FOR');
-	    else if(getenv('HTTP_FORWARDED'))
-	       $ipaddress = getenv('HTTP_FORWARDED');
-	    else if(getenv('REMOTE_ADDR'))
-	        $ipaddress = getenv('REMOTE_ADDR');
-	    else
-	        $ipaddress = 'UNKNOWN';
-	    $report = new reports();
-	    $report->ip_address = $ipaddress;
-	    $report->id_house = $id;
-	    $report->status = $request->baocao;
+        $report = new report();
+        $report->idUser = Auth::guard()->user()->id;
+	    $report->idHouse = $id;
+	    $report->describe = $request->description;
 	    $report->save();
 	    $house = house::find($id);
-		return redirect('chitietphong/'.$house->slug)->with('thongbao','Cảm ơn bạn đã báo cáo, đội ngũ chúng tôi sẽ xem xét');
+		return redirect('chi-tiet-phong-tro/'.$house->id)->with('thongbao','Cảm ơn bạn đã báo cáo, đội ngũ chúng tôi sẽ xem xét');
     }
 }

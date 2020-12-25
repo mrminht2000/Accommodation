@@ -14,6 +14,7 @@
 	
 
 	<link rel="stylesheet" href="source/assets/awesome/css/fontawesome-all.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="source/assets/toast/toastr.min.css">
 	<link rel="stylesheet" title="style" href="{{ URL::to('source/assets/dest/css/style.css')}}">
 	<link rel="stylesheet" href="{{ URL::to('source/assets/dest/css/animate.css')}}">
@@ -21,6 +22,7 @@
 
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">
 
+	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'></script>
 	<script src="source/assets/jquery.min.js"></script>
 	<script src="source/assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="source/assets/myjs.js"></script>
@@ -88,6 +90,8 @@
 						</ul>
 					</li>
 					@endif
+				</ul>
+				<ul class="l-inline ov">
 				</ul>
 
 				<div class="clearfix"></div>

@@ -210,3 +210,9 @@ Route::get('reportadmin', [
     'as'=>'reportadmin',
     'uses'=>'AdminController@getreportadmin'
 ]);
+
+//Review
+Route::post('review',[
+    'as'=>'review',
+    'uses'=>'PageController@postReview'
+]);

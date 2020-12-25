@@ -12,6 +12,7 @@ use App\Models\housetype;
 use App\Models\districts;
 use App\Models\choosedhouse;
 use App\Models\provinces;
+use App\Models\review;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -163,7 +164,8 @@ class PageController extends Controller
          ->update(['count_view' => $current_view['count_view'] + 1]);
       $housetype = housetype::where('id', $req->id_type)->first();
       $user = account::where('id', $req->idOwner)->first();
-      return view('home.chitietphong', compact('house', 'housetype', 'provinces', 'districts', 'current_view', 'user'));
+      $review = review::where('idHouse',$req->id)->get();
+      return view('home.chitietphong', compact('house', 'housetype', 'provinces', 'districts', 'current_view', 'user', 'review'));
 
 
       // $housetype = housetype::where('id', $req->id)->first();
@@ -220,5 +222,28 @@ class PageController extends Controller
          return view('home.messages');
       else return redirect('dang-nhap');
    }
+
+   //Review
+   public function postReview(Request $req){
+      if(!Auth::guard('account')->user()) {
+         return redirect('dang-nhap');
+      }
+
+      if(review::where('idUser',Auth::guard('account')->user()->id)
+               ->where('idHouse',(int)$req->postReview)->get()->count() == 0 ) {
+         $review = new review;
+         $review->idUser = Auth::guard('account')->user()->id;
+         $review->idHouse = (int)$req->postReview;
+         $review->rating = (int)$req->rating;
+         $review->describe = $req->description;
+         $review->isApproval = 0;
+         
+         $review->save();
+         return back()->with('success', 'Đánh giá thành công. Vui lòng đợi Admin kiểm duyệt');
+      }
+
+      return back()->with('warn', 'Bạn đã đánh giá cho nhà trọ này');
+   }
 }
+
 

@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class review extends Model
+class report extends Model
 {
-    protected $table = "review";
+    use HasFactory;
+    protected $table = "report";
 
     public function house () {
         return $this->belongsTo('App\Models\house','idHouse','id');
