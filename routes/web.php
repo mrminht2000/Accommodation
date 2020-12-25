@@ -98,6 +98,11 @@ Route::get('cart', [
     'uses'=>'PageController@getCart'
 ]);
 
+Route::get('deletefollow/{id}', [
+    'as'=>'deletefollow',
+    'uses'=>'PageController@deleteFollow'
+]);
+
 // chi tiết phòng trọ
 Route::get('chi-tiet-phong-tro/{id}', [
     'as'=>'chitietphong',
