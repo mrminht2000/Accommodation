@@ -234,7 +234,33 @@ function time_translate($pricePer)
 						font-size: 14px;">
 						<i class="fas fa-phone-square" style="font-size: 20px"></i>
 						<span>SĐT: {{ $house->phoneNumber }}</span></a>
+					</div>
+
+					<div class="gap"></div>
+			
+			
+			@if(session('thongbao'))
+			<div class="alert bg-success">
+				<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+				<span class="text-semibold">Well done!</span>  {{session('thongbao')}}
 			</div>
+			@else	
+			<div class="report">
+				<h4>BÁO CÁO</h4>
+				<form action="{{ route('reportuser', $house->id) }}" >
+					<label class="radio" style="margin-right:15px"> Đã cho thuê
+						<input type="radio" checked="checked" name="baocao" value="1">
+						<span class="checkround"></span>
+					</label>
+					<label class="radio"> Sai thông tin
+						<input type="radio" name="baocao" value="2">
+						<span class="checkround"></span>
+					</label>
+					<button class="btn btn-danger">Gửi báo cáo</button>
+				</form>
+			</div>
+			@endif
+			
 			</div>
 		</div>
 		

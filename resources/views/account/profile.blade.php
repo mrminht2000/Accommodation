@@ -35,7 +35,7 @@ function time_elapsed_string($datetime, $full = false) {
 	<div class="row">
 		<div class="col-12">
 			<div class="banner-info mb-5">
-				<div  style="" >
+				<div class="mapInfo false" style="" data-reactid="47" >
 					@if($user->avatar == 'no-avatar.jpg')
 					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:1200px;"  size="80" src="{{ URL:: to('source/images/no-avatar.jpg')}}" class="avatar" data-reactid="57">
 					@else
@@ -95,7 +95,9 @@ function time_elapsed_string($datetime, $full = false) {
 								</td>
 								<td>
 									<a href="{{route('chitietphong', $post->id)}}"><i class="fas fa-eye"></i> Xem</a>
-									<a href="#" style="color:red"><i class="fas fa-trash-alt"></i> Xóa</a>
+									@if($user->id==Auth::guard('account')->user()->id && $post->isApproval == 0)
+									<a href="{{route('edithouse', $post->id)}}" style="color:red"><i class="fas fa-trash-alt"></i> Chỉnh sửa</a>
+									@endif
 								</td>
 							</tr>
 							@endforeach

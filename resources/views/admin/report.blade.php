@@ -53,7 +53,7 @@ function time_elapsed_string($datetime, $full = false) {
 			<div class="col-12">
 				<div class="panel panel-flat">
 						<div class="panel-heading">
-							<h5 class="panel-title">Danh sách báo cáo từ người dùng <span class="badge badge-primary">{{ $reports }}</span></h5>
+							<h5 class="panel-title">Danh sách báo cáo từ người dùng <span class="badge badge-primary">{{ $reports->count() }}</span></h5>
 						</div>
 
 						<div class="panel-body">
@@ -75,24 +75,24 @@ function time_elapsed_string($datetime, $full = false) {
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($motels as $room)
-									@foreach($room->reports as $report)
+								@foreach($house as $room)
+									
 									<tr>
-										<td>{{$report->ip_address}}</td>
-										<td><a href="phongtro/{{$room->slug}}" target="_blank">{{$room->title}}</a></td>
+										<td>{{$reports->ip_address}}</td>
+										<td><a href="{{route('chitietphong', $room->id)}}" target="_blank">{{$room->title}}</a></td>
 										
 										<td>
-											@if($report->status == 1)
+											@if($reports->status == 1)
 												<span class="label label-success">Đã cho thuê</span>
-											@elseif($report->status == 2)
+											@elseif($reports->status == 2)
 												<span class="label label-danger">Sai nội dung</span>
 											@endif
 										</td>
 										<td class="text-center">
-											{{ time_elapsed_string($report->created_at) }} <span class="badge badge-primary">{{ $report->created_at }}</span>
+											{{ time_elapsed_string($reports->created_at) }} <span class="badge badge-primary">{{ $reports->created_at }}</span>
 										</td>
 									</tr>
-									@endforeach
+								
 								@endforeach
 							</tbody>
 						</table>
@@ -100,9 +100,7 @@ function time_elapsed_string($datetime, $full = false) {
 			</div>
 		</div>
 		<!-- Footer -->
-		<div class="footer text-muted">
-			&copy; 2019. <a href="#">Project Phòng trọ Đà nẵng</a> by <a href="" target="_blank">Thành Trung</a>
-		</div>
+		
 		<!-- /footer -->
 	</div>
 </div>

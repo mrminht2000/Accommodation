@@ -50,7 +50,7 @@
 								<span class="text-semibold">Well done!</span>  {{session('thongbao')}}
 							</div>
 							@endif			
-							<form action="{{ route('edit', $user->id)}}" method="POST">
+							<form action="{{ route('editadmin', $user->id)}}" method="POST">
 								<input type="hidden" name="_token" value="{{csrf_token()}}">
 								<div class="row">
 									<div class="form-group">
@@ -114,7 +114,7 @@
 												@endif
 												value="2">Chủ nhà trọ</option>
 												<option
-												@if($user->isOwner != 1 && $user->isOwner != 1)
+												@if($user->isAdmin != 1 && $user->isOwner != 1)
 												selected=""
 												@endif
 												value="3">Người thuê trọ</option>

@@ -10,7 +10,12 @@ use App\Models\Authaccount;
 use App\Models\account;
 use App\Models\housetype;
 use App\Models\house;
-
+use App\Models\districts;
+use App\Models\choosedhouse;
+use App\Models\provinces;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use App\Models\reports;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -22,7 +27,15 @@ class UserController extends Controller
     }
 
     public function getsignin() {
-        if (Auth::guard('account')->user()) return redirect('index');
+        // if (Auth::guard('account')->user()) return redirect('index');
+        if (Auth::guard('account')->user()){
+            if(Auth::user()->isAdmin == 0) {
+                return redirect('index');
+            }
+            else {
+                return redirect('admin');
+            }
+        }
         else
             return view('account.signin');
     }
@@ -126,7 +139,8 @@ class UserController extends Controller
     public function getsignout() {
         Auth::logout();
         Session::flush();
-        return redirect('index');
+         return redirect('index');
+        
     }
 
     public function getprofile($id) {
@@ -138,7 +152,7 @@ class UserController extends Controller
    
 
     public function getEditprofile($id){
-        // $user = account::find(Auth::guard()->user()->id);
+        
         $user = account::where('id', $id)->first();
         $housetype = housetype::all();
         return view('account.edit-profile', compact('user', 'housetype'));
@@ -188,4 +202,110 @@ class UserController extends Controller
         
         
      }
+
+    public function get_chinhsua($id) {
+        $house = house::where('id', $id)->first();
+        $danh_muc = housetype::all();
+        $provinces = provinces::all();
+        return view('account.edithouse', compact('house', 'danh_muc', 'provinces'));
+    }
+
+    public function post_chinhsua(Request $request, $id) {
+        $request->validate(
+            [
+               'title' => 'required',
+   
+               'price' => 'required',
+               'size' => 'required',
+               'phoneNumber' => 'required',
+               'description' => 'required',
+               'electricPrice' => 'required',
+               'waterPrice' => 'required'
+   
+            ],
+            [
+               'title.required' => 'Nhập tiêu đề bài đăng',
+   
+               'price.required' => 'Nhập giá thuê phòng trọ',
+               'size.required' => 'Nhập diện tích phòng trọ',
+               'phoneNumber.required' => 'Nhập SĐT chủ phòng trọ (cần liên hệ)',
+               'description.required' => 'Nhập mô tả ngắn cho phòng trọ',
+               'electricPrice.required' => 'Nhập giá điện phòng trọ',
+               'waterPrice.required' => 'Nhập giá nước phòng trọ',
+            ]
+         );
+   
+         //Kiểm tra file 
+         $json_img = "";
+         $random = Str::random(5);
+         if ($request->hasFile('hinhanh')) {
+            $arr_images = array();
+            $inputfile =  $request->file('hinhanh');
+            foreach ($inputfile as $filehinh) {
+               $namefile = "phongtro-" . Str::random(5) . "-" . $filehinh->getClientOriginalName();
+               while (file_exists('uploads/images' . $namefile)) {
+                  $namefile = "phongtro-" . $random . "-" . $filehinh->getClientOriginalName();
+               }
+               $arr_images[] = $namefile;
+               $filehinh->move('uploads/images', $namefile);
+            }
+            $json_img =  json_encode($arr_images, JSON_FORCE_OBJECT);
+         } else {
+            $arr_images[] = "no_img_room.png";
+            $json_img = json_encode($arr_images, JSON_FORCE_OBJECT);
+         }
+         /* tiện ích*/
+         //$json_tienich = json_encode($request->tienich,JSON_FORCE_OBJECT);
+         /* ----*/
+   
+         /* New Phòng trọ */
+         $house = house::find($id);
+         $house->title = $request->title;
+         $house->description = $request->description;
+         $house->price = $request->price;
+         $house->pricePer = 'month';
+         $house->size = $request->size;
+        
+         $house->province_id = (int)$request->province_id;
+         $house->bathroom = (int)$request->bathroom;
+         $house->kitchen = $request->kitchen;
+         $house->airConditioner = (int)$request->air_conditioning;
+         $house->balcony = (int)$request->balcony;
+   
+         $house->image = $json_img;
+         $house->idOwner = Auth::guard()->user()->id;
+         $house->id_type = $request->id_type;
+         $house->id_districts = (int)$request->id_districts;
+         $house->phoneNumber = $request->phoneNumber;
+         $house->electricPrice = $request->electricPrice;
+         $house->waterPrice = $request->waterPrice;
+         $house->province_id = (int)$request->province_id;
+         $house->save();
+         return redirect()->back()->with('success', 'Chỉnh sửa thành công.');
+    }
+
+    public function getreportuser(Request $request, $id) {
+        $ipaddress = '';
+	    if (getenv('HTTP_CLIENT_IP'))
+	        $ipaddress = getenv('HTTP_CLIENT_IP');
+	    else if(getenv('HTTP_X_FORWARDED_FOR'))
+	        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+	    else if(getenv('HTTP_X_FORWARDED'))
+	        $ipaddress = getenv('HTTP_X_FORWARDED');
+	    else if(getenv('HTTP_FORWARDED_FOR'))
+	        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+	    else if(getenv('HTTP_FORWARDED'))
+	       $ipaddress = getenv('HTTP_FORWARDED');
+	    else if(getenv('REMOTE_ADDR'))
+	        $ipaddress = getenv('REMOTE_ADDR');
+	    else
+	        $ipaddress = 'UNKNOWN';
+	    $report = new reports();
+	    $report->ip_address = $ipaddress;
+	    $report->id_house = $id;
+	    $report->status = $request->baocao;
+	    $report->save();
+	    $house = house::find($id);
+		return redirect('chitietphong/'.$house->slug)->with('thongbao','Cảm ơn bạn đã báo cáo, đội ngũ chúng tôi sẽ xem xét');
+    }
 }

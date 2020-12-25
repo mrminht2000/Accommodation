@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Auth;
 use DB;
+use Session;
 use App\Models\User;
 use App\Models\house;
 use App\Models\account;
@@ -17,7 +18,7 @@ use App\Models\provinces;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-
+use App\Models\reports;
 
 class AdminController extends Controller
 {
@@ -26,8 +27,15 @@ class AdminController extends Controller
         $total_users_deactive = account::where('isApproval',0)->get()->count();
         $total_house_approve = house::where('isApproval',1)->get()->count();
         $total_house_unapprove = house::where('isApproval',0)->get()->count();
+        $total_report = reports::all()->count();
+        return view('admin.index', compact('total_account', 'total_house_approve', 'total_report' ,'total_users_deactive', 'total_house_unapprove'));
+    }
+
+    public function getlogout() {
+        Auth::logout();
+        Session::flush();
+         return redirect('signin');
         
-        return view('admin.index', compact('total_account', 'total_house_approve','total_users_deactive', 'total_house_unapprove'));
     }
 
     /* house */
@@ -76,7 +84,20 @@ class AdminController extends Controller
             $user = account::find($id);
             $user->fullname = $req->fullname;
             $user->tinhtrang = (int)$req->tinhtrang;
-            
+            $quyen = $req->quyen;
+
+            if($quyen == 1) {
+                $user->isAdmin = 1;
+                $user->isOwner = 0;
+            }
+            else if($quyen == 2) {
+                $user->isAdmin = 0;
+                $user->isOwner = 1;
+            }
+            else {
+                $user->isAdmin = 0;
+                $user->isOwner = 0;
+            }
             if($req->password != ''){
             $this->validate($req,[
                 'password' => 'min:3|max:32',
@@ -105,5 +126,21 @@ class AdminController extends Controller
         $user->isApproval = 1;
         $user->save();
         return redirect('account/listAccount')->with('thongbao','Đã kiểm duyệt bài đăng: '.$user->title);
+    }
+
+    public function getthongske() {
+        $total_users_active = account::where('isApproval',1)->get()->count();
+        $total_users_deactive = account::where('isApproval',0)->get()->count();
+        $total_house_approve = house::where('isApproval',1)->get()->count();
+        $total_house_unapprove = house::where('isApproval',0)->get()->count();
+        $total_report = reports::all()->count();
+
+        return view('admin.thongke', compact('total_users_active', 'total_report', 'total_house_approve','total_users_deactive', 'total_house_unapprove'));
+    }
+
+    public function getreportadmin() {
+        $reports = reports::all();
+        $house  = house::all();
+        return view('admin.report', compact('reports', 'house'));
     }
 }

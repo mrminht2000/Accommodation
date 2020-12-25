@@ -66,8 +66,15 @@
 			<div class="col-lg-4">
 
 				<!-- Today's report -->
-				<a href="admin/thongke">
-					
+				<a href="{{ route('reportadmin') }}">
+					<div class="panel bg-blue-400">
+						<div class="panel-body">
+							<h3 class="no-margin">{{ $total_report }}</h3>
+							Báo cáo
+							<div class="text-muted text-size-small">từ người dùng</div>
+						</div>
+						<div id="today-revenue"></div>
+					</div>
 				</a>
 				<!-- /today's revenue -->
 

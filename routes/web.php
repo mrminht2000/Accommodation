@@ -65,13 +65,20 @@ Route::get('dang-tin', [
 ]); 
 
 
-Route::get('dang-tin/{id}', [
-    'as'=>'location',
-    'uses'=>'PageController@getlocation'
-]);
 Route::post('dang-tin', [
     'as'=>'post',
     'uses'=>'PageController@post_dangtin'
+]); 
+
+// chỉnh sửa phòng trọ
+Route::post('chinh-sua/{id}', [
+    'as'=>'edithouse',
+    'uses'=>'UserController@post_chinhsua'
+]); 
+
+Route::get('chinh-sua/{id}', [
+    'as'=>'edithouse',
+    'uses'=>'UserController@get_chinhsua'
 ]); 
 
 //Lấy danh mục loại phòng
@@ -137,18 +144,17 @@ Route::post('edit-profile/{id}', [
     'uses'=> 'UserController@postEditprofile'
 ]);
 
+Route::get('reportuser/{id}', [
+    'as'=> 'reportuser',
+    'uses'=> 'UserController@getreportuser'
+]);
 
 /* admin  */
 
-Route::get('login', [
-    'as'=> 'login',
-    'uses'=> 'AdminController@getadminlogin'
-]);
 
-
-Route::post('login', [
-    'as'=> 'login',
-    'uses'=> 'AdminController@postadminlogin'
+Route::get('logout',[
+    'as'=>'logout',
+    'uses'=>'AdminController@getlogout'
 ]);
 
 Route::get('admin',[
@@ -188,4 +194,14 @@ Route::post('edit/{id}',[
 Route::get('messages',[
     'as'=>'messages',
     'uses'=>'PageController@getMessage'
+]);
+
+Route::get('thong-ke', [
+    'as'=>'thongke',
+    'uses'=>'AdminController@getthongske'
+]);
+
+Route::get('reportadmin', [
+    'as'=>'reportadmin',
+    'uses'=>'AdminController@getreportadmin'
 ]);

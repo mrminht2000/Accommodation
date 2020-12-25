@@ -24,16 +24,16 @@
 					<li class="dropdown">
 						<span>{{Auth::user()->fullname}}</span>
 						<i class="caret"></i>
+						<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="{{route('logout')}}"><i class="icon-switch2"></i> Logout</a></li>
+					</ul>
 					</li>
-					@else
-						{{route('signin')}};
+					
 					@endif
 						
 					</a>
 
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="admin/logout"><i class="icon-switch2"></i> Logout</a></li>
-					</ul>
+					
 				</li>
 			</ul>
 		</div>
