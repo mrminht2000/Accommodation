@@ -188,6 +188,10 @@ class PageController extends Controller
       return view('page.danhmuc', compact('phong_theodanhmuc', 'phong_khacdanhmuc', 'danh_muc', 'danh_muc_phong'));
    }
 
+   public function gethuongdan() {
+      return view('page.huongdan');
+   }
+
    public function getsearchhouse(Request $request)
    {
       $provinces = provinces::all();
@@ -282,8 +286,7 @@ class PageController extends Controller
             ['hienthi', '0'],
              ])->get();
       
-      // $house = house::where('idOwner', $id)->get();
-      // $review = review::where('idUser', $id)->get();
+      
       return view('home.thongbao', compact('house', 'review', 'housewaiting', 'houseunapproval', 'reviewunapproval', 'reviewwaiting'));
    }
 

@@ -35,20 +35,23 @@ function time_elapsed_string($datetime, $full = false) {
 	<div class="row">
 		<div class="col-12">
 			<div class="banner-info mb-5">
-				<div class="mapInfo false" style="" data-reactid="47" >
+				<div>
 					@if($user->avatar == 'no-avatar.jpg')
 					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:1200px;"  size="80" src="{{ URL:: to('source/images/no-avatar.jpg')}}" class="avatar" data-reactid="57">
 					@else
 					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:120px;"  size="80" src="uploads/avatars/{{$user->avatar}}" class="avatar" data-reactid="57">
 					@endif
-					@if($user->id==Auth::guard('account')->user()->id)
-					<a href="{{route('edituser', Auth::guard('account')->user()->id)}}"><div style="color: rgba(0, 0, 0, 0.87); background-color: transparent; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; box-sizing: border-box; font-family: Verdana, Arial, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 10px, rgba(0, 0, 0, 0.23) 0px 3px 10px; border-radius: 50%; display: inline-block; position: absolute; right: 20px; bottom: -17px;"><button tabindex="0" type="button" style="border: 10px; box-sizing: border-box; display: inline-block; font-family: Verdana, Arial, sans-serif; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer; text-decoration: none; margin: 0px; padding: 0px; outline: none; font-size: 25px; font-weight: inherit; position: relative; vertical-align: bottom; z-index: 1; background-color: rgb(255, 255, 255); transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; height: 35px; width: 35px; overflow: hidden; border-radius: 50%; text-align: center; color: rgb(51, 51, 51);"><div><div style="transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; top: 0px;"><span class="ion-android-create" style="color: rgb(51, 51, 51); position: relative; font-size: 25px; display: inline-block; user-select: none; transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; height: 35px; line-height: 35px; fill: rgb(255, 255, 255);"><i class="fas fa-pencil-alt"></i></span></div></div></button></div></a>
-					@endif
+					
 				</div>
 				<div class="info">
 					<h4 class="name" data-reactid="59">{{ $user->fullname }}</h4>
 					<div class="infoText">
 						Tham gia {{ time_elapsed_string($user->created_at) }} - {{ $user->created_at }}
+					</div>
+					<div style="margin:15px;"> 
+					@if($user->id==Auth::guard('account')->user()->id)
+					<a class="btn btn-info" href="{{route('edituser', Auth::guard('account')->user()->id)}}">Chỉnh sửa thông tin</a>
+					@endif
 					</div>
 				</div>
 			</div>

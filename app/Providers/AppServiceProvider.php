@@ -49,12 +49,12 @@ class AppServiceProvider extends ServiceProvider
         // });
 
         view()->composer('home.index', function($view) {
-            $newHouse = house::where('isApproval', '1')->orderBy('id','desc')->limit(3)->get();
+            $newHouse = house::where('isApproval', '1')->orderBy('id','desc')->limit(6)->get();
             $view->with('newHouse', $newHouse);
         });
 
         view()->composer('home.index', function($view) {
-            $topHouse = house::where('isApproval', 1)->orderBy('count_view','desc')->limit(3)->get();
+            $topHouse = house::where('isApproval', 1)->orderBy('count_view','desc')->limit(6)->get();
             $view->with('topHouse', $topHouse);
         });
         

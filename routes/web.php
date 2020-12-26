@@ -159,6 +159,11 @@ Route::get('thongbao/{id}', [
     'uses'=>'PageController@getthongbao'
 ]);
 
+Route::get('huong-dan', [
+    'as'=>'huongdan',
+    'uses'=>'PageController@gethuongdan'
+]);
+
 
 
 /* admin  */

@@ -72,7 +72,7 @@
 							@endforeach
 						</ul>
 					</li>
-					<li><a href="about.html">Giới thiệu</a></li>
+					<li><a href="{{route('huongdan')}}">Hướng dẫn</a></li>
 					@if(!Auth::guard('account')->user())
 					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 					<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>

@@ -99,11 +99,7 @@
 					</div>
 			</div>
 		</div>
-		<!-- Footer -->
-		<div class="footer text-muted">
-			&copy; 2019. <a href="#">Project Phòng trọ Đà nẵng</a> by <a href="" target="_blank">Thành Trung</a>
-		</div>
-		<!-- /footer -->
+		
 	</div>
 </div>
 @endsection

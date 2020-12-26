@@ -74,8 +74,7 @@
 							</div>
                             <div class="row">{{$phong_theodanhmuc->links()}}</div>
 						</div> <!-- .beta-products-list -->
-							<div class="row">{{$phong_khacdanhmuc->links()}}</div>
-							<div class="space40">&nbsp;</div>
+							
 
 						</div> <!-- .beta-products-list -->
 					</div>
