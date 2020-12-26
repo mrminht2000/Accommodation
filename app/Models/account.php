@@ -28,4 +28,6 @@ class account extends Model
     public function report () {
         return $this->hasMany('App\Models\report','idUser','id');
     }
+
+    
 }

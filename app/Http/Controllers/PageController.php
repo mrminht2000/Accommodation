@@ -250,6 +250,7 @@ class PageController extends Controller
    }
 
    public function getthongbao($id) {
+      /* được phê duyệt */
       $house = house::where([
          ['idOwner', $id],
          ['isApproval', '1'],
@@ -261,7 +262,7 @@ class PageController extends Controller
          ['isApproval', '1'],
          ['hienthi', '0'],
      ])->get();
-
+      /* bỏ phê duyệt*/
      $houseunapproval = house::where([
       ['idOwner', $id],
       ['isApproval', '0'],
@@ -273,7 +274,7 @@ class PageController extends Controller
       ['isApproval', '0'],
       ['hienthi', '0'],
        ])->get();
-
+         /* đợi lúc ban đầu */
        $housewaiting = house::where([
          ['idOwner', $id],
          ['isApproval', '2'],
@@ -290,6 +291,23 @@ class PageController extends Controller
       return view('home.thongbao', compact('house', 'review', 'housewaiting', 'houseunapproval', 'reviewunapproval', 'reviewwaiting'));
    }
 
+   public function getxoathongbaonha($id) {
+      $house = house::find($id);
+      $house->hienthi = 1;
+      $house->save();
+
+          
+      return redirect()->back();
+   }
+
+   public function getxoathongbaoreview($id) {
+      $review = review::find($id);
+      $review->hienthi = 1;
+      $review->save();
+
+          
+      return redirect()->back();
+   }
   
 }
 

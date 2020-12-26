@@ -85,7 +85,7 @@
 
 												<ul class="dropdown-menu dropdown-menu-right">
 													<li><a href="edit/{{$tk->id}}"><i class="icon-file-pdf"></i> Chỉnh sửa</a></li>
-													<li><a href="admin/user/del/{{$tk->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
+													<li><a href="account/del/{{$tk->id}}"><i class="icon-file-excel"></i> Xóa</a></li>
 												</ul>
 											</li>
 										</ul>

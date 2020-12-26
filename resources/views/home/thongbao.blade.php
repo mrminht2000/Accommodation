@@ -13,37 +13,43 @@
                         
                         @foreach($house as $room)
                                 <div class="alert bg-success">
-                                <span class="text-semibold">Bài viết {{$room->title}} đã được phê duyệt.</span>  
+                                <span><a href="{{route('xoathongbaonha', $room->id)}}">Xóa</a></span>
+                                <span class="text-semibold">Bài viết {{$room->title}} của bạn đã được phê duyệt.</span>  
                                 </div>
                         @endforeach
 
                         @foreach($review as $re)
                                 <div class="alert bg-success">
-							    <span class="text-semibold">Bình luận của bạn về bài viết " {{$re->house->title}} "đã được phê duyệt</span>  
+                                <span><a href="{{route('xoathongbaoreview', $re->id)}}">Xóa</a></span>
+					<span class="text-semibold">Bình luận của bạn về bài viết " {{$re->house->title}} " của bạn đã được phê duyệt</span>  
                                 </div>
                         @endforeach
 
                         @foreach($houseunapproval as $roomun)
                                 <div class="alert bg-danger">
-							    <span class="text-semibold">Bài viết {{$room->title}} đã bị admin từ chối phê duyệt.</span>  
+                                <span><a href="{{route('xoathongbaonha', $roomun->id)}}">Xóa</a></span>
+			        <span class="text-semibold">Bài viết {{$roomun->title}} của bạn đã bị admin từ chối phê duyệt.</span>  
                                 </div>
                         @endforeach
 
                         @foreach($reviewunapproval as $reunap)
                                 <div class="alert bg-danger">
-							    <span class="text-semibold">Bình luận của bạn về bài viết " {{$reunap->house->title}} "đã bị admin từ chối phê duyệt</span>  
+                                <span><a href="{{route('xoathongbaoreview', $reunap->id)}}">Xóa</a></span>
+							    <span class="text-semibold">Bình luận của bạn về bài viết " {{$reunap->house->title}} " của bạn đã bị admin từ chối phê duyệt</span>  
                                 </div>
                         @endforeach
 
                         @foreach($housewaiting as $roomwwait)
                                 <div class="alert bg-warning">
-							    <span class="text-semibold">Bài viết {{$roomwwait->title}} đang đợi admin phê duyệt.</span>  
+                                <span><a href="{{route('xoathongbaonha', $roomwwait->id)}}">Xóa</a></span>
+							    <span class="text-semibold">Bài viết {{$roomwwait->title}} của bạn đang đợi admin phê duyệt.</span>  
                                 </div>
                         @endforeach
 
                         @foreach($reviewwaiting as $reviewating)
                                 <div class="alert bg-warning">
-							    <span class="text-semibold">Bình luận của bạn về bài viết " {{$reviewating->house->title}} "đang đợi admin phê duyệt.</span>  
+                                <span><a href="{{route('xoathongbaoreview', $reviewating->id)}}">Xóa</a></span>
+							    <span class="text-semibold">Bình luận của bạn về bài viết " {{$reviewating->house->title}} " của bạn đang đợi admin phê duyệt.</span>  
                                 </div>
                         @endforeach
                         

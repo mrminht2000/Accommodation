@@ -16,4 +16,6 @@ class review extends Model
     public function account () {
         return $this->belongsTo('App\Models\account','idUser','id');
     }
+
+   
 }

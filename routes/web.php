@@ -144,7 +144,7 @@ Route::get('edit-profile/{id}', [
 ]);
 
 
-Route::post('edit-profile/{id}', [
+Route::post('edit-profile/{id, idUser}', [
     'as'=> 'edituser',
     'uses'=> 'UserController@postEditprofile'
 ]);
@@ -157,6 +157,16 @@ Route::get('reportuser/{id}', [
 Route::get('thongbao/{id}', [
     'as'=>'thongbao',
     'uses'=>'PageController@getthongbao'
+]);
+
+Route::get('xoathongbaonha/{id}', [
+    'as'=>'xoathongbaonha',
+    'uses'=>'PageController@getxoathongbaonha'
+]);
+
+Route::get('xoathongbaoreview/{id}', [
+    'as'=>'xoathongbaoreview',
+    'uses'=>'PageController@getxoathongbaoreview'
 ]);
 
 Route::get('huong-dan', [
@@ -189,11 +199,8 @@ Route::group(['prefix'=>'house'],function(){
 
 Route::group(['prefix'=>'account'],function(){
     Route::get('listAccount','AdminController@getListAccount');
-    // Route::get('edit/{id}','AdminController@getUpdateAccount');
-    // Route::post('edit/{id}','AdminController@postUpdateAccount');
     Route::get('listaccountwaiting', 'AdminController@getListAccountWaiting');
     Route::get('approve/{id}','AdminController@ApproveAccount');
-    
     Route::get('del/{id}','AdminController@DeleteUser');
 });
 

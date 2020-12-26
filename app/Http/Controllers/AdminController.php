@@ -47,6 +47,7 @@ class AdminController extends Controller
     public function ApproveHouse($id) {
         $house = house::find($id);
         $house->isApproval = 1;
+        $house->hienthi = 0;
         $house->save();
         return redirect('house/list')->with('thongbao','Đã kiểm duyệt bài đăng: '.$house->title);
     }
@@ -54,6 +55,7 @@ class AdminController extends Controller
     public function UnApproveHouse($id) {
         $house = house::find($id);
         $house->isApproval = 0;
+        $house->hienthi = 0;
         $house->save();
         return redirect('house/list')->with('thongbao','Đã hủy bỏ kiểm duyệt bài đăng: '.$house->title);
     }
@@ -116,6 +118,12 @@ class AdminController extends Controller
             return redirect('edit/'.$id)->with('thongbao','Chỉnh sửa thành công tài khoản '.$req->username.' .');
     }
 
+    public function DeleteUser($id) {
+        $user = account::find($id);
+        $user->delete();
+        return redirect('account/listAccount')->with('thongbao','Đã xóa tài khoản');
+    }
+
     public function getListAccountWaiting() {
         $user = account::all();
         return view('admin.accounts.listwaiting', compact('user'));
@@ -153,6 +161,7 @@ class AdminController extends Controller
     public function getapprovereview($id) {
         $review = review::find($id);
         $review->isApproval = 1;
+        $review->hienthi = 0;
         $review->save();
         return redirect('reviewadmin')->with('thongbao','Đã kiểm duyệt bình luận.');
     }
@@ -160,6 +169,7 @@ class AdminController extends Controller
     public function getunapprovereview($id) {
         $review = review::find($id);
         $review->isApproval = 0;
+        $review->hienthi = 0;
         $review->save();
         return redirect('reviewadmin')->with('thongbao','Đã kiểm hủy duyệt bình luận.');
     }
