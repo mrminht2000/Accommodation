@@ -101,7 +101,7 @@ function time_translate($pricePer)
 									<div class="room-item">
 										<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
 											<img src="" class="lazyload img-responsive">
-											<div class="category">
+											<div class="category" style="background-color: black;">
 												<a href="{{route('chitietphong', $house->id)}}">{{ $house->housetype->name }}</a>
 											</div>
 										</div>
@@ -154,7 +154,7 @@ function time_translate($pricePer)
 									<div class="room-item">
 										<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
 											<img src="" class="lazyload img-responsive">
-											<div class="category">
+											<div class="category" style="background-color: black;">
 												<a href="{{route('danhmucphongtro', $house->id_type)}}">{{ $house->housetype->name }}</a>
 											</div>
 										</div>
@@ -241,7 +241,11 @@ function time_translate($pricePer)
 
 					});
 			});
+
+			
 		});
+
 	</script>
+	
 
 	@endsection

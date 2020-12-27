@@ -44,7 +44,7 @@
 								<div class="room-item">
 									<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
 										<img src="" class="lazyload img-responsive">
-										<div class="category">
+										<div class="category" style="background-color: black;">
 											<a href="{{route('chitietphong', $ptdm->id)}}">{{ $ptdm->housetype->name }}</a>
 										</div>
 									</div>
