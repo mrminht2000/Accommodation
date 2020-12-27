@@ -8,7 +8,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<base href="{{asset('')}}">
 	<link rel="stylesheet" href="source/assets/bootstrap/css/bootstrap.min.css">
-
+	<link href="source/adminassets/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="source/assets/style.css">
 
 	
@@ -51,17 +51,9 @@
 </head>
 
 <body>
-	<div class="header-bottom" style="background-color: #003352;">
+	<div class="header-bottom" style="background-color: black;">
 		<!-- <nav class="navbar navbar-inverse"> -->
 		<div class="container">
-			<div class="navbar-header">
-				<!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>                        
-				</button> -->
-				<!--<a class="navbar-brand" href=""><img src="images/logo.png"></a>-->
-			</div>
 			<nav class="main-menu">
 				<ul class="l-inline ov">
 					<li><a href="{{route('trang-chu')}}">Trang chủ</a></li>
@@ -82,14 +74,23 @@
 					@endif
 
 					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào! {{Auth::user()->fullname}}<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="{{route('profile',Auth::guard('account')->user()->id)}}">Thông tin chi tiết</a></li>
-							<li><a href="{{route('cart')}}">Nhà trọ theo dõi</a></li>
-							<li><a href="{{ route('thongbao', Auth::guard('account')->user()->id) }}">Thông báo</a></li>
-							<li><a href="{{route('signout')}}">Thoát</a></li>
+						
+							<a style="margin-left:10px; margin-right:5px;"class="dropdown-toggle" data-toggle="dropdown" href="#">
+							@if(Auth::user()->avatar == 'no-avatar.jpg')
+							<img style=" border-radius: 50%; box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125); height: 30px; width: 30px;" src="{{ URL:: to('source/images/no-avatar.jpg')}}" class="avatar" data-reactid="10">
+							@else
+							<img style="border-radius: 50%; box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125); height: 30px; width: 30px;" src="uploads/avatars/{{Auth::user()->avatar}}" class="avatar" data-reactid="10">
+							@endif
+							Xin chào! {{Auth::user()->fullname}}<span class="caret"></span>
+						</a>
+						<ul class="sub-menu">
+							<li><a href="{{route('profile',Auth::guard('account')->user()->id)}}"><i style="color:black; font-size:13px;" class="fas fa-user"> Thông tin chi tiết</i></a></li>
+							<li><a href="{{route('cart')}}"><i style="color:black; font-size:13px;" class="fas fa-cart-plus"> Nhà trọ theo dõi</i></a></li>
+							<li><a href="{{route('signout')}}"><i style="color:black; font-size:13px;" class="fas fa-angle-double-right"> Thoát</i></a></li>
 						</ul>
+						
 					</li>
+					<li><a href="{{ route('thongbao', Auth::guard('account')->user()->id) }}"><i style="color:white;" class="icon-shield-notice">Thông báo</i></a></li>
 					@endif
 				</ul>
 				<ul class="l-inline ov">
@@ -110,7 +111,7 @@
 				<div class="col-md-12">
 					<div class="logo-footer">
 						<a href="/" title="Project của Ngọc Minh đẹp trai và Phạm Hoàng fanboi MU 20 năm">
-							<img class="logo-img" src="./uploads/images/logo.png">
+							
 						</a>
 						<div style="padding-top: 10px;">
 							<p>Dự án phát triển Website Đăng tin và Tìm kiếm Phòng trọ Hà Nội.</p>

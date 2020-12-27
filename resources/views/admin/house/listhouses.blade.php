@@ -26,9 +26,6 @@
 							<h5 class="panel-title">Danh sách các phòng trọ <span class="badge badge-primary">{{$house->count()}}</span></h5>
 						</div>
 
-						<div class="panel-body">
-							Các <code>Tài khoản</code> được liệt kê tại đây. <strong>Dữ liệu đang cập nhật.</strong>
-						</div>
                         @if(session('thongbao'))
                         <div class="alert bg-success">
 							<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>

@@ -6,7 +6,7 @@
 				<div class="page-header page-header-default">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Danh sách thành viên</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Danh sách các  thành viên cần duyệt</h4>
 						</div>
 					</div>
 
@@ -22,13 +22,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="panel panel-flat">
-						<div class="panel-heading">
-							<h5 class="panel-title">Danh sách tài khoản <span class="badge badge-primary">{{$user->count()}}</span></h5>
-						</div>
-
-						<div class="panel-body">
-							Các <code>Tài khoản</code> được liệt kê tại đây. <strong>Dữ liệu đang cập nhật.</strong>
-						</div>
+						
                         @if(session('thongbao'))
                         <div class="alert bg-success">
 							<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>

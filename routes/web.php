@@ -144,7 +144,7 @@ Route::get('edit-profile/{id}', [
 ]);
 
 
-Route::post('edit-profile/{id, idUser}', [
+Route::post('edit-profile/{id}', [
     'as'=> 'edituser',
     'uses'=> 'UserController@postEditprofile'
 ]);

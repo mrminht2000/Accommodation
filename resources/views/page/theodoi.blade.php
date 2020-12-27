@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="mypage">
-				<h4>Tin đã đăng gần đây</h4>
+				<h4>các bài viết mà bạn quan tâm</h4>
 				<div class="mainpage">
 					@if( count($housefollow) < 1)
 					<div class="alert alert-info">
@@ -43,7 +43,7 @@
 								<td>{{ $post->house->count_view }}</td>
 								<td>
 									<a href="{{route('chitietphong', $post->house->id)}}"><i class="fas fa-eye"></i> Xem</a>
-									<a href="{{route('deletefollow', $post->id)}}" style="color:red"><i class="fas fa-trash-alt"></i> Xóa</a>
+									<a href="{{route('deletefollow', $post->id)}}" style="color:red"><i class="fas fa-trash-alt"></i> Bỏ theo dõi</a>
 								</td>
 							</tr>
 							@endforeach

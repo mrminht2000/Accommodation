@@ -82,10 +82,7 @@
 		</div>
 		<!-- /quick stats boxes -->
 		<!-- Footer -->
-		<div class="footer text-muted">
-			&copy; 2019. <a href="#">Project Phòng trọ </a> by <a href="" target="_blank"></a>
-		</div>
-		<!-- /footer -->
+		
 	</div>
 </div>
 @endsection

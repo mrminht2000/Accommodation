@@ -43,7 +43,7 @@
 								<!-- /page kits -->
 
 							</ul>
-							<!-- <img src="source/images/logo.png" alt=""> -->
+							
 						</div>
 					</div>
 					<!-- /main navigation -->

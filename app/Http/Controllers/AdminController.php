@@ -34,7 +34,7 @@ class AdminController extends Controller
     public function getlogout() {
         Auth::logout();
         Session::flush();
-         return redirect('signin');
+         return redirect('index');
         
     }
 

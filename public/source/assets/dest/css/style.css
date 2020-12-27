@@ -1041,8 +1041,8 @@ margin-left:25px
 }
 
 .header-bottom {
-border-top:1px solid #003352;
-border-bottom:1px solid #003352;
+border-top:1px solid black;
+border-bottom:1px solid black;
 }
 .color-div{background:#353535!important;}
 #footer.color-div input{background: #3f3f3f;border:1px solid gray;}
