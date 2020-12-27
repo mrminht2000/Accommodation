@@ -2,9 +2,11 @@
 @section('content')
 
 <?php
+
 use App\Models\house;
 use App\Models\account;
 use App\Models\choosedhouse;
+
 function time_translate($pricePer)
 {
 	if ($pricePer == 'month') return 'tháng';
@@ -12,10 +14,16 @@ function time_translate($pricePer)
 	if ($pricePer == 'year') return 'năm';
 }
 ?>
-<div class="container-fluid">
 
-	<div id="searchbar">
-		<div class="container">
+<div class="container-fluid">
+	
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url(uploads/index_bg.jpg); background-size: 100%;">
+  <div class="container">
+    <h1 class="display-4">WEBSITE TÌM NHÀ TRỌ ĐẦU HÀNG VIỆT NAM</h1>
+    <p class="lead">Nơi bạn hoàn toàn có thể tin tưởng giao tiền cho chúng tôi mà không lo về chất lượng dịch vụ.</p>
+  </div>
+</div>
+		<div class="container" id="searchbar">
 			<form role="search" action="{{route('search')}}" method="GET">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="search_field">
@@ -74,7 +82,6 @@ function time_translate($pricePer)
 				</div>
 			</form>
 		</div>
-	</div>
 
 	<div class="space60">&nbsp;</div>
 	<div class="container">
@@ -198,7 +205,6 @@ function time_translate($pricePer)
 			</div> <!-- .main-content -->
 		</div> <!-- #content -->
 	</div> <!-- .container -->
-
 	<script>
 		$(document).ready(function() {
 			$.ajaxSetup({
@@ -242,10 +248,9 @@ function time_translate($pricePer)
 					});
 			});
 
-			
-		});
 
+		});
 	</script>
-	
+
 
 	@endsection

@@ -3,7 +3,7 @@
 <div class="gap"></div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-10">
 			<h1 class="entry-title entry-prop">Đăng tin Phòng trọ</h1>
 			<hr>
 			<div class="panel panel-default">

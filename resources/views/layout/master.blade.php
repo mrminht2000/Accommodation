@@ -51,8 +51,7 @@
 </head>
 
 <body>
-	<div class="header-bottom" style="background-color: black;">
-		<!-- <nav class="navbar navbar-inverse"> -->
+	<div class="header-bottom" style="background-color: #003352;">
 		<div class="container">
 			<nav class="main-menu">
 				<ul class="l-inline ov">
@@ -66,16 +65,16 @@
 					</li>
 					<li><a href="{{route('huongdan')}}">Hướng dẫn</a></li>
 					@if(!Auth::guard('account')->user())
-					<li><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
+					<li style="margin-left:300px"><a href="{{route('signin')}}"><i class="fas fa-user-circle"></i> Đăng Nhập</a></li>
 					<li><a href="{{route('signup')}}"><i class="fas fa-sign-in-alt"></i> Đăng Kí</a></li>
 					@else
-					@if(Auth::user()->isOwner == 1)
-					<li><a class="btn-dangtin" href="{{route('post')}}"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
+					@if((Auth::user()->isOwner == 1) || (Auth::user()->isAdmin == 1))
+					<li><a class="btn-dangtin" href="{{route('post')}}" style="margin-left:200px"><i class="fas fa-edit"></i> Đăng tin mới</a></li>
 					@endif
 
 					<li class="dropdown">
 						
-							<a style="margin-left:10px; margin-right:5px;"class="dropdown-toggle" data-toggle="dropdown" href="#">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							@if(Auth::user()->avatar == 'no-avatar.jpg')
 							<img style=" border-radius: 50%; box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125); height: 30px; width: 30px;" src="{{ URL:: to('source/images/no-avatar.jpg')}}" class="avatar" data-reactid="10">
 							@else
@@ -86,11 +85,11 @@
 						<ul class="sub-menu">
 							<li><a href="{{route('profile',Auth::guard('account')->user()->id)}}"><i style="color:black; font-size:13px;" class="fas fa-user"> Thông tin chi tiết</i></a></li>
 							<li><a href="{{route('cart')}}"><i style="color:black; font-size:13px;" class="fas fa-cart-plus"> Nhà trọ theo dõi</i></a></li>
+							<li><a href="{{route('thongbao', Auth::guard('account')->user()->id)}}"><i style="color:black; font-size:13px;" class="fas fa-bell"> Thông báo</i></a></li>
 							<li><a href="{{route('signout')}}"><i style="color:black; font-size:13px;" class="fas fa-angle-double-right"> Thoát</i></a></li>
 						</ul>
 						
 					</li>
-					<li><a href="{{ route('thongbao', Auth::guard('account')->user()->id) }}"><i style="color:white;" class="icon-shield-notice">Thông báo</i></a></li>
 					@endif
 				</ul>
 				<ul class="l-inline ov">
@@ -99,7 +98,6 @@
 				<div class="clearfix"></div>
 			</nav>
 		</div>
-		<!-- </nav> -->
 	</div>
 
 	@yield('content')
