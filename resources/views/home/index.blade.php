@@ -103,7 +103,7 @@ function time_translate($pricePer)
 
 								?>
 
-								@if($house->isApproval == 1)
+								@if($house->isApproval == 1 && $house->isRented == 0)
 								<div class="col-md-4 col-sm-6">
 									<div class="room-item">
 										<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">
@@ -156,7 +156,7 @@ function time_translate($pricePer)
 								$img_thumb = json_decode($house->Image, true);
 
 								?>
-								@if($house->isApproval == 1)
+								@if($house->isApproval == 1 && $house->isRented == 0)
 								<div class="col-md-4 col-sm-6">
 									<div class="room-item">
 										<div class="wrap-img" style="background: url(uploads/images/<?php echo $img_thumb[0]; ?>) center;     background-size: cover;">

@@ -174,6 +174,10 @@ Route::get('huong-dan', [
     'uses'=>'PageController@gethuongdan'
 ]);
 
+Route::get('rented/{id}', [
+    'as'=>'rented',
+    'uses'=>'PageController@getRented'
+]);
 
 
 /* admin  */

@@ -51,12 +51,12 @@
 									
                                     <td>{{$re->describe}}</td>
                                     <td>
-                                        <?php
+									<?php
 									for ($i = 5; $i > $re->rating; $i--)
 										echo ('<span class="float-right"><i class="fa fa-star"></i></span>');
 									for ($i = 0; $i < $re->rating; $i++)
 										echo ('<span class="float-right"><i class="text-warning fa fa-star"></i></span>');
-                                    ?> 
+									?> 
                                     </td>
 									<td>
 										@if($re->isApproval == 1)

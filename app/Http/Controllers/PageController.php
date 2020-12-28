@@ -165,7 +165,8 @@ class PageController extends Controller
       $housetype = housetype::where('id', $req->id_type)->first();
       $user = account::where('id', $req->idOwner)->first();
       $review = review::where('idHouse',$req->id)->get();
-      return view('home.chitietphong', compact('house', 'housetype', 'provinces', 'districts', 'current_view', 'user', 'review'));
+      $like = choosedhouse::where('idHouse', $req->id)->count();
+      return view('home.chitietphong', compact('house', 'housetype', 'provinces', 'districts', 'current_view', 'user', 'review', 'like'));
 
 
       // $housetype = housetype::where('id', $req->id)->first();
@@ -177,6 +178,11 @@ class PageController extends Controller
       //      ->update(['count_view' =>$current_view['count_view'] + 1]);
       //   return view('home.chitietphong', compact('house'));
 
+   }
+
+   public function getRented($id) {
+      $house = house::where('id', $id)->update(['isRented' => 1]);
+      return back();
    }
 
    public function getloaiphong($type)

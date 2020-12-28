@@ -1,7 +1,8 @@
 @extends('layout.master')
 @section('content')
-<?php 
-function time_elapsed_string($datetime, $full = false) {
+<?php
+function time_elapsed_string($datetime, $full = false)
+{
 	$now = new DateTime;
 	$ago = new DateTime($datetime);
 	$diff = $now->diff($ago);
@@ -37,11 +38,11 @@ function time_elapsed_string($datetime, $full = false) {
 			<div class="banner-info mb-5">
 				<div>
 					@if($user->avatar == 'no-avatar.jpg')
-					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:120px;"  size="80" src="{{ URL:: to('source/images/no-avatar.jpg')}}" class="avatar" data-reactid="57">
+					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:120px;" size="80" src="{{ URL:: to('source/images/no-avatar.jpg')}}" class="avatar" data-reactid="57">
 					@else
-					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:120px;"  size="80" src="uploads/avatars/{{$user->avatar}}" class="avatar" data-reactid="57">
+					<img style="color:#ffffff;background-color:rgb(188, 188, 188);user-select:none;display:inline-flex;align-items:center;justify-content:center;font-size:40px;border-radius:50%;height:120px;width:120px;" size="80" src="uploads/avatars/{{$user->avatar}}" class="avatar" data-reactid="57">
 					@endif
-					
+
 				</div>
 				<div class="info">
 					<h4 class="name" data-reactid="59">{{ $user->fullname }}</h4>
@@ -54,11 +55,11 @@ function time_elapsed_string($datetime, $full = false) {
 					<div class="infoText">
 						Số điện thoại: {{ $user->phoneNumber}}
 					</div>
-					
-					<div style="margin:15px;"> 
-					@if($user->id==Auth::guard('account')->user()->id)
-					<a class="btn btn-info" href="{{route('edituser', Auth::guard('account')->user()->id)}}">Chỉnh sửa thông tin</a>
-					@endif
+
+					<div style="margin:15px;">
+						@if($user->id==Auth::guard('account')->user()->id)
+						<a class="btn btn-info" href="{{route('edituser', Auth::guard('account')->user()->id)}}">Chỉnh sửa thông tin</a>
+						@endif
 					</div>
 				</div>
 			</div>
@@ -67,18 +68,17 @@ function time_elapsed_string($datetime, $full = false) {
 				@if(session('thongbao'))
 				<div class="alert bg-danger">
 					<button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-					<span class="text-semibold">Hi!</span>  {{session('thongbao')}}
+					<span class="text-semibold">Hi!</span> {{session('thongbao')}}
 				</div>
 				@endif
 				<div class="mainpage">
-					@if( count($mypost) < 1)
-					<div class="alert alert-info">
+					@if( count($mypost) < 1) <div class="alert alert-info">
 						Bạn chưa có tin đăng phòng trọ nào đang cho thuê, thử đăng ngay.
-					</div>
-					<a href="{{route('post')}}" class="btn-post">ĐĂNG TIN</a>
-					@else
-					<div class="table-responsive">
-						<table class="table">
+				</div>
+				<a href="{{route('post')}}" class="btn-post">ĐĂNG TIN</a>
+				@else
+				<div class="table-responsive">
+					<table class="table">
 						<thead>
 							<tr>
 								<th>Tiêu đề</th>
@@ -91,16 +91,18 @@ function time_elapsed_string($datetime, $full = false) {
 						</thead>
 						<tbody>
 							@foreach($mypost as $post)
-							<tr>	
+							<tr>
 								<td>{{ $post->title }}</td>
 								<td>{{ $post->housetype->name }}</td>
 								<td>{{ $post->price }}</td>
 								<td>{{ $post->count_view }}</td>
 								<td>
-									@if($post->isApproval == 1)
-										<span class="label label-success">Đã kiểm duyệt</span>
+									@if($post->isApproval == 1 && $post->isRented == 0)
+									<span class="label label-success">Đã kiểm duyệt</span>
+									@elseif($post->isApproval == 1 && $post->isRented == 1)
+									<span class="label label-danger">Đã cho thuê</span>
 									@elseif($post->isApproval == 0 || $post->isApproval == 2)
-										<span class="label label-danger">Chờ Phê Duyệt</span>
+									<span class="label label-danger">Chờ Phê Duyệt</span>
 									@endif
 								</td>
 								<td>
@@ -113,11 +115,11 @@ function time_elapsed_string($datetime, $full = false) {
 							@endforeach
 						</tbody>
 					</table>
-					</div>
-					@endif
-				</div>	
+				</div>
+				@endif
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 @endsection

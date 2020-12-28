@@ -155,7 +155,7 @@ function time_translate($pricePer)
 						<h1 class="entry-title entry-prop">{{ $house->title }}</h1>
 					</div>
 					<div class="col-md-6">
-						<span class="pull-right">Lượt xem: {{ $house->count_view }} - <span>Ngày đăng: </span> <span style="color: red; font-weight: bold;">
+						<span class="pull-right">Lượt thích: {{$like}} - Lượt xem: {{ $house->count_view }} - <span>Ngày đăng: </span> <span style="color: red; font-weight: bold;">
 								<?php echo time_elapsed_string($house->created_at); ?>
 							</span></span>
 						<!-- <span class="pull right">Người đăng: <a href="#">{{$house->account->fullname}}</a></span> -->
@@ -271,6 +271,21 @@ function time_translate($pricePer)
 							<i class="fas fa-phone-square" style="font-size: 20px"></i>
 							<span>SĐT: {{ $house->phoneNumber }}</span></a>
 					</div>
+					@if(Auth::guard('account')->user()->id == $house->idOwner)
+					<div class="">
+						@if($house->isRented == 0)
+						<a id="show_phone_bnt" href="{{route('rented', $house->id)}}" class="btn btn-primary btn-block" style="font-weight: bold !important;
+						font-size: 14px;">
+							<i class="fas fa-bell" style="font-size: 20px"></i>
+							<span>Đã cho thuê</span></a>
+						@else
+						<a id="show_phone_bnt" class="btn btn-primary btn-block" style="font-weight: bold !important;
+						font-size: 14px;background-color:red;">
+							<i class="fas fa-bell" style="font-size: 20px"></i>
+							<span>Đã cho thuê</span></a>
+						@endif
+					</div>
+					@endif
 
 					<div class="gap"></div>
 

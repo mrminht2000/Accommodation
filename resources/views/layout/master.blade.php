@@ -84,6 +84,9 @@
 						</a>
 						<ul class="sub-menu">
 							<li><a href="{{route('profile',Auth::guard('account')->user()->id)}}"><i style="color:black; font-size:13px;" class="fas fa-user"> Thông tin chi tiết</i></a></li>
+							@if(Auth::user()->isAdmin == 1)
+							<li><a href="{{route('admin')}}"><i style="color:black; font-size:13px;" class="fas fa-user"> Admin </i></a></li>
+							@endif
 							<li><a href="{{route('cart')}}"><i style="color:black; font-size:13px;" class="fas fa-cart-plus"> Nhà trọ theo dõi</i></a></li>
 							<li><a href="{{route('thongbao', Auth::guard('account')->user()->id)}}"><i style="color:black; font-size:13px;" class="fas fa-bell"> Thông báo</i></a></li>
 							<li><a href="{{route('signout')}}"><i style="color:black; font-size:13px;" class="fas fa-angle-double-right"> Thoát</i></a></li>
