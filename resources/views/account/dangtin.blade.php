@@ -53,6 +53,7 @@
                 </div>
               </div>
             </div>
+
             <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
@@ -173,27 +174,13 @@
             
             <button class="btn btn-primary">Đăng Tin</button>
           </form>
-          
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-     <div class="contactpanel">
-      <div class="row">
-       <div class="col-md-4 text-center">
-        <!-- <img src="assets/images/noavt.png" class="img-circle" alt="Cinque Terre" width="100" height="100">  -->
-      </div>
-     
-    </div>
-  </div>
-  
-  <div class="gap"></div>
-  <!-- <img src="images/banner-1.png" width="100%"> -->
-</div>
-</div>
+  </div> 
 </div>
 
-<script>
+<script type="text/javascript">
      $('#file-5').fileinput({
     theme: 'fa',
     language: 'vi',
@@ -246,3 +233,4 @@
 	</script>
 
 @endsection
+

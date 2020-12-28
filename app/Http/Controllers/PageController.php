@@ -199,27 +199,16 @@ class PageController extends Controller
       $house = house::where([
          ['id_districts', (int)$request->id_districts],
          ['province_id', (int)$request->province_id],
-         ['price', '>=', (int)$request->min_price],
-         ['price', '<=', (int)$request->max_price],
-         ['size', '>=', (int)$request->min_size],
-         ['size', '<=', (int)$request->max_size],
+         // ['price', '>=', (int)$request->min_price],
+         // ['price', '<=', (int)$request->max_price],
+         // ['size', '>=', (int)$request->min_size],
+         // ['size', '<=', (int)$request->max_size],
          ['id_type', (int)$request->id_type]
       ])->get();
       return view('page.search', compact('provinces', 'danh_muc', 'house'));
    }
 
-   // public function searchhouse(Request $request) {
-   //    $house = house::where([
-   //       ['id_districts',(int)$request->id_districts],
-   //       ['province_id',(int)$request->province_id],
-   // 		['price','>=',(int)$request->min_price],
-   //       ['price','<=',(int)$request->max_price],
-   //       ['size','>=',(int)$request->min_size],
-   //       ['size','<=',(int)$request->max_size],
-   // 		['id_type',(int)$request->id_type],
-   //    ])->get();
-   //    return redirect('page.search')->back()->with(compact('house'));
-   // }
+   
 
    public function getMessage() {
       if (Auth::guard('account')->user())

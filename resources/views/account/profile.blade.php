@@ -48,6 +48,13 @@ function time_elapsed_string($datetime, $full = false) {
 					<div class="infoText">
 						Tham gia {{ time_elapsed_string($user->created_at) }} - {{ $user->created_at }}
 					</div>
+					<div class="infoText">
+						Email: {{ $user->email}}
+					</div>
+					<div class="infoText">
+						Số điện thoại: {{ $user->phoneNumber}}
+					</div>
+					
 					<div style="margin:15px;"> 
 					@if($user->id==Auth::guard('account')->user()->id)
 					<a class="btn btn-info" href="{{route('edituser', Auth::guard('account')->user()->id)}}">Chỉnh sửa thông tin</a>
@@ -92,13 +99,13 @@ function time_elapsed_string($datetime, $full = false) {
 								<td>
 									@if($post->isApproval == 1)
 										<span class="label label-success">Đã kiểm duyệt</span>
-									@elseif($post->isApproval == 0)
+									@elseif($post->isApproval == 0 || $post->isApproval == 2)
 										<span class="label label-danger">Chờ Phê Duyệt</span>
 									@endif
 								</td>
 								<td>
 									<a href="{{route('chitietphong', $post->id)}}"><i class="fas fa-eye"></i> Xem</a>
-									@if($user->id==Auth::guard('account')->user()->id && $post->isApproval == 0)
+									@if($user->id==Auth::guard('account')->user()->id && $post->isApproval == 2)
 									<a href="{{route('edithouse', $post->id)}}" style="color:red"><i class="fas fa-trash-alt"></i> Chỉnh sửa</a>
 									@endif
 								</td>
