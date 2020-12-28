@@ -85,7 +85,7 @@ function time_elapsed_string($datetime, $full = false) {
 											{{ time_elapsed_string($report->created_at) }} <span class="badge badge-primary">{{ $report->created_at }}</span>
 										</td>
 									</tr>
-								
+									
 								@endforeach
 							</tbody>
 						</table>

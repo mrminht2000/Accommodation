@@ -9,7 +9,7 @@ class provinces extends Model
 {
     protected $table = 'provinces';
     public function house(){
-    	return $this->hasMany('App\Models\house','district_id','id');
+    	return $this->hasMany('App\Models\house','province_id','id');
     }
 
     public function districts() {

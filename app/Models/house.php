@@ -40,4 +40,8 @@ class house extends Model
     public function districts () {
         return $this->belongsTo('App\Models\districts','id_districts','id');
     }
+
+    public function reports () {
+        return $this->hasMany('App\Models\reports','id_house','id');
+    }
 }
